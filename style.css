@@ -83,7 +83,7 @@ nav ul li a:hover {
 /* Main Sections */
 section {
     position: relative;
-    padding: 10rem 2rem;
+    padding: 8rem 2rem;
     min-height: 80vh;
     display: flex;
     align-items: center;
@@ -91,6 +91,11 @@ section {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    margin-bottom: 4rem; /* Straight white space between images */
+}
+
+#intro {
+    padding-top: 4rem; /* Reduced top padding for intro specifically */
 }
 
 /* Section Backgrounds (Placeholders) */
@@ -98,23 +103,6 @@ section {
 #landwirte { background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2000&auto=format&fit=crop'); }
 #anwohner { background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2000&auto=format&fit=crop'); }
 #passanten { background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2000&auto=format&fit=crop'); }
-
-/* Tilted Separators */
-section::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100px;
-    background: var(--bg-color);
-    clip-path: polygon(0 100%, 100% 100%, 100% 0);
-    z-index: 1;
-}
-
-#intro::after {
-    clip-path: polygon(0 100%, 100% 100%, 0 0);
-}
 
 /* Content Boxes */
 .content-box {
@@ -297,6 +285,34 @@ p {
     border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Target Groups */
+.section-intro {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    border-left: 8px solid var(--accent-color);
+    padding-left: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.bullet-points {
+    list-style: none;
+    padding-left: calc(8px + 1.5rem); /* Align with text after the intro bar */
+}
+
+.bullet-points li {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.bullet-points li::before {
+    content: '→';
+    color: var(--accent-color);
+    font-weight: 900;
+    margin-right: 0.75rem;
+}
+
 .video-placeholder::before {
     content: '▶';
     font-size: 5rem;
@@ -400,8 +416,8 @@ footer {
 
 /* Responsive */
 @media (max-width: 768px) {
-    section { padding: 6rem 1.5rem; }
-    .content-box { padding: 2rem; }
-    nav { flex-direction: column; gap: 1.5rem; }
+    section { padding: 6rem 1rem; }
+    .content-box { padding: 2rem 1rem; }
+    nav { flex-direction: column; gap: 1.5rem; padding: 0 1rem; }
     nav ul li { margin: 0 0.5rem; }
 }
