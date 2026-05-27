@@ -102,7 +102,6 @@ section {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    margin-bottom: 4rem; /* Straight white space between images */
     scroll-margin-top: 100px; /* Offset for sticky header */
 }
 
