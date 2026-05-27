@@ -412,28 +412,6 @@ p {
     margin: 0 auto;
 }
 
-.newsletter-form {
-    margin-top: 2rem;
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.newsletter-form input {
-    flex: 1;
-    min-width: 250px;
-    padding: 1.2rem;
-    border: 2px solid transparent;
-    border-radius: 4px;
-    font-size: 1rem;
-    background: rgba(255, 255, 255, 0.9);
-}
-
-.newsletter-form input:focus {
-    outline: none;
-    border-color: var(--accent-color);
-}
-
 footer {
     background: var(--primary-color);
     color: var(--white);
