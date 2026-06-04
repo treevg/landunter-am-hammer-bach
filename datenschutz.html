@@ -52,7 +52,15 @@
         [Straße und Hausnummer]<br>
         [PLZ und Ort]</p>
         <p>Telefon: [Telefonnummer]<br>
-        E-Mail: [E-Mail-Adresse]</p>
+        E-Mail: <span id="privacy-email">kontakt [at] landunter-am-hammer-bach.info</span></p>
+        <script type="text/javascript">
+            (function() {
+                var u = "kontakt";
+                var d = "landunter-am-hammer-bach.info";
+                var el = document.getElementById("privacy-email");
+                if (el) el.innerHTML = '<a href="mailto:' + u + '@' + d + '">' + u + '@' + d + '</a>';
+            })();
+        </script>
         <p><em>Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z. B. Namen, E-Mail-Adressen o. Ä.) entscheidet.</em></p>
 
         <h3>Speicherdauer</h3>

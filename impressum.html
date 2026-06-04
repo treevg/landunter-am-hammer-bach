@@ -35,8 +35,16 @@
 
         <h2>Kontakt</h2>
         <p>Telefon: [Telefonnummer]<br>
-        E-Mail: kontakt@landunter-am-hammer-bach.info<br>
-        Website: landunter-am-hammer-bach.info</p>
+        E-Mail: <span id="contact-email">kontakt [at] landunter-am-hammerbach.info</span><br>
+        Website: <a href="https://landunter-am-hammerbach.info" target="_blank" rel="noopener">landunter-am-hammerbach.info</a></p>
+        <script type="text/javascript">
+            (function() {
+                var u = "kontakt";
+                var d = "landunter-am-hammerbach.info";
+                var el = document.getElementById("contact-email");
+                if (el) el.innerHTML = '<a href="mailto:' + u + '@' + d + '">' + u + '@' + d + '</a>';
+            })();
+        </script>
 
         <h2>Verantwortlich für journalistisch-redaktionelle Inhalte</h2>
         <p>Gemäß § 18 Abs. 2 MStV (Medienstaatsvertrag):<br>
