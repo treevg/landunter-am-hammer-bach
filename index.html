@@ -128,11 +128,14 @@
         <h2>Unterstützen Sie Uns</h2>
         <div class="support-content">
             <p>Bleiben Sie auf dem Laufenden: In unserem Terminkalender finden Sie alle anstehenden Versammlungen, Informationsabende und Vor-Ort-Termine unserer Bürgerinitiative.</p>
-            <div style="text-align: center; margin-bottom: 3rem;">
-                <a href="events/2026-06-21.html" class="cta-button">Zur Agenda der Auftaktveranstaltung</a>
-            </div>
             <div id="calendar-widget-container" class="calendar-widget">
                 <p style="text-align: center; color: var(--white); opacity: 0.8;">Termine werden geladen...</p>
+            </div>
+            
+            <div class="calendar-actions" style="margin: -2rem auto 4rem; text-align: center; position: relative; z-index: 10;">
+                <a href="https://calendar.google.com/calendar/render?cid=253746780ebc4846c481b64aa2bf690ad48db507746a6cbe13d3d834357f4222%40group.calendar.google.com" target="_blank" rel="noopener">Zu Google Calendar hinzufügen</a>
+                <span class="dot-separator">•</span>
+                <a href="webcal://calendar.google.com/calendar/ical/253746780ebc4846c481b64aa2bf690ad48db507746a6cbe13d3d834357f4222%40group.calendar.google.com/public/basic.ics">Kalender abonnieren (iCal / Outlook)</a>
             </div>
 
             <script>
@@ -187,7 +190,7 @@
                             var key = line.substring(0, colonIdx);
                             var val = line.substring(colonIdx + 1);
                             
-                            val = val.replace(/\\,/g, ",").replace(/\\;/g, ";").replace(/\\n/g, " ").replace(/\\r/g, "").trim();
+                            val = val.replace(/\\,/g, ",").replace(/\\;/g, ";").replace(/\\n/gi, "\n").replace(/\\r/g, "").trim();
                             
                             if (key.startsWith("SUMMARY")) currentEvent.summary = val;
                             else if (key.startsWith("DTSTART")) currentEvent.start = val;
@@ -198,6 +201,23 @@
                     }
                 }
                 return events;
+            }
+
+            function prettifyDescription(text) {
+                if (!text) return "";
+                
+                var html = text;
+                
+                // Ensure all anchor links have target="_blank" and rel="noopener"
+                html = html.replace(/<a\s+(?!.*?target=)[^>]*href="([^"]*)"[^>]*>(.*?)<\/a>/gi, '<a href="$1" target="_blank" rel="noopener">$2</a>');
+                
+                // Replace any raw newlines (\n) with <br> to support plain text calendars too,
+                // but only if there are no rich block tags like <ul> or <p> to avoid double gaps.
+                if (!html.includes("<ul") && !html.includes("<p") && !html.includes("<br")) {
+                    html = html.replace(/\n/g, "<br>");
+                }
+                
+                return html;
             }
 
             function renderEvents(container, events) {
@@ -248,14 +268,22 @@
                     var location = ev.location || "";
                     var description = ev.description || "";
                     
-                    // Clean up HTML tags in description for clean previews
-                    var cleanDesc = description.replace(/<[^>]*>/g, "").trim();
-                    if (cleanDesc.length > 150) {
-                        cleanDesc = cleanDesc.substring(0, 150) + "...";
-                    }
+                    // Prettify the native HTML/plain-text description
+                    var cleanDesc = description ? prettifyDescription(description) : "";
                     
                     var card = document.createElement("div");
                     card.className = "event-card";
+                    
+                    var locationHref = "";
+                    var locationMarkup = "";
+                    if (location) {
+                        var isUrl = location.startsWith("http://") || location.startsWith("https://");
+                        locationHref = isUrl ? location : "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(location);
+                        locationMarkup = `<span>📍 <a href="${locationHref}" target="_blank" rel="noopener" class="event-location-link">${location}</a></span>`;
+                    }
+                    
+                    var arrowMarkup = cleanDesc ? `<div class="event-toggle-arrow">↓</div>` : ``;
+                    
                     card.innerHTML = `
                         <div class="event-date-badge">
                             <span class="day">${dayNum}</span>
@@ -265,11 +293,36 @@
                             <h3 class="event-title">${summary}</h3>
                             <div class="event-meta">
                                 <span>🕒 ${dateStr}, ${timeStr}</span>
-                                ${location ? `<span>📍 ${location}</span>` : ""}
+                                ${locationMarkup}
                             </div>
-                            ${cleanDesc ? `<p class="event-description">${cleanDesc}</p>` : ""}
+                            ${cleanDesc ? `<div class="event-description">${cleanDesc}</div>` : ""}
                         </div>
+                        ${arrowMarkup}
                     `;
+                    
+                    // Stop event propagation when clicking on the location link to prevent card folding/unfolding
+                    var link = card.querySelector(".event-location-link");
+                    if (link) {
+                        link.addEventListener("click", function(e) {
+                            e.stopPropagation();
+                        });
+                    }
+                    
+                    // Stop event propagation when clicking on any links inside the description
+                    var descLinks = card.querySelectorAll(".event-description a");
+                    descLinks.forEach(function(l) {
+                        l.addEventListener("click", function(e) {
+                            e.stopPropagation();
+                        });
+                    });
+                    
+                    // Enable fold/unfold on click if there is a description
+                    if (cleanDesc) {
+                        card.addEventListener("click", function() {
+                            card.classList.toggle("unfolded");
+                        });
+                    }
+                    
                     container.appendChild(card);
                 });
             }
