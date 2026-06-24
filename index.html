@@ -15,6 +15,7 @@
                 <li><a href="#landwirte">Landwirte</a></li>
                 <li><a href="#anwohner">Anwohner</a></li>
                 <li><a href="#passanten">Passanten</a></li>
+                <li><a href="#support">Termine &amp; Newsletter</a></li>
             </ul>
         </nav>
     </header>
@@ -391,7 +392,43 @@
 </section>
 </main>
 
-<a href="#support" class="floating-cta">Termine und Newsletter</a>
+<a href="#portal" id="portal-scroll-btn" class="floating-cta" style="width: 50px; height: 50px; padding: 0; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; border-radius: 50%; box-shadow: 0 10px 30px rgba(255, 152, 0, 0.4); line-height: 1; opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s, background-color 0.3s;" title="Zum Portal scrollen">↓</a>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var portal = document.getElementById('portal');
+    var btn = document.getElementById('portal-scroll-btn');
+    if (!portal || !btn) return;
+
+    function updateFloatingButton() {
+        var rect = portal.getBoundingClientRect();
+        var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+        if (rect.bottom < 50) {
+            // Portal is above viewport -> point UP
+            btn.innerHTML = '↑';
+            btn.style.opacity = '1';
+            btn.style.pointerEvents = 'auto';
+            btn.style.transform = 'scale(1)';
+        } else if (rect.top > viewportHeight - 50) {
+            // Portal is below viewport -> point DOWN
+            btn.innerHTML = '↓';
+            btn.style.opacity = '1';
+            btn.style.pointerEvents = 'auto';
+            btn.style.transform = 'scale(1)';
+        } else {
+            // Portal is visible -> disappear
+            btn.style.opacity = '0';
+            btn.style.pointerEvents = 'none';
+            btn.style.transform = 'scale(0.8)';
+        }
+    }
+
+    window.addEventListener('scroll', updateFloatingButton);
+    window.addEventListener('resize', updateFloatingButton);
+    updateFloatingButton(); // Run initially
+});
+</script>
 
 <footer>
         <div class="footer-links">
