@@ -10,3 +10,4 @@
 # Project specific
 node_modules/
 dist/
+local/
