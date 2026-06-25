@@ -244,9 +244,9 @@ p {
 
 .cta-box p {
     font-size: 1.4rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-weight: normal;
+    text-transform: none;
+    letter-spacing: normal;
     margin-bottom: 2rem !important;
 }
 

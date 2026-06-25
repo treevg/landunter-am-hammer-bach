@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktive Video-Karte - Landunter am Hammer&nbsp;Bach</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="header.js"></script>
+    <style>
+        /* Custom Styles for Embedded My Maps Page */
+        .map-intro-text {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            color: var(--text-color);
+        }
+
+        .map-wrapper {
+            margin: 2rem auto 3.5rem;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            background-color: #f5f5f5;
+            position: relative;
+        }
+
+        .map-wrapper iframe {
+            display: block;
+            width: 100%;
+            height: 680px;
+            border: 0;
+        }
+
+        @media (max-width: 768px) {
+            .map-wrapper iframe {
+                height: 480px;
+            }
+        }
+
+        .map-tips-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .map-tips-section h2 {
+            margin-top: 0 !important;
+            font-size: 1.6rem !important;
+            margin-bottom: 1.5rem !important;
+            color: var(--primary-color);
+        }
+
+        .map-tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .map-tip-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .map-tip-icon {
+            font-size: 2rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .map-tip-content h3 {
+            margin: 0 0 0.5rem 0 !important;
+            font-size: 1.15rem !important;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .map-tip-content p {
+            margin: 0 !important;
+            font-size: 0.95rem;
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+
+        .map-action-box {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .map-action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none !important;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(26, 42, 58, 0.2);
+        }
+
+        .map-action-btn:hover {
+            background-color: var(--secondary-color);
+            color: var(--white) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(26, 42, 58, 0.3);
+        }
+    </style>
+</head>
+<body class="legal-page">
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html#top">Landunter am Hammer&nbsp;Bach</a></div>
+            <ul>
+                <li><a href="index.html#news">News</a></li>
+                <li><a href="index.html#landwirte">Landwirte</a></li>
+                <li><a href="index.html#anwohner">Anwohner</a></li>
+                <li><a href="index.html#passanten">Passanten</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="legal-container" style="max-width: 1100px;">
+        <a href="index.html" class="back-link">&larr; Zurück zur Startseite</a>
+        
+        <h1>Interaktive Medienkarte</h1>
+        
+        <p class="map-intro-text">
+            Um die Starkregengefahren in Oberbeberich anschaulich zu machen, haben wir eine interaktive Karte erstellt. Hier finden Sie georeferenzierte Video-Aufnahmen und Berichte direkt an den neuralgischen Standorten rund um Sitzstadt und den Hammer Bach.
+        </p>
+
+        <!-- Google My Maps direct iframe embedding -->
+        <div class="map-wrapper">
+            <iframe src="https://www.google.com/maps/d/embed?mid=1zI5TZLPnkvZZz7XBv1J86oBr6wQeuv0&noprof=1" 
+                    allowfullscreen 
+                    loading="lazy">
+            </iframe>
+        </div>
+
+        <section class="map-tips-section" style="min-height: auto;">
+            <h2>Tipps zur Nutzung der Karte</h2>
+            <div class="map-tips-grid">
+                <div class="map-tip-item">
+                    <div class="map-tip-icon">📋</div>
+                    <div class="map-tip-content">
+                        <h3>Legende &amp; Ebenen</h3>
+                        <p>Klicken Sie auf das Symbol oben links in der Karte (neben dem Titel), um das Seitenmenü zu öffnen. Dort sehen Sie die Liste aller eingetragenen Standorte und Video-Pins.</p>
+                    </div>
+                </div>
+                <div class="map-tip-item">
+                    <div class="map-tip-icon">📍</div>
+                    <div class="map-tip-content">
+                        <h3>Pins erkunden</h3>
+                        <p>Klicken Sie auf eine der farbigen Stecknadeln in der Karte. Es öffnet sich ein Infofeld mit Beschreibungen, Fotos und Videos vor Ort.</p>
+                    </div>
+                </div>
+                <div class="map-tip-item">
+                    <div class="map-tip-icon">🖥️</div>
+                    <div class="map-tip-content">
+                        <h3>Vollbild-Ansicht</h3>
+                        <p>Über das quadratische Symbol in der rechten oberen Ecke können Sie die Karte in einem neuen, großen Browserfenster öffnen, um alle Details noch besser zu sehen.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="impressum.html">Impressum</a> |
+            <a href="datenschutz.html">Datenschutz</a>
+        </div>
+        <p>&copy; 2026 Initiative Landunter am Hammer&nbsp;Bach. Alle Rechte vorbehalten.</p>
+    </footer>
+</body>
+</html>
