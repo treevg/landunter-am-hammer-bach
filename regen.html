@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regen-Daten Viersen - Landunter am Hammer&nbsp;Bach</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="header.js"></script>
+    <style>
+        /* Custom Styles for Weather Data Page */
+        .intro-text {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            color: var(--text-color);
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            border-color: var(--secondary-color);
+        }
+
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            line-height: 1.2;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-value small {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #7f8c8d;
+            margin-left: 0.2rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-sub {
+            font-size: 0.8rem;
+            color: #95a5a6;
+            margin-top: 0.2rem;
+        }
+
+        /* Filter Panel */
+        .filter-panel {
+            background: #f8f9fa;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .filter-panel h2 {
+            font-size: 1.25rem !important;
+            border-left: none !important;
+            padding-left: 0 !important;
+            margin-top: 0 !important;
+            margin-bottom: 1.2rem !important;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .filter-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-item label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-item select, .filter-item input {
+            padding: 0.8rem 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            background-color: var(--white);
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            outline: none;
+            width: 100%;
+        }
+
+        .filter-item select:focus, .filter-item input:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.15);
+        }
+
+        /* Weather Table */
+        .table-container {
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+            margin-bottom: 2rem;
+            background: var(--white);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        .data-table th {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1.2rem 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+        }
+
+        .data-table td {
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            vertical-align: middle;
+        }
+
+        .data-table tbody tr {
+            transition: background-color 0.2s ease;
+        }
+
+        .data-table tbody tr:hover {
+            background-color: rgba(93, 173, 226, 0.04);
+        }
+
+        .data-table tbody tr:nth-child(even) {
+            background-color: #fcfcfc;
+        }
+
+        .data-table tbody tr:nth-child(even):hover {
+            background-color: rgba(93, 173, 226, 0.04);
+        }
+
+        /* Interactive Bar Chart inside Table */
+        .bar-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            width: 100%;
+        }
+
+        .prcp-value {
+            font-weight: 700;
+            color: var(--primary-color);
+            min-width: 75px;
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .bar-wrapper {
+            flex-grow: 1;
+            height: 14px;
+            background-color: #f1f2f6;
+            border-radius: 7px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 7px;
+            transition: width 0.4s ease-out;
+        }
+
+        /* Color classes for rainfall intensity */
+        .bar-dry {
+            background-color: transparent;
+        }
+
+        .bar-light {
+            background-color: #aed6f1; /* Light sky blue */
+        }
+
+        .bar-moderate {
+            background-color: #3498db; /* Blue */
+        }
+
+        .bar-heavy {
+            background-color: #2980b9; /* Deep rain blue */
+        }
+
+        .bar-extreme {
+            background-color: var(--accent-color); /* Warning orange */
+            box-shadow: 0 0 8px rgba(255, 152, 0, 0.4);
+        }
+
+        /* Badges for Classification */
+        .badge {
+            display: inline-block;
+            padding: 0.35rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            text-align: center;
+            min-width: 110px;
+        }
+
+        .badge-dry {
+            background-color: #f1f2f6;
+            color: #7f8c8d;
+        }
+
+        .badge-light {
+            background-color: #ebf5fb;
+            color: #2e86c1;
+        }
+
+        .badge-moderate {
+            background-color: #eaf2f8;
+            color: #2471a3;
+        }
+
+        .badge-heavy {
+            background-color: #fdf2e9;
+            color: var(--accent-color);
+        }
+
+        .badge-extreme {
+            background-color: #fdedd8;
+            color: #d35400;
+            border: 1px solid rgba(211, 84, 0, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(211, 84, 0, 0.4); }
+            70% { box-shadow: 0 0 0 6px rgba(211, 84, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(211, 84, 0, 0); }
+        }
+
+        /* Pagination & Layout Info */
+        .pagination-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            color: #7f8c8d;
+        }
+
+        .pagination-info {
+            font-weight: 500;
+        }
+
+        .pagination-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .page-btn {
+            background-color: var(--white);
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            color: var(--primary-color);
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .page-btn:hover:not(.disabled) {
+            border-color: var(--secondary-color);
+            background-color: rgba(93, 173, 226, 0.05);
+            color: var(--secondary-color);
+        }
+
+        .page-btn.active {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .page-btn.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            border-color: rgba(0,0,0,0.08);
+        }
+
+        /* Loading & Error Screens */
+        .loading-screen {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: #ffffff;
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(93, 173, 226, 0.2);
+            border-top-color: var(--secondary-color);
+            border-radius: 50%;
+            animation: spin 1s infinite linear;
+            margin: 0 auto 1.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-msg {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: #fff8f8;
+            border: 1px solid #f9ebeb;
+            border-radius: 12px;
+            color: #c0392b;
+        }
+
+        .error-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .error-msg h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Alignments */
+        .date-cell {
+            font-weight: 700;
+            color: var(--primary-color);
+            white-space: nowrap;
+        }
+
+        .badge-cell {
+            text-align: right;
+            width: 130px;
+        }
+
+        .no-data-msg {
+            text-align: center;
+            color: #7f8c8d;
+            font-style: italic;
+            padding: 3rem 1rem !important;
+        }
+
+        /* Responsive table wrapping */
+        @media (max-width: 768px) {
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+            .data-table th, .data-table td {
+                padding: 1rem;
+            }
+            .prcp-value {
+                min-width: 60px;
+            }
+            .bar-container {
+                gap: 0.8rem;
+            }
+            .badge-cell {
+                width: 100px;
+            }
+            .badge {
+                min-width: 85px;
+                font-size: 0.75rem;
+                padding: 0.3rem 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body class="legal-page">
+    <header>
+        <!-- Will be dynamically filled by header.js -->
+        <nav>
+            <div class="logo"><a href="index.html#top">Landunter am Hammer&nbsp;Bach</a></div>
+            <ul>
+                <li><a href="index.html#news">News</a></li>
+                <li><a href="karte.html">Karte</a></li>
+                <li><a href="index.html#landwirte">Landwirte</a></li>
+                <li><a href="index.html#anwohner">Anwohner</a></li>
+                <li><a href="index.html#passanten">Passanten</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="legal-container" style="max-width: 1100px; padding-bottom: 5rem;">
+        <a href="index.html" class="back-link">&larr; Zurück zur Startseite</a>
+        
+        <h1>Niederschlagsarchiv Viersen</h1>
+        
+        <p class="intro-text">
+            Nachfolgend finden Sie das vollständige, taggenaue Messarchiv der offiziellen Wetterstation Viersen (Meteostat ID **D5064**) für die vergangenen 20 Jahre. Nutzen Sie die Filteroptionen, um gezielt nasse Perioden, sommerliche Trockenphasen oder extreme Starkregenereignisse zu analysieren.
+        </p>
+
+        <!-- Loading State Placeholder -->
+        <div id="loading" class="loading-screen">
+            <div class="spinner"></div>
+            <h3>Wetterdaten werden geladen...</h3>
+            <p>Es werden über 7.000 historische Aufzeichnungen verarbeitet.</p>
+        </div>
+
+        <!-- Dashboard Content (hidden until loaded) -->
+        <div id="dashboard" style="display: none;">
+            
+            <!-- Statistics Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-value" id="stat-total">0<small>mm</small></span>
+                    <span class="stat-label">Niederschlag</span>
+                    <span class="stat-sub">Gesamtsumme im Zeitraum</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="stat-max">0<small>mm</small></span>
+                    <span class="stat-label">Max. Tagesregen</span>
+                    <span class="stat-sub" id="stat-max-date">-</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="stat-days">0</span>
+                    <span class="stat-label">Regentage</span>
+                    <span class="stat-sub" id="stat-percent-days">0% aller Tage</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="stat-avg">0<small>mm</small></span>
+                    <span class="stat-label">Tagesdurchschnitt</span>
+                    <span class="stat-sub">Menge pro Kalendertag</span>
+                </div>
+            </div>
+
+            <!-- Filter Panel -->
+            <div class="filter-panel">
+                <h2><span>🔍</span> Filter &amp; Analyseoptionen</h2>
+                <div class="filter-grid">
+                    <div class="filter-item">
+                        <label for="year-filter">Kalenderjahr</label>
+                        <select id="year-filter">
+                            <option value="all">Alle Jahre (2006 - 2026)</option>
+                            <!-- Programmatically populated -->
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label for="month-filter">Monat</label>
+                        <select id="month-filter">
+                            <option value="all">Ganzes Jahr (Alle Monate)</option>
+                            <option value="1">Januar</option>
+                            <option value="2">Februar</option>
+                            <option value="3">März</option>
+                            <option value="4">April</option>
+                            <option value="5">Mai</option>
+                            <option value="6">Juni</option>
+                            <option value="7">Juli</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Dezember</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label for="intensity-filter">Regenstärke</label>
+                        <select id="intensity-filter">
+                            <option value="all">Alle Tage (Inkl. Trockentage)</option>
+                            <option value="rainy">Nur Regentage (> 0 mm)</option>
+                            <option value="dry">Nur Trockentage (= 0 mm)</option>
+                            <option value="light">Leichter Regen (0.1 - 2.5 mm)</option>
+                            <option value="moderate">Mäßiger Regen (2.5 - 10 mm)</option>
+                            <option value="heavy">Starkregen (10 - 30 mm)</option>
+                            <option value="extreme">Extremer Starkregen (> 30 mm)</option>
+                        </select>
+                    </div>
+                    <div class="filter-item">
+                        <label for="sort-filter">Sortierung</label>
+                        <select id="sort-filter">
+                            <option value="date-desc">Datum (Neueste zuerst)</option>
+                            <option value="date-asc">Datum (Älteste zuerst)</option>
+                            <option value="prcp-desc">Menge (Nasseste zuerst)</option>
+                            <option value="prcp-asc">Menge (Trockenste zuerst)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table Container -->
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Datum</th>
+                            <th>Niederschlag (Tagesmenge in mm &amp; bar-Verlauf)</th>
+                            <th style="text-align: right;">Klassifikation</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- Programmatically populated -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination & Page Size -->
+            <div class="pagination-container">
+                <div class="pagination-info" id="pagination-info">
+                    Zeige 0-0 von 0 Einträgen
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase;">Zeilen pro Seite:</span>
+                        <select id="page-size-selector" style="padding: 0.4rem; border-radius: 6px; font-weight: bold; border: 1px solid rgba(0,0,0,0.15);">
+                            <option value="10">10</option>
+                            <option value="25" selected>25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                    
+                    <div class="pagination-buttons" id="pagination-buttons">
+                        <!-- Programmatically populated -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="impressum.html">Impressum</a> |
+            <a href="datenschutz.html">Datenschutz</a>
+        </div>
+        <p>&copy; 2026 Initiative Landunter am Hammer&nbsp;Bach. Alle Rechte vorbehalten.</p>
+    </footer>
+
+    <!-- Core Interactive Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const CSV_PATH = 'viersen_precipitation_2006_2026.csv';
+            let allWeatherData = [];
+            let filteredWeatherData = [];
+            
+            // Pagination state
+            let currentPage = 1;
+            let rowsPerPage = 25;
+
+            // DOM elements
+            const loadingEl = document.getElementById('loading');
+            const dashboardEl = document.getElementById('dashboard');
+            const yearFilterEl = document.getElementById('year-filter');
+            const monthFilterEl = document.getElementById('month-filter');
+            const intensityFilterEl = document.getElementById('intensity-filter');
+            const sortFilterEl = document.getElementById('sort-filter');
+            const tableBodyEl = document.getElementById('table-body');
+            const pageSizeSelectorEl = document.getElementById('page-size-selector');
+            const paginationInfoEl = document.getElementById('pagination-info');
+            const paginationButtonsEl = document.getElementById('pagination-buttons');
+
+            // Fetch the CSV weather file
+            fetch(CSV_PATH)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(csvText => {
+                    allWeatherData = parseCSV(csvText);
+                    if (allWeatherData.length === 0) {
+                        throw new Error("Parsed data is empty");
+                    }
+                    
+                    // Setup UI components
+                    populateYearOptions(allWeatherData);
+                    setupEventListeners();
+                    
+                    // Initial run
+                    updateDashboard();
+                    
+                    // Switch view from loading to dashboard
+                    loadingEl.style.display = 'none';
+                    dashboardEl.style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error parsing or fetching data:', error);
+                    loadingEl.innerHTML = `
+                        <div class="error-msg">
+                            <span class="error-icon">⚠️</span>
+                            <h3>Datenladefehler</h3>
+                            <p>Das Niederschlagsarchiv (${CSV_PATH}) konnte nicht geladen werden.</p>
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 1rem;">Details: ${error.message}</p>
+                        </div>
+                    `;
+                });
+
+            // Parse raw CSV text
+            function parseCSV(text) {
+                const lines = text.split('\n');
+                const data = [];
+                if (lines.length === 0) return data;
+                
+                const headers = lines[0].trim().split(',');
+                const dateIdx = headers.indexOf('date');
+                const prcpIdx = headers.indexOf('precipitation_mm');
+                
+                if (dateIdx === -1 || prcpIdx === -1) {
+                    console.error("Invalid headers found:", headers);
+                    return data;
+                }
+                
+                for (let i = 1; i < lines.length; i++) {
+                    const line = lines[i].trim();
+                    if (!line) continue;
+                    
+                    const row = line.split(',');
+                    if (row.length <= Math.max(dateIdx, prcpIdx)) continue;
+                    
+                    const dateStr = row[dateIdx];
+                    const prcpVal = parseFloat(row[prcpIdx]);
+                    
+                    if (dateStr) {
+                        data.push({
+                            date: dateStr,
+                            prcp: isNaN(prcpVal) ? 0.0 : prcpVal
+                        });
+                    }
+                }
+                return data;
+            }
+
+            // Populate Year Dropdown dynamically based on data ranges
+            function populateYearOptions(data) {
+                const years = new Set();
+                data.forEach(item => {
+                    const year = item.date.split('-')[0];
+                    if (year) years.add(year);
+                });
+                
+                // Sort descending (newest first)
+                const sortedYears = Array.from(years).sort((a, b) => b.localeCompare(a));
+                
+                sortedYears.forEach(year => {
+                    const option = document.createElement('option');
+                    option.value = year;
+                    option.textContent = year;
+                    yearFilterEl.appendChild(option);
+                });
+            }
+
+            // Bind filters and select change handlers
+            function setupEventListeners() {
+                yearFilterEl.addEventListener('change', () => { currentPage = 1; updateDashboard(); });
+                monthFilterEl.addEventListener('change', () => { currentPage = 1; updateDashboard(); });
+                intensityFilterEl.addEventListener('change', () => { currentPage = 1; updateDashboard(); });
+                sortFilterEl.addEventListener('change', () => { updateDashboard(); });
+                
+                pageSizeSelectorEl.addEventListener('change', (e) => {
+                    rowsPerPage = parseInt(e.target.value);
+                    currentPage = 1;
+                    updateDashboard();
+                });
+            }
+
+            // Recalculates stats, applies filter/sort, and triggers re-render of table
+            function updateDashboard() {
+                // 1. Filter
+                filteredWeatherData = applyFilters(
+                    allWeatherData,
+                    yearFilterEl.value,
+                    monthFilterEl.value,
+                    intensityFilterEl.value
+                );
+                
+                // 2. Sort
+                applySorting(filteredWeatherData, sortFilterEl.value);
+                
+                // 3. Update stats cards
+                renderStats(filteredWeatherData);
+                
+                // 4. Render Table
+                const maxPrcpInFiltered = Math.max(...filteredWeatherData.map(item => item.prcp), 1.0);
+                renderTable(filteredWeatherData, maxPrcpInFiltered);
+                
+                // 5. Render Pagination
+                renderPagination(filteredWeatherData.length);
+            }
+
+            // Filter implementation
+            function applyFilters(data, yearFilter, monthFilter, intensityFilter) {
+                return data.filter(item => {
+                    const [yStr, mStr] = item.date.split('-');
+                    const year = yStr;
+                    const month = parseInt(mStr);
+                    
+                    // Filter year
+                    if (yearFilter !== 'all' && year !== yearFilter) return false;
+                    
+                    // Filter month
+                    if (monthFilter !== 'all' && month !== parseInt(monthFilter)) return false;
+                    
+                    // Filter intensity classification
+                    const prcp = item.prcp;
+                    if (intensityFilter === 'rainy' && prcp <= 0) return false;
+                    if (intensityFilter === 'dry' && prcp > 0) return false;
+                    if (intensityFilter === 'light' && (prcp <= 0 || prcp > 2.5)) return false;
+                    if (intensityFilter === 'moderate' && (prcp <= 2.5 || prcp > 10.0)) return false;
+                    if (intensityFilter === 'heavy' && (prcp <= 10.0 || prcp > 30.0)) return false;
+                    if (intensityFilter === 'extreme' && prcp <= 30.0) return false;
+                    
+                    return true;
+                });
+            }
+
+            // Sort implementation
+            function applySorting(data, sortBy) {
+                if (sortBy === 'date-desc') {
+                    data.sort((a, b) => b.date.localeCompare(a.date));
+                } else if (sortBy === 'date-asc') {
+                    data.sort((a, b) => a.date.localeCompare(b.date));
+                } else if (sortBy === 'prcp-desc') {
+                    data.sort((a, b) => b.prcp - a.prcp);
+                } else if (sortBy === 'prcp-asc') {
+                    data.sort((a, b) => a.prcp - b.prcp);
+                }
+            }
+
+            // Calculate and write stats card information
+            function renderStats(filtered) {
+                const totalEl = document.getElementById('stat-total');
+                const maxEl = document.getElementById('stat-max');
+                const maxDateEl = document.getElementById('stat-max-date');
+                const daysEl = document.getElementById('stat-days');
+                const percentDaysEl = document.getElementById('stat-percent-days');
+                const avgEl = document.getElementById('stat-avg');
+
+                if (filtered.length === 0) {
+                    totalEl.innerHTML = `0<small>mm</small>`;
+                    maxEl.innerHTML = `0<small>mm</small>`;
+                    maxDateEl.textContent = "-";
+                    daysEl.textContent = "0";
+                    percentDaysEl.textContent = "0% aller Tage";
+                    avgEl.innerHTML = `0.00<small>mm</small>`;
+                    return;
+                }
+
+                let total = 0;
+                let maxVal = 0;
+                let maxDate = "-";
+                let rainyDays = 0;
+
+                filtered.forEach(item => {
+                    total += item.prcp;
+                    if (item.prcp > maxVal) {
+                        maxVal = item.prcp;
+                        maxDate = item.date;
+                    }
+                    if (item.prcp > 0) {
+                        rainyDays++;
+                    }
+                });
+
+                const avg = total / filtered.length;
+                const percentRainy = (rainyDays / filtered.length) * 100;
+
+                totalEl.innerHTML = `${total.toLocaleString('de-DE', {minimumFractionDigits: 1, maximumFractionDigits: 1})}<small>mm</small>`;
+                maxEl.innerHTML = `${maxVal.toLocaleString('de-DE', {minimumFractionDigits: 1, maximumFractionDigits: 1})}<small>mm</small>`;
+                maxDateEl.textContent = maxDate !== "-" ? `am ${formatDateGermanShort(maxDate)}` : "-";
+                daysEl.textContent = rainyDays.toLocaleString('de-DE');
+                percentDaysEl.textContent = `${percentRainy.toFixed(1)}% der Tage`;
+                avgEl.innerHTML = `${avg.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2})}<small>mm</small>`;
+            }
+
+            // Render table rows
+            function renderTable(filtered, maxPrcpInFiltered) {
+                tableBodyEl.innerHTML = '';
+                
+                if (filtered.length === 0) {
+                    tableBodyEl.innerHTML = `
+                        <tr>
+                            <td colspan="3" class="no-data-msg">
+                                Keine Einträge für die ausgewählten Filterkriterien gefunden.
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+                
+                const startIndex = (currentPage - 1) * rowsPerPage;
+                const endIndex = Math.min(startIndex + rowsPerPage, filtered.length);
+                const pageItems = filtered.slice(startIndex, endIndex);
+                
+                pageItems.forEach(item => {
+                    // Normalize bar fill relative to the highest value in the current selection
+                    const percentage = maxPrcpInFiltered > 0 ? (item.prcp / maxPrcpInFiltered) * 100 : 0;
+                    
+                    let barColorClass = 'bar-light';
+                    let classification = 'Trocken';
+                    let badgeClass = 'badge-dry';
+
+                    if (item.prcp > 30.0) {
+                        barColorClass = 'bar-extreme';
+                        classification = 'Extrem';
+                        badgeClass = 'badge-extreme';
+                    } else if (item.prcp > 10.0) {
+                        barColorClass = 'bar-heavy';
+                        classification = 'Starkregen';
+                        badgeClass = 'badge-heavy';
+                    } else if (item.prcp > 2.5) {
+                        barColorClass = 'bar-moderate';
+                        classification = 'Mäßig';
+                        badgeClass = 'badge-moderate';
+                    } else if (item.prcp > 0) {
+                        barColorClass = 'bar-light';
+                        classification = 'Leicht';
+                        badgeClass = 'badge-light';
+                    }
+
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td class="date-cell">${formatDateGerman(item.date)}</td>
+                        <td>
+                            <div class="bar-container">
+                                <span class="prcp-value">${item.prcp.toLocaleString('de-DE', {minimumFractionDigits: 1, maximumFractionDigits: 1})} mm</span>
+                                <div class="bar-wrapper">
+                                    <div class="bar-fill ${barColorClass}" style="width: ${percentage}%;"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="badge-cell">
+                            <span class="badge ${badgeClass}">${classification}</span>
+                        </td>
+                    `;
+                    tableBodyEl.appendChild(row);
+                });
+            }
+
+            // Render pagination buttons and informational text
+            function renderPagination(totalCount) {
+                const totalPages = Math.ceil(totalCount / rowsPerPage);
+                
+                if (totalCount === 0) {
+                    paginationInfoEl.textContent = "Zeige 0 Einträge";
+                    paginationButtonsEl.innerHTML = '';
+                    return;
+                }
+
+                const startIndex = (currentPage - 1) * rowsPerPage + 1;
+                const endIndex = Math.min(startIndex + rowsPerPage - 1, totalCount);
+                
+                paginationInfoEl.textContent = `Zeige ${startIndex}-${endIndex} von ${totalCount.toLocaleString('de-DE')} Einträgen`;
+                paginationButtonsEl.innerHTML = '';
+
+                // Previous page button
+                const prevBtn = document.createElement('button');
+                prevBtn.className = `page-btn ${currentPage === 1 ? 'disabled' : ''}`;
+                prevBtn.textContent = '◀';
+                if (currentPage > 1) {
+                    prevBtn.addEventListener('click', () => {
+                        currentPage--;
+                        updateTableAndPagination();
+                    });
+                }
+                paginationButtonsEl.appendChild(prevBtn);
+
+                // Page numbering strategy: show first, current, last and siblings
+                let startPage = Math.max(1, currentPage - 1);
+                let endPage = Math.min(totalPages, currentPage + 1);
+
+                if (currentPage === 1) {
+                    endPage = Math.min(totalPages, 3);
+                } else if (currentPage === totalPages) {
+                    startPage = Math.max(1, totalPages - 2);
+                }
+
+                if (startPage > 1) {
+                    addPageButton(1);
+                    if (startPage > 2) {
+                        const dots = document.createElement('span');
+                        dots.textContent = '...';
+                        dots.style.padding = '0.5rem';
+                        dots.style.color = '#7f8c8d';
+                        paginationButtonsEl.appendChild(dots);
+                    }
+                }
+
+                for (let i = startPage; i <= endPage; i++) {
+                    addPageButton(i);
+                }
+
+                if (endPage < totalPages) {
+                    if (endPage < totalPages - 1) {
+                        const dots = document.createElement('span');
+                        dots.textContent = '...';
+                        dots.style.padding = '0.5rem';
+                        dots.style.color = '#7f8c8d';
+                        paginationButtonsEl.appendChild(dots);
+                    }
+                    addPageButton(totalPages);
+                }
+
+                // Next page button
+                const nextBtn = document.createElement('button');
+                nextBtn.className = `page-btn ${currentPage === totalPages ? 'disabled' : ''}`;
+                nextBtn.textContent = '▶';
+                if (currentPage < totalPages) {
+                    nextBtn.addEventListener('click', () => {
+                        currentPage++;
+                        updateTableAndPagination();
+                    });
+                }
+                paginationButtonsEl.appendChild(nextBtn);
+            }
+
+            function addPageButton(pageNumber) {
+                const btn = document.createElement('button');
+                btn.className = `page-btn ${pageNumber === currentPage ? 'active' : ''}`;
+                btn.textContent = pageNumber;
+                btn.addEventListener('click', () => {
+                    currentPage = pageNumber;
+                    updateTableAndPagination();
+                });
+                paginationButtonsEl.appendChild(btn);
+            }
+
+            function updateTableAndPagination() {
+                const maxPrcpInFiltered = Math.max(...filteredWeatherData.map(item => item.prcp), 1.0);
+                renderTable(filteredWeatherData, maxPrcpInFiltered);
+                renderPagination(filteredWeatherData.length);
+                
+                // Smooth scroll to filter panel on page change
+                document.querySelector('.filter-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            // Format date to: 14. Juli 2021
+            function formatDateGerman(dateStr) {
+                const [year, month, day] = dateStr.split('-');
+                const months = [
+                    "Januar", "Februar", "März", "April", "Mai", "Juni",
+                    "Juli", "August", "September", "Oktober", "November", "Dezember"
+                ];
+                return `${parseInt(day)}. ${months[parseInt(month) - 1]} ${year}`;
+            }
+
+            // Format date to short German: 14.07.2021
+            function formatDateGermanShort(dateStr) {
+                const [year, month, day] = dateStr.split('-');
+                return `${day.padStart(2, '0')}.${month.padStart(2, '0')}.${year}`;
+            }
+        });
+    </script>
+</body>
+</html>
