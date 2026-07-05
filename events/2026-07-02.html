@@ -87,12 +87,12 @@
                 <div style="margin: 0.8rem 0 1rem;">
                     <img src="../images/2026-06-24_10-30-33_topographie-bockerter-heide.png" alt="Topographie Bockerter Heide / Bebericher Heide" style="max-width: 280px; border-radius: 8px; box-shadow: var(--shadow); cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; border: 1px solid rgba(0,0,0,0.1); display: block;" onclick="document.getElementById('map-dialog').showModal()" onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 12px 35px rgba(0,0,0,0.2)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='var(--shadow)'">
                 </div>
-                <dialog id="map-dialog" style="border: none; border-radius: 12px; padding: 0; box-shadow: 0 20px 50px rgba(0,0,0,0.3); max-width: 90vw; max-height: 90vh; background: #fff; overflow: hidden;" onclick="if (event.target === this) this.close()">
-                    <div style="position: relative;">
+                <dialog id="map-dialog" onclick="if (event.target === this) this.close()">
+                    <div class="dialog-container">
                         <form method="dialog" style="margin: 0;">
                             <button type="submit" style="position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.6); color: #fff; border: none; border-radius: 50%; width: 36px; height: 36px; font-size: 20px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='rgba(0,0,0,0.8)'" onmouseout="this.style.backgroundColor='rgba(0,0,0,0.6)'">&times;</button>
                         </form>
-                        <img src="../images/2026-06-24_10-30-33_topographie-bockerter-heide" alt="Topographie Bockerter Heide / Bebericher Heide" style="max-width: 100%; max-height: 90vh; display: block; object-fit: contain;">
+                        <img src="../images/2026-06-24_10-30-33_topographie-bockerter-heide.png" alt="Topographie Bockerter Heide / Bebericher Heide">
                     </div>
                 </dialog>
                 <a href="https://www.klimaatlas.nrw.de/klima-nrw-pluskarte" target="_blank" rel="noopener">Klimaatlas NRW (Karte mit Niederschlagstagen &amp; Starkregenprognose)</a>
