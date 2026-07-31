@@ -1,0 +1,2484 @@
+author: 'Tati, Voigt'
+brandUpdateTime: '2026-07-30T10:35:54.102Z'
+campaignType: classic
+fields: {}
+fieldsHistory: []
+firstLoadSocialIcons: false
+fonts: []
+id: ""
+name: 26-07-30-landunter-newsletter
+subject: 'Newsletter #2 - Bürgerinitiative "Landunter am Hammer Bach"'
+ui:
+  showDeleteOption: false
+  showMoreOption: false
+user-hash: 656368a14c4e6f1abd9802252b05bb46
+version: 3.0.1
+body:
+  id: fd4176ea-0bb0-4d87-b28c-b68972025431
+  type: body
+  layout:
+    320px:
+      width: 100%
+    default:
+      background-color: '#ffffff'
+      direction: ltr
+      padding-bottom: 32px
+      removePadding: true
+      wrapper-width: 600px
+  content:
+    -
+      content-type: wrapper
+      customBlockId: null
+      id: 03a94a07-e660-409c-b092-96c222dbf1f7
+      isCustomBlock: null
+      moduleName: null
+      sidebarSection: null
+      stylable: false
+      thumbnail: null
+      title: Wrapper
+      type: rows
+      layout:
+        320px:
+          width: 100%
+        default:
+          align: center
+          valign: top
+      content:
+        -
+          align: top
+          customBlockId: null
+          dist: '12'
+          gutter: 0px
+          id: 8c8d730b-f751-4816-aa16-0507d92d5855
+          isCustomBlock: null
+          moduleName: viewInBrowser
+          sidebarSection: null
+          stylable: false
+          thumbnail: /assets/img/editor/grid_12.svg
+          title: section
+          type: grid-row
+          layout:
+            320px:
+              display: rows
+              width: 100%
+            default:
+              align: center
+              background-color: transparent
+              display: none
+              full-width: true
+              padding-bottom: 5px
+              padding-top: 5px
+              valign: top
+              width: 100%
+          content:
+            -
+              customBlockId: null
+              id: 02968782-76e4-4e01-b663-a46ec2ec6601
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: 'column 1'
+              type: grid-column
+              layout:
+                320px: []
+                default:
+                  padding-left: 0px
+                  padding-right: 0px
+                  valign: top
+              content:
+                -
+                  customBlockId: null
+                  id: 499f4c92-340e-44c8-b89d-a78ec82f84b6
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: null
+                  title: Webversion
+                  type: text
+                  layout:
+                    320px:
+                      padding-left: 10px
+                      padding-right: 10px
+                      width: 100%
+                    default:
+                      align: center
+                      padding-left: 30px
+                      padding-right: 30px
+                      text-align: center
+                      width: 100%
+                  content: '<p><a href="{{ mirror }}">Im Browser anzeigen</a></p>'
+        -
+          align: top
+          customBlockId: 6620e2e28c6a1926c254db45
+          dist: 6-6
+          gutter: 0px
+          id: 7c5ae241-dc9f-4fc9-ad63-9d9cd6a9432d
+          isCustomBlock: true
+          moduleName: header
+          sidebarSection: null
+          stylable: false
+          thumbnail: 'https://img.mailinblue.com/2670624/images/modules/module_thumb_df096b50004d582ddc957d6fcc6634a3_1713431270.png'
+          title: Header
+          type: grid-row
+          layout:
+            320px:
+              display: columns
+              padding-left: 15px
+              padding-right: 15px
+              width: 100%
+            default:
+              align: center
+              color: '#1a1a1a'
+              font-size: 16px
+              padding-bottom: 0px
+              padding-left: 16px
+              padding-right: 16px
+              padding-top: 32px
+              valign: middle
+              width: 100%
+          content:
+            -
+              customBlockId: null
+              id: 092108f7-6f32-4222-a59e-ab12b0700be5
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: 'column 1'
+              type: grid-column
+              layout:
+                320px:
+                  width: 50%
+                default:
+                  color: '#1a1a1a'
+                  font-family: 'Inter,Helvetica,Arial,sans-serif'
+                  font-size: 16px
+                  padding-left: 0px
+                  padding-right: 0px
+                  valign: middle
+              content:
+                -
+                  customBlockId: null
+                  id: f5ec3f2b-d1ba-42d5-b7f0-cf203b96cd4c
+                  isCustomBlock: null
+                  moduleName: text
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_text.svg
+                  title: LogoText
+                  type: text
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: left
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removePadding: false
+                      valign: top
+                      width: 100%
+                  content: '<span style="font-family: ''Inter'', sans-serif; font-weight: 900; font-size: 16px; color: #1a2a3a; text-transform: uppercase; letter-spacing: 0.5px;">Landunter am Hammer Bach</span>'
+            -
+              customBlockId: null
+              id: 48808348-f5f9-46a6-80cb-4cbf8b61d15d
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: grid-column
+              type: grid-column
+              layout:
+                320px:
+                  padding-left: 0px
+                  width: 50%
+                default:
+                  color: '#1a1a1a'
+                  font-family: 'Inter,Helvetica,Arial,sans-serif'
+                  font-size: 16px
+                  padding-left: 0px
+                  padding-right: 0px
+                  removePadding: true
+                  valign: middle
+              content:
+                -
+                  customBlockId: null
+                  id: 4e9155ce-1fde-4175-b055-41656988d438
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_social.svg
+                  title: Social
+                  type: social-media-group
+                  layout:
+                    320px:
+                      icon-size: 16px
+                      icon-spacing: 5px
+                      width: 100%
+                    default:
+                      align: right
+                      color: '#1a1a1a'
+                      font-family: 'Inter,Helvetica,Arial,sans-serif'
+                      font-size: 16px
+                      icon-filter: colored
+                      icon-form: rounded
+                      icon-size: 32px
+                      icon-spacing: 5px
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removePadding: true
+                      width: 100%
+                  content:
+                    -
+                      customBlockId: null
+                      id: 1c97bf6d-eab9-4c87-a118-db0fbfc5dd64
+                      isCustomBlock: null
+                      moduleName: null
+                      read-only: true
+                      role: facebook
+                      sidebarSection: null
+                      stylable: true
+                      thumbnail: null
+                      title: facebook
+                      type: social-media
+                      layout:
+                        320px:
+                          icon-spacing: 5px
+                        default:
+                          color: '#1a1a1a'
+                          font-family: 'Inter,Helvetica,Arial,sans-serif'
+                          font-size: 16px
+                          padding-bottom: 5px
+                          padding-top: 5px
+                          title: facebook
+                      content:
+                        alt: null
+                        href: ""
+                        src: 'https://creative-assets.mailinblue.com/editor/social-icons/rounded_colored/facebook_32px.png'
+                    -
+                      customBlockId: null
+                      id: b2a3e735-538c-4317-9b0e-c847ff0fbab4
+                      isCustomBlock: null
+                      moduleName: null
+                      read-only: true
+                      role: instagram
+                      sidebarSection: null
+                      stylable: true
+                      thumbnail: null
+                      title: instagram
+                      type: social-media
+                      layout:
+                        320px:
+                          icon-spacing: 5px
+                        default:
+                          color: '#1a1a1a'
+                          font-family: 'Inter,Helvetica,Arial,sans-serif'
+                          font-size: 16px
+                          padding-bottom: 5px
+                          padding-top: 5px
+                          title: instagram
+                      content:
+                        alt: null
+                        href: ""
+                        src: 'https://creative-assets.mailinblue.com/editor/social-icons/rounded_colored/instagram_32px.png'
+                    -
+                      customBlockId: null
+                      id: 25810a10-1c77-4822-804d-6cc3865a12c8
+                      isCustomBlock: null
+                      moduleName: null
+                      read-only: true
+                      role: linkedin
+                      sidebarSection: null
+                      stylable: true
+                      thumbnail: null
+                      title: linkedin
+                      type: social-media
+                      layout:
+                        320px:
+                          icon-spacing: 5px
+                        default:
+                          color: '#1a1a1a'
+                          font-family: 'Inter,Helvetica,Arial,sans-serif'
+                          font-size: 16px
+                          padding-bottom: 5px
+                          padding-top: 5px
+                          title: linkedin
+                      content:
+                        alt: null
+                        href: ""
+                        src: 'https://creative-assets.mailinblue.com/editor/social-icons/rounded_colored/linkedin_32px.png'
+                    -
+                      customBlockId: null
+                      id: 5b66daa6-840a-451c-b687-1275a975d631
+                      isCustomBlock: null
+                      moduleName: null
+                      read-only: true
+                      role: youtube
+                      sidebarSection: null
+                      stylable: true
+                      thumbnail: null
+                      title: youtube
+                      type: social-media
+                      layout:
+                        320px:
+                          icon-spacing: 5px
+                        default:
+                          color: '#1a1a1a'
+                          font-family: 'Inter,Helvetica,Arial,sans-serif'
+                          font-size: 16px
+                          padding-bottom: 5px
+                          padding-top: 5px
+                          title: youtube
+                      content:
+                        alt: null
+                        href: ""
+                        src: 'https://creative-assets.mailinblue.com/editor/social-icons/rounded_colored/youtube_32px.png'
+        -
+          align: top
+          customBlockId: null
+          dist: '12'
+          gutter: 0px
+          id: c7464d41-f82b-4ddf-b1e0-2af91dd9ff4c
+          isCustomBlock: null
+          moduleName: grid-row12
+          sidebarSection: null
+          stylable: false
+          thumbnail: /assets/img/editor/grid_12.svg
+          title: Headline
+          type: grid-row
+          layout:
+            320px:
+              display: rows
+              padding-left: 15px
+              padding-right: 15px
+              width: 100%
+            default:
+              align: center
+              padding-bottom: 0px
+              padding-left: 0px
+              padding-right: 0px
+              padding-top: 40px
+              removePadding: true
+              valign: top
+              width: 100%
+          content:
+            -
+              customBlockId: null
+              id: 1a11304c-4a14-4a3e-a980-325e70fa76c9
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: 'column 1'
+              type: grid-column
+              layout:
+                320px: []
+                default:
+                  padding-left: 0px
+                  padding-right: 0px
+                  valign: top
+              content:
+                -
+                  customBlockId: null
+                  id: 37fb8e55-e679-4f38-895d-04427bf8a476
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_text.svg
+                  title: Text
+                  type: text
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: left
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removePadding: false
+                      text-align: center
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<h1 class="default-heading1">B&uuml;rgerinitiative &bdquo;Landunter am Hammer Bach&ldquo;</h1>'
+        -
+          align: top
+          customBlockId: null
+          dist: 4-4-4
+          gutter: 0px
+          id: 094ff460-df6b-4c30-9251-1e3d27b572f8
+          isCustomBlock: null
+          moduleName: grid-row12
+          sidebarSection: null
+          stylable: false
+          thumbnail: /assets/img/editor/grid_12.svg
+          title: Date
+          type: grid-row
+          layout:
+            320px:
+              display: columns
+              padding-left: 0px
+              padding-right: 0px
+              width: 100%
+            default:
+              align: center
+              padding-bottom: 0px
+              padding-top: 12px
+              valign: top
+              width: 100%
+          content:
+            -
+              customBlockId: null
+              id: f875d86a-6110-49b2-b88e-40145f8d43b2
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: 'column 1'
+              type: grid-column
+              layout:
+                320px:
+                  width: 33%
+                default:
+                  padding-left: 0px
+                  padding-right: 8px
+                  removePadding: true
+                  valign: top
+              content:
+                -
+                  customBlockId: null
+                  id: 8b0f5fe2-69af-4ddf-b934-56c3e5927cff
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_text.svg
+                  title: Text
+                  type: text
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: left
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removePadding: false
+                      text-align: center
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<h3 class="default-heading3">Juli 2026</h3>'
+            -
+              customBlockId: null
+              id: f48dd62e-1c1c-41e3-9796-9a5cd8bfcfc7
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: grid-column
+              type: grid-column
+              layout:
+                320px:
+                  width: 33%
+                default:
+                  padding-left: 4px
+                  padding-right: 4px
+                  removePadding: true
+                  valign: top
+              content:
+                -
+                  customBlockId: null
+                  id: ea57b0bf-b806-47ef-87ee-2b8743cf43ec
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_text.svg
+                  title: Text
+                  type: text
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: left
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removePadding: false
+                      text-align: center
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<h3 class="default-heading3">@HammerBach</h3>'
+            -
+              customBlockId: null
+              id: 08f8a3e3-33ec-4911-8c11-8d88aa69d176
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: grid-column
+              type: grid-column
+              layout:
+                320px:
+                  width: 33%
+                default:
+                  padding-left: 8px
+                  padding-right: 0px
+                  removePadding: true
+                  valign: top
+              content:
+                -
+                  customBlockId: null
+                  id: 8f95b7d9-755b-4c3a-9b84-3240146e553d
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_text.svg
+                  title: Text
+                  type: text
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: left
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removePadding: false
+                      text-align: center
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<h3 class="default-heading3">N&deg;2</h3>'
+        -
+          align: top
+          customBlockId: null
+          dist: '12'
+          gutter: 0px
+          id: 5cb09014-a09e-4ada-9036-a0157e02d84e
+          isCustomBlock: null
+          moduleName: grid-row12
+          sidebarSection: null
+          stylable: false
+          thumbnail: /assets/img/editor/grid_12.svg
+          title: divider
+          type: grid-row
+          layout:
+            320px:
+              display: rows
+              padding-left: 0px
+              padding-right: 0px
+              width: 100%
+            default:
+              align: center
+              padding-bottom: 0px
+              padding-top: 16px
+              valign: top
+              width: 100%
+          content:
+            -
+              customBlockId: null
+              id: f02cd090-8aa8-4fbf-b451-0faaafca04b2
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: 'column 1'
+              type: grid-column
+              layout:
+                320px: []
+                default:
+                  padding-left: 0px
+                  padding-right: 0px
+                  valign: top
+              content:
+                -
+                  customBlockId: null
+                  id: ac84d0e7-eb34-4045-bbda-baad62c6f64f
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_divider.svg
+                  title: Divider
+                  type: divider
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: center
+                      border-color: '#1a2a3a'
+                      border-style: solid
+                      border-width: 3px
+                      display: auto
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removePadding: false
+                      width: 100%
+        -
+          align: top
+          customBlockId: null
+          dist: '12'
+          gutter: 0px
+          id: 5d7ff52b-7ac9-42f1-9d33-d159c77eeef1
+          isCustomBlock: null
+          moduleName: columns-article
+          sectionGroup: Text
+          sidebarSection: section
+          stylable: false
+          thumbnail: /assets/img/editor/element-style-1.svg
+          thumbnailUrl: 'https://creative-assets.mailinblue.com/editor/block-thumbs/text_and_images_01.png'
+          title: Article-1
+          type: grid-row
+          layout:
+            320px:
+              display: rows
+              padding-left: 8px
+              padding-right: 8px
+              width: 100%
+            default:
+              align: center
+              margin-bottom: 0px
+              margin-top: 0px
+              padding-bottom: 0px
+              padding-left: 32px
+              padding-right: 32px
+              padding-top: 40px
+              removeMargin: false
+              valign: top
+              width: 100%
+          content:
+            -
+              customBlockId: null
+              id: 14389750-0e4c-4715-a45c-b4d64debdf10
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: 'colonne de grille'
+              type: grid-column
+              layout:
+                320px: []
+                default:
+                  margin-bottom: 0px
+                  margin-top: 0px
+                  padding-left: 0px
+                  padding-right: 0px
+                  padding-top: 0px
+                  removePadding: true
+                  valign: top
+              content:
+                -
+                  customBlockId: null
+                  id: ad03ed19-9448-4ed7-9a10-ecfef7688afc
+                  isCustomBlock: null
+                  moduleName: text-title
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element-title.svg
+                  title: Title
+                  type: text
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: left
+                      line-height: '1.5'
+                      margin-bottom: 0px
+                      margin-top: 0px
+                      padding-top: 16px
+                      removeMargin: false
+                      removePadding: true
+                      text-align: left
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<h2 class="default-heading2">Erfolgreicher &ouml;ffentlicher Ortstermin am R&uuml;ckhaltebecken (02. Juli 2026)</h2>'
+                -
+                  customBlockId: null
+                  id: 63001e5e-2bab-4e1f-ac79-0acb24e12877
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_text.svg
+                  title: Texte
+                  type: text
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: left
+                      line-height: '1.3'
+                      margin-bottom: 0px
+                      margin-top: 0px
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 16px
+                      removeMargin: false
+                      removePadding: true
+                      text-align: left
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<p>Unser gro&szlig;er Ortstermin am R&uuml;ckhaltebecken Schmaler Weg war ein voller Erfolg! &Uuml;ber 100 betroffene B&uuml;rgerinnen und B&uuml;rger, Vertreter von Stadt und Kreis, Ratsfraktionen, des Wasser- und Bodenverbands, der Unteren Wasser- und Naturschutzbeh&ouml;rde sowie des NABU kamen zusammen.</p><p>In einer lebhaften, aber stets konstruktiven Diskussion konnten wir unsere existenziellen Sorgen direkt an die Entscheidungstr&auml;ger herantragen. Vor allem konnten wir feste politische Zusagen erwirken, das Thema Starkregenschutz im Stadtrat priorit&auml;r zu behandeln, und den Ansto&szlig; f&uuml;r einen beh&ouml;rden&uuml;bergreifenden Arbeitskreis geben.</p>'
+                -
+                  customBlockId: null
+                  id: 717a701a-e69b-433d-97e0-ac467b9c2420
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_text.svg
+                  title: Texte
+                  type: text
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: left
+                      margin-bottom: 0px
+                      margin-top: 0px
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 16px
+                      removeMargin: false
+                      removePadding: true
+                      text-align: left
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<h3 class="default-heading3"><a href="https://landunter-am-hammerbach.info/events/2026-07-02.html"><u>Protokoll &amp; Details zum Ortstermin</u></a> &rarr;</h3>'
+                -
+                  customBlockId: null
+                  id: 4937a8bd-b70b-4426-8735-35fa8a2b4cb4
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_text.svg
+                  title: Texte
+                  type: text
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: left
+                      margin-bottom: 0px
+                      margin-top: 0px
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removeMargin: false
+                      removePadding: false
+                      text-align: left
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<div class="brevo_class_12_black">Geschrieben vom Planungsteam</div>'
+        -
+          align: top
+          customBlockId: null
+          dist: '12'
+          gutter: 0px
+          id: 16fee62a-4895-4c9b-b7cb-9a54e7e54de1
+          isCustomBlock: null
+          moduleName: grid-row12
+          sidebarSection: null
+          stylable: false
+          thumbnail: /assets/img/editor/grid_12.svg
+          title: divider
+          type: grid-row
+          layout:
+            320px:
+              display: rows
+              padding-left: 0px
+              padding-right: 0px
+              width: 100%
+            default:
+              align: center
+              padding-bottom: 0px
+              padding-top: 40px
+              valign: top
+              width: 100%
+          content:
+            -
+              customBlockId: null
+              id: cd7b1b02-6f5f-48e6-90ea-bba11d54e57b
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: 'column 1'
+              type: grid-column
+              layout:
+                320px: []
+                default:
+                  padding-left: 0px
+                  padding-right: 0px
+                  valign: top
+              content:
+                -
+                  customBlockId: null
+                  id: 2976b15e-dd5b-4cb2-9a85-5df959ee5ad7
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_divider.svg
+                  title: Divider
+                  type: divider
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: center
+                      border-color: '#1a2a3a'
+                      border-style: solid
+                      border-width: 3px
+                      display: auto
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removePadding: false
+                      width: 100%
+        -
+          align: top
+          customBlockId: null
+          dist: '12'
+          gutter: 0px
+          id: 3176ee21-3d33-4d27-abab-658b1665aa0b
+          isCustomBlock: null
+          moduleName: grid-row12
+          sidebarSection: null
+          stylable: false
+          thumbnail: /assets/img/editor/grid_12.svg
+          title: Title
+          type: grid-row
+          layout:
+            320px:
+              display: rows
+              padding-left: 8px
+              padding-right: 8px
+              width: 100%
+            default:
+              align: center
+              padding-bottom: 0px
+              padding-left: 32px
+              padding-right: 32px
+              padding-top: 40px
+              valign: top
+              width: 100%
+          content:
+            -
+              customBlockId: null
+              id: 30586b8e-7aa4-4f8b-aae3-504526c80851
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: 'column 1'
+              type: grid-column
+              layout:
+                320px: []
+                default:
+                  padding-left: 0px
+                  padding-right: 0px
+                  valign: top
+              content:
+                -
+                  customBlockId: null
+                  id: 38ea9126-b1a7-44c7-8593-80d19fc917e9
+                  isCustomBlock: null
+                  moduleName: text-title
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element-title.svg
+                  title: Title
+                  type: text
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: left
+                      line-height: '1.5'
+                      margin-bottom: 0px
+                      margin-top: 0px
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removeMargin: false
+                      removePadding: false
+                      text-align: left
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<h2 class="default-heading2">Fachgespr&auml;ch mit den Kreisbeh&ouml;rden: Erste konkrete Ma&szlig;nahmen umgesetzt (22. Juli 2026)</h2>'
+        -
+          align: top
+          customBlockId: null
+          dist: '12'
+          gutter: 0px
+          id: f28bb1cc-8fa2-4a9f-a3e7-d8215919f692
+          isCustomBlock: null
+          moduleName: grid-row12
+          sidebarSection: null
+          stylable: false
+          thumbnail: /assets/img/editor/grid_12.svg
+          title: Txt-block1
+          type: grid-row
+          layout:
+            320px:
+              display: rows
+              padding-left: 8px
+              padding-right: 8px
+              width: 100%
+            default:
+              align: center
+              padding-bottom: 0px
+              padding-left: 32px
+              padding-right: 32px
+              padding-top: 16px
+              valign: top
+              width: 100%
+          content:
+            -
+              customBlockId: null
+              id: 27dfbd02-76d9-4579-be0d-4bbe3c9ade6f
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: 'column 1'
+              type: grid-column
+              layout:
+                320px: []
+                default:
+                  padding-left: 0px
+                  padding-right: 0px
+                  valign: top
+              content:
+                -
+                  customBlockId: null
+                  id: da2945c8-382a-456b-b4f3-3f7f7c41e27c
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_text.svg
+                  title: Texte
+                  type: text
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: left
+                      line-height: '1.3'
+                      margin-bottom: 0px
+                      margin-top: 0px
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removeMargin: false
+                      removePadding: false
+                      text-align: left
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<p>Am 22. Juli f&uuml;hrten wir ein konstruktives Fachgespr&auml;ch mit Vertretern der Unteren Wasserbeh&ouml;rde (Herr Pook) und der Unteren Naturschutzbeh&ouml;rde (Herr Erkens &amp; Herr Kaschner). Im Mittelpunkt standen konkrete Schutzma&szlig;nahmen und die unkomplizierte Projektfinanzierung.</p><p><strong>Einrichtung eines Arbeitskreises:</strong> Um zersplitterte Zust&auml;ndigkeiten zu vermeiden, wurde die Gr&uuml;ndung eines festen, beh&ouml;rden&uuml;bergreifenden Arbeitskreises beschlossen. Wir setzen uns intensiv daf&uuml;r ein, dass unsere B&uuml;rgerinitiative eine feste Stimme in diesem Gremium erh&auml;lt!</p>'
+        -
+          align: top
+          customBlockId: null
+          dist: '12'
+          gutter: 0px
+          id: 7b4e0435-6ce1-4d2c-a2e9-a40370186157
+          isCustomBlock: null
+          moduleName: grid-row12
+          sidebarSection: null
+          stylable: false
+          thumbnail: /assets/img/editor/grid_12.svg
+          title: Txt-block2
+          type: grid-row
+          layout:
+            320px:
+              display: rows
+              padding-left: 8px
+              padding-right: 8px
+              width: 100%
+            default:
+              align: center
+              padding-bottom: 0px
+              padding-left: 32px
+              padding-right: 32px
+              padding-top: 16px
+              valign: top
+              width: 100%
+          content:
+            -
+              customBlockId: null
+              id: 97265d7a-1099-4ee1-a5ac-60fb5758d3f2
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: 'column 1'
+              type: grid-column
+              layout:
+                320px: []
+                default:
+                  padding-left: 0px
+                  padding-right: 0px
+                  valign: top
+              content:
+                -
+                  customBlockId: null
+                  id: f9ff1679-3af7-45ea-9f1b-5dd21c81eefa
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_text.svg
+                  title: Texte
+                  type: text
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: left
+                      line-height: '1.3'
+                      margin-bottom: 0px
+                      margin-top: 0px
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removeMargin: false
+                      removePadding: false
+                      text-align: left
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<p><strong>Erste greifbare Erfolge vor Ort:</strong> Dank der unb&uuml;rokratischen Kooperation wurde bereits gehandelt! Der Wasser- und Bodenverband Mittlere Niers hat verlandete Gr&auml;ben ausgeschoben und auch den Bereich im Hammer Bach unmittelbar vor dem Durchlass beim Spielplatz erfolgreich umgesetzt. Gleichzeitig veranlasste Herr Gellissen seitens der Stadt das Absch&auml;len der Bankette. Damit sind bereits alle kurzfristig und verfahrensfrei m&ouml;glichen Ma&szlig;nahmen erfolgreich abgeschlossen!</p>'
+        -
+          align: top
+          customBlockId: null
+          dist: '12'
+          gutter: 0px
+          id: 414117dc-6e5e-4f21-aae2-b699d6569c13
+          isCustomBlock: null
+          moduleName: grid-row12
+          sidebarSection: null
+          stylable: false
+          thumbnail: /assets/img/editor/grid_12.svg
+          title: link
+          type: grid-row
+          layout:
+            320px:
+              display: rows
+              padding-left: 15px
+              padding-right: 15px
+              width: 100%
+            default:
+              align: center
+              padding-bottom: 0px
+              padding-left: 32px
+              padding-right: 32px
+              padding-top: 20px
+              valign: top
+              width: 100%
+          content:
+            -
+              customBlockId: null
+              id: b457b601-32cf-4125-b162-2eddbbcdf992
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: 'column 1'
+              type: grid-column
+              layout:
+                320px: []
+                default:
+                  padding-left: 0px
+                  padding-right: 0px
+                  valign: top
+              content:
+                -
+                  customBlockId: null
+                  id: 3a63f76e-6f39-4544-b0c2-b55a5d23c88d
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_text.svg
+                  title: Texte
+                  type: text
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: left
+                      margin-bottom: 0px
+                      margin-top: 0px
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removeMargin: false
+                      removePadding: false
+                      text-align: left
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<h3 class="default-heading3"><a href="https://landunter-am-hammerbach.info/events/2026-07-22.html"><u>Vollst&auml;ndiges Protokoll des Fachgespr&auml;chs</u></a> &rarr;</h3>'
+                -
+                  customBlockId: null
+                  id: fde4cd21-c3f9-413c-8754-a91f21689c6f
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_text.svg
+                  title: Texte
+                  type: text
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: left
+                      margin-bottom: 0px
+                      margin-top: 0px
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removeMargin: false
+                      removePadding: false
+                      text-align: left
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<div class="brevo_class_12_black">BI Landunter am Hammer Bach</div>'
+        -
+          align: top
+          customBlockId: null
+          dist: '12'
+          gutter: 0px
+          id: 210da5b3-1614-4bdb-aa49-1b8224b8d80f
+          isCustomBlock: null
+          moduleName: grid-row12
+          sidebarSection: null
+          stylable: false
+          thumbnail: /assets/img/editor/grid_12.svg
+          title: divider
+          type: grid-row
+          layout:
+            320px:
+              display: rows
+              padding-left: 0px
+              padding-right: 0px
+              width: 100%
+            default:
+              align: center
+              padding-bottom: 0px
+              padding-top: 40px
+              valign: top
+              width: 100%
+          content:
+            -
+              customBlockId: null
+              id: 7d0cfdbf-00b3-4587-839c-d001b619badb
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: 'column 1'
+              type: grid-column
+              layout:
+                320px: []
+                default:
+                  padding-left: 0px
+                  padding-right: 0px
+                  valign: top
+              content:
+                -
+                  customBlockId: null
+                  id: ee725afd-866b-4803-8031-03ec38b2fb3a
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_divider.svg
+                  title: Divider
+                  type: divider
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: center
+                      border-color: '#1a2a3a'
+                      border-style: solid
+                      border-width: 3px
+                      display: auto
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removePadding: false
+                      width: 100%
+        -
+          align: top
+          customBlockId: null
+          dist: '12'
+          gutter: 0px
+          id: a0a0a0a0-0000-4000-8000-000000000001
+          isCustomBlock: null
+          moduleName: grid-row12
+          sidebarSection: null
+          stylable: false
+          thumbnail: /assets/img/editor/grid_12.svg
+          title: Title
+          type: grid-row
+          layout:
+            320px:
+              display: rows
+              padding-left: 8px
+              padding-right: 8px
+              width: 100%
+            default:
+              align: center
+              padding-bottom: 0px
+              padding-left: 32px
+              padding-right: 32px
+              padding-top: 40px
+              valign: top
+              width: 100%
+          content:
+            -
+              customBlockId: null
+              id: a0a0a0a0-0000-4000-8000-000000000003
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: 'column 1'
+              type: grid-column
+              layout:
+                320px: []
+                default:
+                  padding-left: 0px
+                  padding-right: 0px
+                  valign: top
+              content:
+                -
+                  customBlockId: null
+                  id: a0a0a0a0-0000-4000-8000-000000000004
+                  isCustomBlock: null
+                  moduleName: text-title
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element-title.svg
+                  title: Title
+                  type: text
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: left
+                      line-height: '1.5'
+                      margin-bottom: 0px
+                      margin-top: 0px
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removeMargin: false
+                      removePadding: false
+                      text-align: left
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<h2 class="default-heading2">Gro&szlig;es Medienecho: Unsere Initiative in der Presse (22. Juli 2026)</h2>'
+        -
+          align: top
+          customBlockId: null
+          dist: '12'
+          gutter: 0px
+          id: a0a0a0a0-0000-4000-8000-000000000005
+          isCustomBlock: null
+          moduleName: grid-row12
+          sidebarSection: null
+          stylable: false
+          thumbnail: /assets/img/editor/grid_12.svg
+          title: MapSection
+          type: grid-row
+          layout:
+            320px:
+              display: rows
+              padding-left: 8px
+              padding-right: 8px
+              width: 100%
+            default:
+              align: center
+              padding-bottom: 0px
+              padding-left: 32px
+              padding-right: 32px
+              padding-top: 16px
+              valign: top
+              width: 100%
+          content:
+            -
+              customBlockId: null
+              id: a0a0a0a0-0000-4000-8000-000000000006
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: 'column 1'
+              type: grid-column
+              layout:
+                320px: []
+                default:
+                  padding-left: 0px
+                  padding-right: 0px
+                  valign: top
+              content:
+                -
+                  customBlockId: null
+                  id: a0a0a0a0-0000-4000-8000-000000000007
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_text.svg
+                  title: Texte
+                  type: text
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: left
+                      line-height: '1.3'
+                      margin-bottom: 0px
+                      margin-top: 0px
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removeMargin: false
+                      removePadding: false
+                      text-align: left
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<p>Ein gro&szlig;er Erfolg f&uuml;r unsere &Ouml;ffentlichkeitsarbeit! Am 22. Juli berichteten gleich zwei gro&szlig;e regionale Medienh&auml;user &uuml;ber die Starkregen-Sorgen der B&uuml;rger am Hammer Bach. Sowohl die <strong>Rheinische Post</strong> als auch die <strong>Westdeutsche Zeitung</strong> widmeten unserem Anliegen und dem Ortstermin einen ausf&uuml;hrlichen, identischen Bericht.</p><p>Dies erh&ouml;ht den Druck auf die politischen Entscheider im Vorfeld der kommenden Ausschuss- und Ratssitzungen und tr&auml;gt unsere Forderungen nach schnellem Handeln weiter in die breite Bev&ouml;lkerung.</p><p>👉 <a href="https://landunter-am-hammerbach.info/#news"><strong>Die Zeitungsberichte auf unserer Homepage ansehen</strong></a></p><h3>&nbsp;</h3><h3>📸 Unterst&uuml;tzen Sie unsere Dokumentation weiter!</h3><p>Bitte senden Sie uns auch weiterhin Bild- und Videomaterial (Fotos von vergangenen &Uuml;berschwemmungen, vollgelaufenen Gr&auml;ben oder kritischen Stellen), damit wir unsere interaktive Medienkarte und Beweissicherung kontinuierlich erweitern k&ouml;nnen. Jedes Foto z&auml;hlt!</p>'
+                -
+                  customBlockId: null
+                  id: a0a0a0a0-0000-4000-8000-000000000008
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_text.svg
+                  title: Texte
+                  type: text
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: left
+                      margin-bottom: 0px
+                      margin-top: 0px
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 16px
+                      removeMargin: false
+                      removePadding: true
+                      text-align: left
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<h3 class="default-heading3"><a href="mailto:kontakt@landunter-am-hammerbach.info?subject=Material%20und%20Feedback"><u>Material &amp; Feedback per E-Mail senden</u></a> &rarr;</h3>'
+                -
+                  customBlockId: null
+                  id: a0a0a0a0-0000-4000-8000-000000000009
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_text.svg
+                  title: Texte
+                  type: text
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: left
+                      margin-bottom: 0px
+                      margin-top: 0px
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removeMargin: false
+                      removePadding: false
+                      text-align: left
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<div class="brevo_class_12_black">BI Landunter am Hammer Bach</div>'
+        -
+          align: top
+          customBlockId: null
+          dist: '12'
+          gutter: 0px
+          id: a0a0a0a0-0000-4000-8000-000000000002
+          isCustomBlock: null
+          moduleName: grid-row12
+          sidebarSection: null
+          stylable: false
+          thumbnail: /assets/img/editor/grid_12.svg
+          title: divider
+          type: grid-row
+          layout:
+            320px:
+              display: rows
+              padding-left: 0px
+              padding-right: 0px
+              width: 100%
+            default:
+              align: center
+              padding-bottom: 0px
+              padding-top: 40px
+              valign: top
+              width: 100%
+          content:
+            -
+              customBlockId: null
+              id: a0a0a0a0-0000-4000-8000-000000000010
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: 'column 1'
+              type: grid-column
+              layout:
+                320px: []
+                default:
+                  padding-left: 0px
+                  padding-right: 0px
+                  valign: top
+              content:
+                -
+                  customBlockId: null
+                  id: a0a0a0a0-0000-4000-8000-000000000011
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_divider.svg
+                  title: Divider
+                  type: divider
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: center
+                      border-color: '#1a2a3a'
+                      border-style: solid
+                      border-width: 3px
+                      display: auto
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removePadding: false
+                      width: 100%
+        -
+          align: top
+          customBlockId: null
+          dist: '12'
+          gutter: 0px
+          id: 83b9774e-5bc7-411f-814c-011f2c2fec44
+          isCustomBlock: null
+          moduleName: grid-row12
+          sidebarSection: null
+          stylable: false
+          thumbnail: /assets/img/editor/grid_12.svg
+          title: 2cols
+          type: grid-row
+          layout:
+            320px:
+              display: rows
+              padding-left: 15px
+              padding-right: 15px
+              width: 100%
+            default:
+              align: center
+              padding-bottom: 0px
+              padding-left: 32px
+              padding-right: 32px
+              padding-top: 40px
+              valign: top
+              width: 100%
+          content:
+            -
+              customBlockId: null
+              id: 87a6171e-030e-44ac-a883-bb1ffd8816be
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: 'column 1'
+              type: grid-column
+              layout:
+                320px: []
+                default:
+                  padding-left: 0px
+                  padding-right: 0px
+                  valign: top
+              content:
+                -
+                  customBlockId: null
+                  id: 318194f9-c5af-44c4-b368-9d544a89de31
+                  isCustomBlock: null
+                  moduleName: text-title
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element-title.svg
+                  title: Title
+                  type: text
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: left
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removePadding: false
+                      text-align: left
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<h3 class="default-heading3">Ihre Unterst&uuml;tzung &ndash; Was Sie JETZT tun k&ouml;nnen:</h3>'
+                -
+                  align: top
+                  customBlockId: null
+                  dist: 6-6
+                  gutter: 0px
+                  id: 657167c8-4b83-409c-a087-2e9502c22bf7
+                  isCustomBlock: null
+                  moduleName: grid-row12
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/grid_12.svg
+                  title: Img-Txt
+                  type: grid-row
+                  layout:
+                    320px:
+                      display: rows
+                      padding-left: 0px
+                      padding-right: 0px
+                      width: 100%
+                    default:
+                      align: center
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 16px
+                      valign: top
+                      width: 100%
+                  content:
+                    -
+                      customBlockId: null
+                      id: aff1bef1-5d55-4939-b8ad-dbb7ce3d4575
+                      imagelabel: 'Select a content type'
+                      isCustomBlock: null
+                      isEmpty: false
+                      label: 'Drop content here'
+                      moduleName: null
+                      sidebarSection: null
+                      stylable: false
+                      thumbnail: null
+                      title: grid-column
+                      type: grid-column
+                      layout:
+                        320px:
+                          padding-bottom: 0px
+                          padding-left: 0px
+                          padding-right: 0px
+                          padding-top: 0px
+                        default:
+                          padding-left: 0px
+                          padding-right: 8px
+                          removePadding: true
+                          valign: top
+                      content:
+                        -
+                          customBlockId: null
+                          id: ab188d01-7bfa-4cb7-b145-cfa83b908dd7
+                          isCustomBlock: null
+                          moduleName: null
+                          sidebarSection: null
+                          stylable: false
+                          thumbnail: /assets/img/editor/element_text.svg
+                          title: Texte
+                          type: text
+                          layout:
+                            320px:
+                              padding-top: 0px
+                              width: 100%
+                            default:
+                              align: left
+                              line-height: '1.3'
+                              margin-bottom: 0px
+                              margin-top: 0px
+                              padding-bottom: 0px
+                              padding-left: 0px
+                              padding-right: 0px
+                              padding-top: 0px
+                              removeMargin: false
+                              removePadding: false
+                              text-align: left
+                              text-valign: top
+                              valign: top
+                              width: 100%
+                          content: '<p><strong>1. Weitersagen und Teilen!</strong><br>Leiten Sie diesen Newsletter oder den Link zu unserer Homepage an Ihre Nachbarn weiter. Starkregenschutz betrifft uns alle!</p><p>&nbsp;</p><p><strong>2. Bilder &amp; Berichte einsenden!</strong><br>Unterst&uuml;tzen Sie unsere interaktive Medienkarte mit Ihren Fotos und Videos von neuralgischen Stellen.</p>'
+                        -
+                          customBlockId: null
+                          id: efc50dc3-3cfd-4c3d-9746-2263e1f6791a
+                          isCustomBlock: null
+                          moduleName: null
+                          sidebarSection: null
+                          stylable: false
+                          thumbnail: /assets/img/editor/element_text.svg
+                          title: Texte
+                          type: text
+                          layout:
+                            320px:
+                              width: 100%
+                            default:
+                              align: left
+                              margin-bottom: 0px
+                              margin-top: 0px
+                              padding-bottom: 0px
+                              padding-left: 0px
+                              padding-right: 0px
+                              padding-top: 8px
+                              removeMargin: false
+                              removePadding: true
+                              text-align: left
+                              text-valign: top
+                              valign: top
+                              width: 100%
+                          content: '<h3 class="default-heading3"><a href="https://landunter-am-hammerbach.info"><u>Unsere Website besuchen</u></a> &rarr;</h3>'
+                        -
+                          customBlockId: null
+                          id: c56cd86c-4ee0-4d40-83f8-e9f7af0379d6
+                          isCustomBlock: null
+                          moduleName: null
+                          sidebarSection: null
+                          stylable: false
+                          thumbnail: /assets/img/editor/element_text.svg
+                          title: Texte
+                          type: text
+                          layout:
+                            320px:
+                              width: 100%
+                            default:
+                              align: left
+                              margin-bottom: 0px
+                              margin-top: 0px
+                              padding-bottom: 0px
+                              padding-left: 0px
+                              padding-right: 0px
+                              padding-top: 0px
+                              removeMargin: false
+                              removePadding: false
+                              text-align: left
+                              text-valign: top
+                              valign: top
+                              width: 100%
+                          content: '<div class="brevo_class_12_black">BI Landunter am Hammer Bach</div>'
+                    -
+                      customBlockId: null
+                      id: 49664814-1882-47b6-a66c-37f52495f702
+                      imagelabel: 'Select a content type'
+                      isCustomBlock: null
+                      isEmpty: false
+                      label: 'Drop content here'
+                      moduleName: null
+                      sidebarSection: null
+                      stylable: false
+                      thumbnail: null
+                      title: 'column 1'
+                      type: grid-column
+                      layout:
+                        320px:
+                          padding-left: 0px
+                          padding-right: 0px
+                          padding-top: 0px
+                        default:
+                          padding-left: 8px
+                          padding-right: 0px
+                          removePadding: true
+                          valign: top
+                      content:
+                        -
+                          customBlockId: null
+                          id: 7913827e-a0e7-4e5a-a055-f8a33f82952c
+                          isCustomBlock: null
+                          moduleName: null
+                          sidebarSection: null
+                          stylable: false
+                          thumbnail: /assets/img/editor/element_text.svg
+                          title: Texte
+                          type: text
+                          layout:
+                            320px:
+                              padding-top: 16px
+                              width: 100%
+                            default:
+                              align: left
+                              line-height: '1.3'
+                              margin-bottom: 0px
+                              margin-top: 0px
+                              padding-bottom: 0px
+                              padding-left: 0px
+                              padding-right: 0px
+                              padding-top: 0px
+                              removeMargin: false
+                              removePadding: false
+                              text-align: left
+                              text-valign: top
+                              valign: top
+                              width: 100%
+                          content: '<p><strong>3. Kalender abonnieren!</strong><br>Verpassen Sie keinen Termin mehr. Abonnieren Sie den Kalender direkt &uuml;ber unsere Homepage.</p><p>&nbsp;</p><p><strong>4. Gemeinsam handeln!</strong><br>Helfen Sie mit bei unseren weiteren Aktionen (Landschaftsplanung, Renaturierung, Buchentagung).</p>'
+                        -
+                          customBlockId: null
+                          id: be8fa1c1-7164-44a0-92e6-913107f22415
+                          isCustomBlock: null
+                          moduleName: null
+                          sidebarSection: null
+                          stylable: false
+                          thumbnail: /assets/img/editor/element_text.svg
+                          title: Texte
+                          type: text
+                          layout:
+                            320px:
+                              width: 100%
+                            default:
+                              align: left
+                              margin-bottom: 0px
+                              margin-top: 0px
+                              padding-bottom: 0px
+                              padding-left: 0px
+                              padding-right: 0px
+                              padding-top: 8px
+                              removeMargin: false
+                              removePadding: true
+                              text-align: left
+                              text-valign: top
+                              valign: top
+                              width: 100%
+                          content: '<h3 class="default-heading3"><a href="https://landunter-am-hammerbach.info/#support" target="_blank"><u>Terminkalender abonnieren</u></a> &rarr;</h3>'
+                        -
+                          customBlockId: null
+                          id: 94aba688-5643-4852-85bd-60cccf0336cc
+                          isCustomBlock: null
+                          moduleName: null
+                          sidebarSection: null
+                          stylable: false
+                          thumbnail: /assets/img/editor/element_text.svg
+                          title: Texte
+                          type: text
+                          layout:
+                            320px:
+                              width: 100%
+                            default:
+                              align: left
+                              margin-bottom: 0px
+                              margin-top: 0px
+                              padding-bottom: 0px
+                              padding-left: 0px
+                              padding-right: 0px
+                              padding-top: 0px
+                              removeMargin: false
+                              removePadding: false
+                              text-align: left
+                              text-valign: top
+                              valign: top
+                              width: 100%
+        -
+          align: top
+          customBlockId: null
+          dist: '12'
+          gutter: 0px
+          id: c578a588-25c7-4e63-b336-b9775f2133a3
+          isCustomBlock: null
+          moduleName: grid-row12
+          sidebarSection: null
+          stylable: false
+          thumbnail: /assets/img/editor/grid_12.svg
+          title: divider
+          type: grid-row
+          layout:
+            320px:
+              display: rows
+              padding-left: 0px
+              padding-right: 0px
+              width: 100%
+            default:
+              align: center
+              padding-bottom: 0px
+              padding-top: 40px
+              valign: top
+              width: 100%
+          content:
+            -
+              customBlockId: null
+              id: 04d961aa-210b-4732-bcc2-72cc39960c7d
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: 'column 1'
+              type: grid-column
+              layout:
+                320px: []
+                default:
+                  padding-left: 0px
+                  padding-right: 0px
+                  valign: top
+              content:
+                -
+                  customBlockId: null
+                  id: c3b047fa-3b08-42a4-8290-679e34caca40
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_divider.svg
+                  title: Divider
+                  type: divider
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: center
+                      border-color: '#1a2a3a'
+                      border-style: solid
+                      border-width: 3px
+                      display: auto
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removePadding: false
+                      width: 100%
+        -
+          align: top
+          customBlockId: 6620e2e28c6a1926c254db45
+          dist: 6-6
+          gutter: 0px
+          id: 18c9a0cd-bbe5-4843-a1a0-20ebd1ee813d
+          isCustomBlock: true
+          moduleName: header
+          sidebarSection: null
+          stylable: false
+          thumbnail: 'https://img.mailinblue.com/2670624/images/modules/module_thumb_df096b50004d582ddc957d6fcc6634a3_1713431270.png'
+          title: Contact
+          type: grid-row
+          layout:
+            320px:
+              display: rows
+              padding-left: 8px
+              padding-right: 8px
+              width: 100%
+            default:
+              align: center
+              color: '#1a1a1a'
+              font-size: 16px
+              padding-bottom: 0px
+              padding-left: 32px
+              padding-right: 32px
+              padding-top: 32px
+              valign: middle
+              width: 100%
+          content:
+            -
+              customBlockId: null
+              id: e4d91846-8f7e-4b5b-b11e-73f750ca3b4d
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: 'column 1'
+              type: grid-column
+              layout:
+                320px:
+                  width: 100%
+                default:
+                  padding-left: 0px
+                  padding-right: 0px
+                  valign: middle
+              content:
+                -
+                  customBlockId: null
+                  id: 0aff7688-d6e1-4a74-baa0-3ee514757809
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_text.svg
+                  title: Text
+                  type: text
+                  layout:
+                    320px:
+                      text-align: center
+                      width: 100%
+                    default:
+                      align: left
+                      text-align: left
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<h4 class="default-heading4">Dr. Gerrit Lochmann</h4><p>Wissenschaftliche Leitung</p>'
+            -
+              customBlockId: null
+              id: 53fea216-02d4-4d95-9768-e8c54dc400e7
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: grid-column
+              type: grid-column
+              layout:
+                320px:
+                  padding-left: 0px
+                  width: 100%
+                default:
+                  padding-left: 0px
+                  padding-right: 0px
+                  removePadding: true
+                  valign: middle
+              content:
+                -
+                  customBlockId: null
+                  id: b6ebf21a-84d8-45f5-835d-99541582144a
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_text.svg
+                  title: Text
+                  type: text
+                  layout:
+                    320px:
+                      padding-top: 16px
+                      text-align: center
+                      width: 100%
+                    default:
+                      align: left
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removePadding: false
+                      text-align: left
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<div class="brevo_class_12_black">kontakt@landunter-am-hammerbach.info<br><a href="https://landunter-am-hammerbach.info" target="_blank">landunter-am-hammerbach.info</a></div>'
+                -
+                  customBlockId: null
+                  id: 3d315457-740f-45f7-a756-4fdf1ec028e4
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_text.svg
+                  title: Text
+                  type: text
+                  layout:
+                    320px:
+                      padding-top: 16px
+                      text-align: center
+                      width: 100%
+                    default:
+                      align: left
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 8px
+                      removePadding: true
+                      text-align: left
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<div class="brevo_class_12_black">Sitzstadt 38&nbsp;<br>41748 Viersen</div>'
+        -
+          align: top
+          customBlockId: 6620e2e28c6a1926c254db45
+          dist: 6-6
+          gutter: 0px
+          id: afb61778-09e2-4e1d-bf5b-e008756cb729
+          isCustomBlock: true
+          moduleName: header
+          sidebarSection: null
+          stylable: false
+          thumbnail: 'https://img.mailinblue.com/2670624/images/modules/module_thumb_df096b50004d582ddc957d6fcc6634a3_1713431270.png'
+          title: Footer
+          type: grid-row
+          layout:
+            320px:
+              display: rows
+              padding-left: 8px
+              padding-right: 8px
+              padding-top: 16px
+              width: 100%
+            default:
+              align: center
+              color: '#1a1a1a'
+              font-size: 16px
+              padding-bottom: 0px
+              padding-left: 32px
+              padding-right: 32px
+              padding-top: 32px
+              valign: middle
+              width: 100%
+          content:
+            -
+              customBlockId: null
+              id: 55291203-57b6-4d45-987c-e761130eca9c
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: brand-logo
+              sidebarSection: null
+              stylable: false
+              thumbnail: /assets/img/editor/element_image.svg
+              title: LogoText
+              type: text
+              layout:
+                320px:
+                  width: 100%
+                default:
+                  align: left
+                  padding-bottom: 0px
+                  padding-left: 0px
+                  padding-right: 0px
+                  padding-top: 0px
+                  removePadding: false
+                  valign: top
+                  width: 100%
+              content:
+                content: '<span style="font-family: ''Inter'', sans-serif; font-weight: 900; font-size: 14px; color: #1a2a3a; text-transform: uppercase; letter-spacing: 0.5px;">Landunter am Hammer Bach</span>'
+            -
+              customBlockId: null
+              id: 8c2f69ec-dd56-4df1-9965-725699726350
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: grid-column
+              type: grid-column
+              layout:
+                320px:
+                  padding-left: 0px
+                  width: 100%
+                default:
+                  color: '#1a1a1a'
+                  font-family: 'Inter,Helvetica,Arial,sans-serif'
+                  font-size: 16px
+                  padding-left: 0px
+                  padding-right: 0px
+                  removePadding: true
+                  valign: middle
+              content:
+                -
+                  customBlockId: null
+                  id: c2dc079a-a866-46d8-af3c-878460a60041
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_social.svg
+                  title: Social
+                  type: social-media-group
+                  layout:
+                    320px:
+                      align: center
+                      icon-size: 16px
+                      icon-spacing: 5px
+                      padding-top: 16px
+                      width: 100%
+                    default:
+                      align: left
+                      color: '#1a1a1a'
+                      font-family: 'Inter,Helvetica,Arial,sans-serif'
+                      font-size: 16px
+                      icon-filter: colored
+                      icon-form: rounded
+                      icon-size: 32px
+                      icon-spacing: 5px
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removePadding: true
+                      width: 100%
+                  content:
+                    -
+                      customBlockId: null
+                      id: 8a53f438-fa62-4eaf-8ae5-93954e93f324
+                      isCustomBlock: null
+                      moduleName: null
+                      read-only: true
+                      role: facebook
+                      sidebarSection: null
+                      stylable: true
+                      thumbnail: null
+                      title: facebook
+                      type: social-media
+                      layout:
+                        320px:
+                          icon-spacing: 5px
+                        default:
+                          color: '#1a1a1a'
+                          font-family: 'Inter,Helvetica,Arial,sans-serif'
+                          font-size: 16px
+                          padding-bottom: 5px
+                          padding-top: 5px
+                          title: facebook
+                      content:
+                        alt: null
+                        href: ""
+                        src: 'https://creative-assets.mailinblue.com/editor/social-icons/rounded_colored/facebook_32px.png'
+                    -
+                      customBlockId: null
+                      id: ea558a40-d66b-46d6-b7dc-2ed37b734851
+                      isCustomBlock: null
+                      moduleName: null
+                      read-only: true
+                      role: instagram
+                      sidebarSection: null
+                      stylable: true
+                      thumbnail: null
+                      title: instagram
+                      type: social-media
+                      layout:
+                        320px:
+                          icon-spacing: 5px
+                        default:
+                          color: '#1a1a1a'
+                          font-family: 'Inter,Helvetica,Arial,sans-serif'
+                          font-size: 16px
+                          padding-bottom: 5px
+                          padding-top: 5px
+                          title: instagram
+                      content:
+                        alt: null
+                        href: ""
+                        src: 'https://creative-assets.mailinblue.com/editor/social-icons/rounded_colored/instagram_32px.png'
+                    -
+                      customBlockId: null
+                      id: 66fd22f3-7c17-4070-a7bc-3adf4bc88813
+                      isCustomBlock: null
+                      moduleName: null
+                      read-only: true
+                      role: linkedin
+                      sidebarSection: null
+                      stylable: true
+                      thumbnail: null
+                      title: linkedin
+                      type: social-media
+                      layout:
+                        320px:
+                          icon-spacing: 5px
+                        default:
+                          color: '#1a1a1a'
+                          font-family: 'Inter,Helvetica,Arial,sans-serif'
+                          font-size: 16px
+                          padding-bottom: 5px
+                          padding-top: 5px
+                          title: linkedin
+                      content:
+                        alt: null
+                        href: ""
+                        src: 'https://creative-assets.mailinblue.com/editor/social-icons/rounded_colored/linkedin_32px.png'
+                    -
+                      customBlockId: null
+                      id: 895b9ed1-75f4-4487-956f-aef5479a8c13
+                      isCustomBlock: null
+                      moduleName: null
+                      read-only: true
+                      role: youtube
+                      sidebarSection: null
+                      stylable: true
+                      thumbnail: null
+                      title: youtube
+                      type: social-media
+                      layout:
+                        320px:
+                          icon-spacing: 5px
+                        default:
+                          color: '#1a1a1a'
+                          font-family: 'Inter,Helvetica,Arial,sans-serif'
+                          font-size: 16px
+                          padding-bottom: 5px
+                          padding-top: 5px
+                          title: youtube
+                      content:
+                        alt: null
+                        href: ""
+                        src: 'https://creative-assets.mailinblue.com/editor/social-icons/rounded_colored/youtube_32px.png'
+        -
+          align: top
+          customBlockId: null
+          dist: '12'
+          gutter: 0px
+          id: 517e1ba6-9a41-4604-a77a-5b382de65977
+          isCustomBlock: null
+          moduleName: grid-row12
+          sidebarSection: null
+          stylable: false
+          thumbnail: /assets/img/editor/grid_12.svg
+          title: section
+          type: grid-row
+          layout:
+            320px:
+              display: rows
+              padding-left: 15px
+              padding-right: 15px
+              width: 100%
+            default:
+              align: center
+              padding-bottom: 20px
+              padding-top: 40px
+              valign: top
+              width: 100%
+          content:
+            -
+              customBlockId: null
+              id: 968191af-302f-4676-82eb-9a2c71bc10cb
+              imagelabel: 'Select a content type'
+              isCustomBlock: null
+              isEmpty: false
+              label: 'Drop content here'
+              moduleName: null
+              sidebarSection: null
+              stylable: false
+              thumbnail: null
+              title: 'column 1'
+              type: grid-column
+              layout:
+                320px: []
+                default:
+                  padding-left: 0px
+                  padding-right: 0px
+                  valign: top
+              content:
+                -
+                  customBlockId: null
+                  id: f4377b00-75c6-4624-853f-cba3fbc2a9cd
+                  isCustomBlock: null
+                  moduleName: null
+                  sidebarSection: null
+                  stylable: false
+                  thumbnail: /assets/img/editor/element_text.svg
+                  title: Text
+                  type: text
+                  layout:
+                    320px:
+                      width: 100%
+                    default:
+                      align: left
+                      padding-bottom: 0px
+                      padding-left: 0px
+                      padding-right: 0px
+                      padding-top: 0px
+                      removePadding: false
+                      text-align: center
+                      text-valign: top
+                      valign: top
+                      width: 100%
+                  content: '<div class="brevo_class_12_black"><a href="{{ unsubscribe }}" target="_blank">Abmelden</a></div>'
+media:
+  320px:
+    max-width: 600
+    min-width: 0
+styles:
+  brevo_class_12_black:
+    properties:
+      font-size: 12px
+    title: '12'
+  default:
+    properties:
+      color: '#1a1a1a'
+      font-family: 'Inter,Helvetica,Arial,sans-serif'
+      font-size: 16px
+      line-height: '1.5'
+    title: Paragraph
+  default-button:
+    properties:
+      background-color: '#1a2a3a'
+      border-radius: 4px
+      border-width: 0px
+      color: '#ffffff'
+      font-family: 'Inter,Helvetica,Arial,sans-serif'
+      font-size: 16px
+      remove-vml-button: optional
+      width: 50%
+    title: Button
+  default-heading1:
+    properties:
+      color: '#1a2a3a'
+      font-family: 'Inter,Helvetica,Arial,sans-serif'
+      font-size: 30px
+      font-weight: 700
+    title: 'Heading 1'
+  default-heading2:
+    properties:
+      color: '#1a2a3a'
+      font-family: 'Inter,Helvetica,Arial,sans-serif'
+      font-size: 24px
+      font-weight: 700
+    title: 'Heading 2'
+  default-heading3:
+    properties:
+      color: '#1a2a3a'
+      font-family: 'Inter,Helvetica,Arial,sans-serif'
+      font-size: 16px
+      font-weight: 700
+    title: 'Heading 3'
+  default-heading4:
+    properties:
+      color: '#1a2a3a'
+      font-family: 'Inter,Helvetica,Arial,sans-serif'
+      font-size: 12px
+      font-weight: 700
+    title: 'Heading 4'
+  default-link:
+    properties:
+      color: '#5dade2'
+      text-decoration: underline
+    title: Link
