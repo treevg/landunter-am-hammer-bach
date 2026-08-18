@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktive Präsentation - Kernteam-Treffen - Landunter am Hammer&nbsp;Bach</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        body.presentation-mode {
+            background-color: #0f1a24;
+            color: #f5f5f5;
+            overflow: hidden;
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .pres-header {
+            background: #152532;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            box-sizing: border-box;
+        }
+
+        .pres-header .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .pres-header .logo-title {
+            font-weight: 900;
+            font-size: 1.25rem;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .pres-header .logo-badge {
+            background-color: var(--accent-color);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .pres-header .back-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .pres-header .back-btn:hover {
+            background: var(--white);
+            color: var(--primary-color);
+        }
+
+        .pres-container {
+            display: flex;
+            flex: 1;
+            height: calc(100vh - 70px);
+            overflow: hidden;
+        }
+
+        /* Sidebar Navigation */
+        .pres-sidebar {
+            width: 340px;
+            background: #12202d;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+        .sidebar-title {
+            padding: 1.5rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 700;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .agenda-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .agenda-item {
+            padding: 1.1rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            position: relative;
+        }
+
+        .agenda-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: transparent;
+            transition: all 0.2s ease;
+        }
+
+        .agenda-item:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .agenda-item.active {
+            background: rgba(93, 173, 226, 0.08);
+        }
+
+        .agenda-item.active::before {
+            background-color: var(--secondary-color);
+        }
+
+        .agenda-item .time {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+            letter-spacing: 1px;
+        }
+
+        .agenda-item .title {
+            font-size: 1rem;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.3;
+        }
+
+        .agenda-item.active .title {
+            color: var(--white);
+        }
+
+        /* Slide View area */
+        .pres-slide-view {
+            flex: 1;
+            background-color: #0d1620;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slide-scroller {
+            flex: 1;
+            overflow-y: auto;
+            padding: 3.5rem;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-content {
+            max-width: 960px;
+            width: 100%;
+            margin: auto;
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .slide-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Slide Typography */
+        .slide-time-badge {
+            display: inline-block;
+            background: rgba(93, 173, 226, 0.15);
+            color: var(--secondary-color);
+            font-weight: 900;
+            padding: 0.4rem 1.1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .slide-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--white);
+            margin-top: 0;
+            margin-bottom: 2rem;
+            line-height: 1.15;
+            letter-spacing: -1px;
+        }
+
+        .slide-body {
+            font-size: 1.2rem;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        /* Interactive Elements / Cards */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1.8rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-card .value {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--accent-color);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .label {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .desc {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.4;
+        }
+
+        /* Timeline in presentation */
+        .pres-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .pres-timeline-item {
+            display: flex;
+            gap: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+            padding: 1.5rem;
+            align-items: center;
+        }
+
+        .pres-timeline-date {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--accent-color);
+            min-width: 110px;
+            text-align: right;
+            border-right: 2px solid rgba(255, 255, 255, 0.1);
+            padding-right: 2rem;
+        }
+
+        .pres-timeline-content {
+            flex: 1;
+        }
+
+        .pres-timeline-title {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: var(--white);
+            margin-bottom: 0.3rem;
+        }
+
+        .pres-timeline-desc {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.4;
+        }
+
+        /* Controls Footer */
+        .pres-controls {
+            height: 70px;
+            background: #11202c;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .slide-indicator {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .control-btns {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .control-btn:hover:not(:disabled) {
+            background: var(--white);
+            color: var(--primary-color);
+        }
+
+        .control-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Map / Image inside Slide */
+        .slide-map-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            margin: 1.5rem auto;
+            max-height: 280px;
+        }
+
+        .slide-map-container img {
+            width: 100%;
+            height: auto;
+            max-height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            body.presentation-mode {
+                overflow: auto;
+                height: auto;
+            }
+            .pres-container {
+                flex-direction: column;
+                height: auto;
+                overflow: visible;
+            }
+            .pres-sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                max-height: 200px;
+            }
+            .slide-scroller {
+                padding: 1.5rem;
+                height: auto;
+            }
+            .slide-title {
+                font-size: 1.8rem;
+            }
+            .pres-controls {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: #11202c;
+                z-index: 100;
+            }
+            .pres-slide-view {
+                padding-bottom: 70px;
+            }
+        }
+    </style>
+</head>
+<body class="presentation-mode">
+
+    <!-- Header -->
+    <header class="pres-header">
+        <div class="logo-group">
+            <a href="../index.html" class="logo-title">Landunter am Hammer&nbsp;Bach</a>
+            <span class="logo-badge">Präsentation</span>
+        </div>
+        <a href="2026-08-19.html" class="back-btn">← Zurück zur Agenda-Ansicht</a>
+    </header>
+
+    <!-- Container -->
+    <div class="pres-container">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="pres-sidebar">
+            <div class="sidebar-title">Ablauf &amp; Agenda</div>
+            <ul class="agenda-list" id="agenda-nav">
+                <li class="agenda-item active" onclick="goToSlide(0)">
+                    <span class="time">16:00 Uhr</span>
+                    <span class="title">Gesprächseröffnung &amp; Kennenlernen</span>
+                </li>
+                <li class="agenda-item" onclick="goToSlide(1)">
+                    <span class="time">16:10 Uhr</span>
+                    <span class="title">Topographie Bockerter/Bebericher Heide</span>
+                </li>
+                <li class="agenda-item" onclick="goToSlide(2)">
+                    <span class="time">16:15 Uhr</span>
+                    <span class="title">Betrachtung der interaktiven Karte</span>
+                </li>
+                <li class="agenda-item" onclick="goToSlide(3)">
+                    <span class="time">16:20 Uhr</span>
+                    <span class="title">Starkregen 2025 in Mönchengladbach</span>
+                </li>
+                <li class="agenda-item" onclick="goToSlide(4)">
+                    <span class="time">16:25 Uhr</span>
+                    <span class="title">Aktivitäten der Bürgerinitiative</span>
+                </li>
+                <li class="agenda-item" onclick="goToSlide(5)">
+                    <span class="time">16:30 Uhr</span>
+                    <span class="title">Ideen zur Ursachenbekämpfung</span>
+                </li>
+                <li class="agenda-item" onclick="goToSlide(6)">
+                    <span class="time">16:40 Uhr</span>
+                    <span class="title">Übergabe Bürgerantrag</span>
+                </li>
+                <li class="agenda-item" onclick="goToSlide(7)">
+                    <span class="time">16:45 Uhr</span>
+                    <span class="title">Offener Dialog &amp; Ausblick</span>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Slide Content Area -->
+        <main class="pres-slide-view">
+            <div class="slide-scroller" style="padding: 0;">
+                
+                <!-- Slide 1 (Gesprächseröffnung) -->
+                <section class="slide-content active" style="padding: 3.5rem; max-width: 960px; width: 100%; box-sizing: border-box;">
+                    <span class="slide-time-badge">16:00 Uhr</span>
+                    <h2 class="slide-title">Gesprächseröffnung &amp; Kennenlernen</h2>
+                    <div class="slide-body">
+                        <p style="font-size: 1.35rem; margin-bottom: 2rem; color: var(--white); line-height: 1.5;">Wir bedanken uns herzlich für die Einladung und die Gelegenheit zu diesem gemeinsamen, vertrauensvollen Arbeitsgespräch.</p>
+                        
+                        <div style="background: rgba(93, 173, 226, 0.05); border-left: 4px solid var(--secondary-color); padding: 1.8rem; border-radius: 0 8px 8px 0; margin-bottom: 2.5rem;">
+                            <h4 style="margin-top:0; color: var(--white); font-size: 1.2rem; margin-bottom: 0.6rem;">Gemeinsames Ziel:</h4>
+                            <p style="font-size: 1.1rem; line-height: 1.6; margin: 0; color: rgba(255,255,255,0.85);">
+                                Die fachlichen und kommunalen Perspektiven der Stadt Viersen, des Wasser- und Bodenverbands Mittlere Niers sowie unserer Bürgerinitiative konstruktiv zusammenzubringen, um zukunftsfähige und nachhaltige Lösungswege für den Starkregenschutz in der Bockerter und Bebericher Heide zu erörtern.
+                            </p>
+                        </div>
+
+                        <p style="font-size: 1.15rem; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
+                            Zum Auftakt des Austauschs schlagen wir eine kurze, ungezwungene Kennenlernrunde aller Beteiligten vor.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Slide 2 (Topographie) -->
+                <section class="slide-content" style="padding: 3.5rem; max-width: 960px; width: 100%; box-sizing: border-box;">
+                    <span class="slide-time-badge">16:10 Uhr</span>
+                    <h2 class="slide-title">Topographie Bockerter Heide / Bebericher Heide</h2>
+                    <div class="slide-body">
+                        <p>Das hydrologische Nadelöhr im Einzugsgebiet des Hammer Bachs:</p>
+                        
+                        <div class="grid-cards">
+                            <div class="stat-card">
+                                <div class="value">380 ha</div>
+                                <div class="label">Gesamtfläche</div>
+                                <div class="desc">Areal der Bockerter und Bebericher Heide</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="value">30%</div>
+                                <div class="label">Versickerung</div>
+                                <div class="desc">Geringe Infiltrationsrate aufgrund staunasser Böden</div>
+                            </div>
+                            <div class="stat-card" style="border-color: rgba(255,152,0,0.3); background: rgba(255,152,0,0.03);">
+                                <div class="value">100.000m³</div>
+                                <div class="label">Oberflächenabfluss</div>
+                                <div class="desc">Ca. 70 % des Regenwassers (bei 150 mm Niederschlag) fließen der Stadt entgegen</div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 2rem; align-items: center; margin-top: 1.5rem; flex-wrap: wrap;">
+                            <div style="flex: 1 1 420px;">
+                                <h4 style="color: var(--white); margin-top:0; margin-bottom: 0.5rem;">Die Gefahrenkette:</h4>
+                                <ul style="padding-left: 1.5rem; font-size: 1.05rem;">
+                                    <li style="margin-bottom: 0.4rem;"><strong>Geologie:</strong> Staunasse Lehmböden verzögern die natürliche Versickerung.</li>
+                                    <li style="margin-bottom: 0.4rem;"><strong>Nutzungswandel:</strong> Übergang von Beweidung zu Ackerbau vermindert den Wasserrückhalt.</li>
+                                    <li style="margin-bottom: 0.4rem;"><strong>Folgen:</strong> Ungebremster Wassereinstrom entspricht ca. <strong>4.000 Tanklastzügen pro Stunde</strong>, die Oberböden auswaschen und Keller fluten.</li>
+                                </ul>
+                            </div>
+                            <div style="flex: 1 1 480px; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 35px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); height: 600px; min-width: 320px;">
+                                <iframe src="https://mapview.hydrotec.de/models/SR-Simulation-KVIE-extremes-Ereignis/?view=51.234502493382365%2C6.387061424813323%2C16.38099702501109" 
+                                        width="100%" 
+                                        height="100%" 
+                                        style="border:0; width: 100%; height: 100%; display: block;" 
+                                        allowfullscreen 
+                                        loading="lazy">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 3 (Interactive Map Slide) -->
+                <section class="slide-content" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100% !important; height: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; box-sizing: border-box; z-index: 10;">
+                    <iframe src="https://www.google.com/maps/d/embed?mid=1zI5TZLPnkvZZz7XBv1J86oBr6wQeuv0&noprof=1" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0; width: 100%; height: 100%; display: block; margin: 0; padding: 0;" 
+                            allowfullscreen 
+                            loading="lazy">
+                    </iframe>
+                </section>
+
+                <!-- Slide 4 (Starkregen 2025) -->
+                <section class="slide-content" style="padding: 3.5rem; max-width: 960px; width: 100%; box-sizing: border-box;">
+                    <span class="slide-time-badge">16:20 Uhr</span>
+                    <h2 class="slide-title">Starkregen 2025 in Mönchengladbach</h2>
+                    <div class="slide-body">
+                        <p style="font-size: 1.3rem; margin-bottom: 1.8rem; color: var(--white);">Auswirkung auf Oberbeberich &ndash; Ein realer Ausblick:</p>
+                        <p>Das extreme Starkregenereignis des Jahres 2025 im direkt benachbarten Mönchengladbach dient uns als konkreter und drängender Anschauungsunterricht:</p>
+                        
+                        <div style="display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; align-items: stretch;">
+                            <div style="flex: 1 1 350px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); padding: 1.5rem; border-radius: 8px;">
+                                <h4 style="color: var(--accent-color); margin-top: 0; margin-bottom: 0.5rem;">Beobachtungen &amp; Erkenntnisse:</h4>
+                                <ul style="padding-left: 1.2rem; font-size: 1.05rem; margin-bottom: 0;">
+                                    <li style="margin-bottom: 0.6rem;">Massive Überflutungen in topographischen Senken, ähnlich der Rinnenlandschaft Oberbeberich.</li>
+                                    <li style="margin-bottom: 0.6rem;">Überlastung herkömmlicher kommunaler Kanalsysteme bei solch extremen Niederschlagswerten.</li>
+                                    <li style="margin-bottom: 0.6rem;">Enorme Schäden an der Bausubstanz durch schlagartige, unkontrollierte Wassereinbrüche.</li>
+                                </ul>
+                            </div>
+                            <div style="flex: 1 1 350px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); padding: 1.5rem; border-radius: 8px; display: flex; flex-direction: column; justify-content: center; border-left: 4px solid var(--secondary-color);">
+                                <h4 style="color: var(--white); margin-top: 0; margin-bottom: 0.5rem;">Relevanz für diesen Termin:</h4>
+                                <p style="font-size: 1.05rem; margin-bottom: 0; line-height: 1.5;">Die Simulationen verdeutlichen, dass Oberbeberich bei einer ähnlichen Unwetterzelle vor enormen, existentiellen Herausforderungen steht. Dezentrale Rückhaltesysteme in der Heide sind der einzig wirksame Schutz, um die Abflussspitzen vor dem Erreichen der Bebauung abzufangen.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 5 (BI-Aktivitäten) -->
+                <section class="slide-content" style="padding: 3.5rem; max-width: 960px; width: 100%; box-sizing: border-box;">
+                    <span class="slide-time-badge">16:25 Uhr</span>
+                    <h2 class="slide-title">Aktivitäten der Bürgerinitiative</h2>
+                    <div class="slide-body">
+                        <p>Ein Rückblick auf die bisherigen, gemeinsam erreichten Meilensteine:</p>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 2rem; margin-top: 1.5rem;">
+                            <!-- Milestone 1 -->
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 1.2rem 1.5rem; border-radius: 12px;">
+                                <div style="font-size: 0.9rem; font-weight: 900; color: var(--secondary-color); letter-spacing: 1px; text-transform: uppercase;">21. Juni 2026</div>
+                                <div style="display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap;">
+                                    <div style="width: 280px; flex-shrink: 0; overflow: hidden; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                                        <img src="../images/2026-06-21_12-05_small.jpg" alt="Auftaktveranstaltung" style="width: 100%; height: auto; display: block;" />
+                                    </div>
+                                    <div style="flex: 1; min-width: 250px;">
+                                        <h4 style="font-size: 1.2rem; font-weight: bold; color: var(--white); margin-top: 0; margin-bottom: 0.5rem;">Auftakt am Bockerter Busch</h4>
+                                        <p style="font-size: 1rem; color: rgba(255, 255, 255, 0.7); line-height: 1.5; margin: 0;">Erfolgreicher Auftakt unter reger Bürgerbeteiligung. Vorstellung hydrodynamischer Modelle und Definition der Sorgenfelder.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Milestone 2 -->
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 1.2rem 1.5rem; border-radius: 12px;">
+                                <div style="font-size: 0.9rem; font-weight: 900; color: var(--secondary-color); letter-spacing: 1px; text-transform: uppercase;">02. Juli 2026</div>
+                                <div style="display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap;">
+                                    <div style="width: 280px; flex-shrink: 0; overflow: hidden; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                                        <img src="../images/2026-07-22_rheinische-post.jpeg" alt="Ortstermin & Presseecho" style="width: 100%; height: auto; display: block;" />
+                                    </div>
+                                    <div style="flex: 1; min-width: 250px;">
+                                        <h4 style="font-size: 1.2rem; font-weight: bold; color: var(--white); margin-top: 0; margin-bottom: 0.5rem;">Großer öffentlicher Ortstermin</h4>
+                                        <p style="font-size: 1rem; color: rgba(255, 255, 255, 0.7); line-height: 1.5; margin: 0;">Treffen am Regenrückhaltebecken Schmaler Weg (RRB II) mit Vertretern aus Politik, Behörden und Verbänden sowie der Presse.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Milestone 3 -->
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.04); padding: 1.2rem 1.5rem; border-radius: 12px;">
+                                <div style="font-size: 0.9rem; font-weight: 900; color: var(--secondary-color); letter-spacing: 1px; text-transform: uppercase;">22. Juli 2026</div>
+                                <div style="display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap;">
+                                    <div style="width: 280px; flex-shrink: 0; overflow: hidden; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                                        <img src="../images/2026-07-22.jpg" alt="Kreisgespräch" style="width: 100%; height: auto; display: block;" />
+                                    </div>
+                                    <div style="flex: 1; min-width: 250px;">
+                                        <h4 style="font-size: 1.2rem; font-weight: bold; color: var(--white); margin-top: 0; margin-bottom: 0.5rem;">Erstgespräch mit Kreisbehörden</h4>
+                                        <p style="font-size: 1rem; color: rgba(255, 255, 255, 0.7); line-height: 1.5; margin: 0;">Gesprächsrunde mit der Unteren Wasserbehörde und Unteren Naturschutzbehörde zur Abstimmung von Sofortmaßnahmen.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 6 (Ideen) -->
+                <section class="slide-content" style="padding: 3.5rem; max-width: 960px; width: 100%; box-sizing: border-box;">
+                    <span class="slide-time-badge">16:30 Uhr</span>
+                    <h2 class="slide-title">Ideen zur Ursachenbekämpfung</h2>
+                    <div class="slide-body">
+                        <p style="margin-bottom: 2rem;">Gemeinsame Ansätze zur Entlastung des Hammer Bachs und Schutz der Heide-Landschaft:</p>
+                        
+                        <div class="grid-cards" style="grid-template-columns: repeat(2, 1fr); gap: 1.2rem;">
+                            <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 1.5rem; border-radius: 10px;">
+                                <h4 style="color: var(--white); margin-top: 0; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span>🏡</span> Selbsthilfe &amp; Schutz</h4>
+                                <ul style="padding-left: 1.2rem; font-size: 0.95rem; margin: 0; color: rgba(255,255,255,0.75);">
+                                    <li>Privater Objektschutz (Kellerschächte abdichten)</li>
+                                    <li>Dezentrale Errichtung von Sandsackbarrieren</li>
+                                    <li>Eigenverantwortliche, naturnahe Landschaftspflege</li>
+                                </ul>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 1.5rem; border-radius: 10px;">
+                                <h4 style="color: var(--white); margin-top: 0; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span>🚜</span> Naturnahe Landwirtschaft</h4>
+                                <ul style="padding-left: 1.2rem; font-size: 0.95rem; margin: 0; color: rgba(255,255,255,0.75);">
+                                    <li>Anlage von Feldhecken zur Bremsschranke</li>
+                                    <li>Erosionsmindernde, konturnahe Bodenbearbeitung</li>
+                                    <li>Vertragsnaturschutz &amp; Anlage von Streuobstwiesen</li>
+                                </ul>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 1.5rem; border-radius: 10px;">
+                                <h4 style="color: var(--white); margin-top: 0; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span>🛣️</span> Versickerungsfähige Wege</h4>
+                                <ul style="padding-left: 1.2rem; font-size: 0.95rem; margin: 0; color: rgba(255,255,255,0.75);">
+                                    <li>Entsiegelung überflüssig asphaltierter Feldwege</li>
+                                    <li>Einführung sickerungsfähiger Schotterdecken</li>
+                                    <li>Reduktion reißender Fließkanäle auf Wegen</li>
+                                </ul>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 1.5rem; border-radius: 10px;">
+                                <h4 style="color: var(--white); margin-top: 0; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;"><span>🎓</span> Wissenschaft &amp; AK</h4>
+                                <ul style="padding-left: 1.2rem; font-size: 0.95rem; margin: 0; color: rgba(255,255,255,0.75);">
+                                    <li>IWW RWTH Aachen Starkregen-Masterarbeit</li>
+                                    <li>Anregung gemäß Gemeindeordnung § 24</li>
+                                    <li><strong>Gründung Arbeitskreis</strong> (Stadt, Kreis, BI, LWK)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 7 (Bürgerantrag) -->
+                <section class="slide-content" style="padding: 3.5rem; max-width: 960px; width: 100%; box-sizing: border-box;">
+                    <span class="slide-time-badge">16:40 Uhr</span>
+                    <h2 class="slide-title">Übergabe Bürgerantrag gemäß § 24 GO NRW</h2>
+                    <div class="slide-body">
+                        <p style="font-size: 1.3rem; margin-bottom: 2rem; color: var(--white);">Ein wichtiger Meilenstein unserer Zusammenarbeit:</p>
+                        
+                        <div style="background: rgba(93, 173, 226, 0.05); border-left: 5px solid var(--secondary-color); padding: 2rem; border-radius: 0 10px 10px 0; margin-bottom: 2.5rem;">
+                            <h4 style="margin-top: 0; color: var(--white); font-size: 1.25rem; margin-bottom: 0.8rem;">Impulse des Bürgerantrags:</h4>
+                            <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 0; color: rgba(255,255,255,0.85);">
+                                Der ausgearbeitete Bürgerantrag dient als formaler Impuls und rechtliche Grundlage (gemäß § 24 GO NRW), um verbesserte und naturnahe Starkregenschutzmaßnahmen partnerschaftlich voranzutreiben. Unser gemeinsames Ziel ist es, die Etablierung des vorgeschlagenen <strong>Arbeitskreises Starkregenschutz</strong> anzustoßen, um zukünftige Planungen von Stadt, Kreis, Verband, Landwirten und Bürgern eng abzustimmen.
+                            </p>
+                        </div>
+                        
+                        <p style="font-size: 1.1rem; color: rgba(255,255,255,0.6);">
+                            Mit der Übergabe an Bürgermeister Hopp leiten wir gemeinsam das offizielle kommunalpolitische Verfahren ein, um dem Starkregenschutz dauerhaft die notwendige Priorität zu verleihen.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Slide 8 (Offener Dialog) -->
+                <section class="slide-content" style="padding: 3.5rem; max-width: 960px; width: 100%; box-sizing: border-box;">
+                    <span class="slide-time-badge">16:45 Uhr</span>
+                    <h2 class="slide-title">Offener Dialog &amp; Ausblick</h2>
+                    <div class="slide-body">
+                        <p style="font-size: 1.35rem; color: var(--white); margin-bottom: 2rem;">Gemeinsame Perspektiven &amp; Nächste Schritte:</p>
+                        
+                        <div class="grid-cards">
+                            <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 1.5rem; border-radius: 8px;">
+                                <h4 style="color: var(--secondary-color); margin-top:0; margin-bottom: 0.5rem;">Perspektive der Stadt Viersen</h4>
+                                <p style="font-size: 1rem; line-height: 1.5; color: rgba(255,255,255,0.7);">Gemeinsamer Austausch mit <strong>Bürgermeister Hopp</strong> zu den administrativen Schritten und der Etablierung des Arbeitskreises.</p>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 1.5rem; border-radius: 8px;">
+                                <h4 style="color: var(--secondary-color); margin-top:0; margin-bottom: 0.5rem;">Perspektive des Verbands</h4>
+                                <p style="font-size: 1rem; line-height: 1.5; color: rgba(255,255,255,0.7);">Gedankenaustausch mit <strong>Herrn Marandi</strong> zu hydrologischen Handlungsspielräumen, dezentralen Rückhaltemöglichkeiten und Kooperationen.</p>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 1.5rem; border-radius: 8px;">
+                                <h4 style="color: var(--secondary-color); margin-top:0; margin-bottom: 0.5rem;">Gemeinsame Wege</h4>
+                                <p style="font-size: 1rem; line-height: 1.5; color: rgba(255,255,255,0.7);">Vereinbarung konkreter nächster Abstimmungen und Vorbereitung des ersten offiziellen Termins für den Arbeitskreis.</p>
+                            </div>
+                        </div>
+
+                        <p style="text-align: center; color: var(--accent-color); font-weight: bold; font-size: 1.25rem; margin-top: 2rem;">
+                            Vielen Dank für die offene, lösungsorientierte und konstruktive Zusammenarbeit!
+                        </p>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Controls Footer -->
+            <footer class="pres-controls">
+                <div class="slide-indicator" id="slide-num">Folie 1 von 8</div>
+                <div class="control-btns">
+                    <button class="control-btn" id="prev-btn" onclick="prevSlide()" disabled>← Zurück</button>
+                    <button class="control-btn" id="next-btn" onclick="nextSlide()">Weiter →</button>
+                </div>
+            </footer>
+        </main>
+
+    </div>
+
+    <!-- Presentation Navigation Script -->
+    <script>
+        let currentSlideIdx = 0;
+        const slides = document.querySelectorAll('.slide-content');
+        const navItems = document.querySelectorAll('.agenda-item');
+        const totalSlides = slides.length;
+        
+        const slideNumEl = document.getElementById('slide-num');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+
+        function updateControls() {
+            // Update indicator
+            slideNumEl.textContent = `Folie ${currentSlideIdx + 1} von ${totalSlides}`;
+            
+            // Enable/disable buttons
+            prevBtn.disabled = currentSlideIdx === 0;
+            nextBtn.disabled = currentSlideIdx === totalSlides - 1;
+            
+            // Update active state in sidebar navigation
+            navItems.forEach((item, idx) => {
+                if (idx === currentSlideIdx) {
+                    item.classList.add('active');
+                    // Scroll item into view smoothly in sidebar
+                    item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        function goToSlide(idx) {
+            if (idx < 0 || idx >= totalSlides) return;
+            
+            // Hide previous active slide
+            slides[currentSlideIdx].classList.remove('active');
+            
+            // Show new active slide
+            currentSlideIdx = idx;
+            slides[currentSlideIdx].classList.add('active');
+            
+            updateControls();
+        }
+
+        function nextSlide() {
+            if (currentSlideIdx < totalSlides - 1) {
+                goToSlide(currentSlideIdx + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIdx > 0) {
+                goToSlide(currentSlideIdx - 1);
+            }
+        }
+
+        // Support arrow keys navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight' || event.key === ' ' || event.key === 'PageDown') {
+                nextSlide();
+            } else if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+                prevSlide();
+            }
+        });
+        
+        // Run once on load to initialize correct totals dynamically
+        updateControls();
+    </script>
+</body>
+</html>
