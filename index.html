@@ -252,8 +252,8 @@
                 var calendarId = "253746780ebc4846c481b64aa2bf690ad48db507746a6cbe13d3d834357f4222@group.calendar.google.com";
                 var icsUrl = "https://calendar.google.com/calendar/ical/" + encodeURIComponent(calendarId) + "/public/basic.ics";
                 
-                // Use corsproxy.io as the primary browser-friendly CORS proxy
-                var proxyUrl = "https://corsproxy.io/?" + encodeURIComponent(icsUrl);
+                // Use reef-proxy.onrender.com as the primary browser-friendly CORS proxy
+                var proxyUrl = "https://reef-proxy.onrender.com/get?url=" + encodeURIComponent(icsUrl);
                 
                 try {
                     var response = await fetch(proxyUrl);
