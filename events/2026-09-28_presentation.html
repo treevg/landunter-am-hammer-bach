@@ -6,9 +6,59 @@
     <title>Präsentation - Ausschuss für Klima, Umwelt, Land- &amp; Forstwirtschaft - Landunter am Hammer&nbsp;Bach</title>
     <link rel="stylesheet" href="../style.css">
     <style>
+        :root {
+            --bg-color: #f8fafc;
+            --slide-bg: #ffffff;
+            --text-color: #334155;
+            --title-color: #0f172a;
+            --sidebar-bg: #f1f5f9;
+            --sidebar-border: #cbd5e1;
+            --header-bg: #152532; /* Keep header dark for brand recognition */
+            --header-text: #ffffff;
+            --controls-bg: #f1f5f9;
+            --controls-border: #cbd5e1;
+            --card-bg: #f8fafc;
+            --card-border: #cbd5e1;
+            --stat-text: #1e293b;
+            --stat-desc: #64748b;
+            --badge-bg: rgba(93, 173, 226, 0.12);
+            --badge-text: #1d4ed8;
+            --agenda-active: rgba(93, 173, 226, 0.15);
+            --agenda-hover: rgba(0, 0, 0, 0.03);
+            --shadow: 0 10px 30px rgba(0,0,0,0.06);
+            --border-opacity: 0.08;
+            --slide-card-bg: rgba(0,0,0,0.02);
+            --slide-card-border: rgba(0,0,0,0.08);
+            --slide-card-text: #334155;
+        }
+
+        body.presentation-mode.dark-theme {
+            --bg-color: #0d1620;
+            --slide-bg: #0d1620;
+            --text-color: rgba(255, 255, 255, 0.85);
+            --title-color: #ffffff;
+            --sidebar-bg: #12202d;
+            --sidebar-border: rgba(255, 255, 255, 0.08);
+            --controls-bg: #11202c;
+            --controls-border: rgba(255, 255, 255, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --stat-text: #ffffff;
+            --stat-desc: rgba(255, 255, 255, 0.55);
+            --badge-bg: rgba(93, 173, 226, 0.15);
+            --badge-text: var(--secondary-color);
+            --agenda-active: rgba(93, 173, 226, 0.08);
+            --agenda-hover: rgba(255, 255, 255, 0.02);
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+            --border-opacity: 0.15;
+            --slide-card-bg: rgba(255, 255, 255, 0.02);
+            --slide-card-border: rgba(255, 255, 255, 0.06);
+            --slide-card-text: rgba(255, 255, 255, 0.75);
+        }
+
         body.presentation-mode {
-            background-color: #0f1a24;
-            color: #f5f5f5;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             overflow: hidden;
             font-family: system-ui, -apple-system, sans-serif;
             display: flex;
@@ -16,10 +66,11 @@
             height: 100vh;
             margin: 0;
             padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .pres-header {
-            background: #152532;
+            background: var(--header-bg);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding: 1rem 2rem;
             display: flex;
@@ -80,12 +131,13 @@
         /* Sidebar Navigation */
         .pres-sidebar {
             width: 340px;
-            background: #12202d;
-            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--sidebar-border);
             display: flex;
             flex-direction: column;
             overflow-y: auto;
             box-sizing: border-box;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .sidebar-title {
@@ -93,9 +145,9 @@
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: rgba(255, 255, 255, 0.4);
+            color: var(--stat-desc);
             font-weight: 700;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid var(--sidebar-border);
         }
 
         .agenda-list {
@@ -108,7 +160,7 @@
 
         .agenda-item {
             padding: 1.2rem 1.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid var(--sidebar-border);
             cursor: pointer;
             transition: all 0.25s ease;
             display: flex;
@@ -129,11 +181,11 @@
         }
 
         .agenda-item:hover {
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--agenda-hover);
         }
 
         .agenda-item.active {
-            background: rgba(93, 173, 226, 0.08);
+            background: var(--agenda-active);
         }
 
         .agenda-item.active::before {
@@ -143,23 +195,24 @@
         .agenda-item .title {
             font-size: 1.1rem;
             font-weight: bold;
-            color: rgba(255, 255, 255, 0.85);
+            color: var(--title-color);
             line-height: 1.3;
         }
 
         .agenda-item.active .title {
-            color: var(--white);
+            color: var(--title-color);
         }
 
         /* Slide View area */
         .pres-slide-view {
             flex: 1;
-            background-color: #0d1620;
+            background-color: var(--slide-bg);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             overflow: hidden;
             position: relative;
+            transition: background-color 0.3s ease;
         }
 
         .slide-scroller {
@@ -192,8 +245,8 @@
         /* Slide Typography */
         .slide-time-badge {
             display: inline-block;
-            background: rgba(93, 173, 226, 0.15);
-            color: var(--secondary-color);
+            background: var(--badge-bg);
+            color: var(--badge-text);
             font-weight: 900;
             padding: 0.5rem 1.3rem;
             border-radius: 4px;
@@ -206,7 +259,7 @@
         .slide-title {
             font-size: 3.2rem; /* Much larger title text */
             font-weight: 900;
-            color: var(--white);
+            color: var(--title-color);
             margin-top: 0;
             margin-bottom: 2.5rem;
             line-height: 1.15;
@@ -216,7 +269,7 @@
         .slide-body {
             font-size: 1.5rem; /* Much larger body text */
             line-height: 1.65;
-            color: rgba(255, 255, 255, 0.85);
+            color: var(--text-color);
         }
 
         .slide-body p {
@@ -233,8 +286,8 @@
         }
 
         .stat-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 12px;
             padding: 2.2rem;
             text-align: center;
@@ -243,8 +296,8 @@
 
         .stat-card:hover {
             transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.15);
+            background: var(--card-bg);
+            border-color: var(--card-border);
         }
 
         .stat-card .value {
@@ -258,31 +311,32 @@
         .stat-card .label {
             font-weight: bold;
             font-size: 1.3rem;
-            color: var(--white);
+            color: var(--title-color);
             margin-bottom: 0.5rem;
         }
 
         .stat-card .desc {
             font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.55);
+            color: var(--stat-desc);
             line-height: 1.4;
         }
 
         /* Controls Footer */
         .pres-controls {
             height: 70px;
-            background: #11202c;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--controls-bg);
+            border-top: 1px solid var(--controls-border);
             padding: 0 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             box-sizing: border-box;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .slide-indicator {
             font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--stat-desc);
             font-weight: bold;
             letter-spacing: 1px;
         }
@@ -293,9 +347,9 @@
         }
 
         .control-btn {
-            background: rgba(255, 255, 255, 0.08);
-            color: var(--white);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(0, 0, 0, 0.04);
+            color: var(--title-color);
+            border: 1px solid var(--sidebar-border);
             padding: 0.6rem 1.5rem;
             border-radius: 6px;
             font-weight: bold;
@@ -307,8 +361,19 @@
             align-items: center;
             gap: 0.5rem;
         }
+        
+        body.dark-theme .control-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
 
         .control-btn:hover:not(:disabled) {
+            background: var(--title-color);
+            color: var(--slide-bg);
+        }
+        
+        body.dark-theme .control-btn:hover:not(:disabled) {
             background: var(--white);
             color: var(--primary-color);
         }
@@ -407,7 +472,7 @@
                 bottom: 0;
                 left: 0;
                 right: 0;
-                background: #11202c;
+                background: var(--controls-bg);
                 z-index: 100;
             }
             .pres-slide-view {
@@ -424,7 +489,12 @@
             <a href="../index.html" class="logo-title">Landunter am Hammer&nbsp;Bach</a>
             <span class="logo-badge">Klima- &amp; Umweltschutz-Ausschuss</span>
         </div>
-        <a href="../index.html" class="back-btn">← Zurück zur Startseite</a>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+            <button class="theme-toggle-btn" onclick="toggleTheme()" style="background: rgba(255, 255, 255, 0.08); color: var(--white); border: 1px solid rgba(255, 255, 255, 0.15); padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.9rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease;">
+                <span id="theme-icon">🌙</span> <span id="theme-text">Dunkelmodus</span>
+            </button>
+            <a href="../index.html" class="back-btn">← Zurück zur Startseite</a>
+        </div>
     </header>
 
     <!-- Container -->
@@ -476,18 +546,18 @@
                     <span class="slide-time-badge">Begrüßung</span>
                     <h2 class="slide-title">Begrüßung &amp; Kooperation</h2>
                     <div class="slide-body">
-                        <p style="font-size: 1.7rem; margin-bottom: 2.5rem; color: var(--white); line-height: 1.5; font-weight: bold;">
+                        <p style="font-size: 1.7rem; margin-bottom: 2.5rem; color: var(--title-color); line-height: 1.5; font-weight: bold;">
                             Wir bedanken uns herzlich für die Einladung und die Gelegenheit, unser Anliegen heute im Ausschuss vorzustellen.
                         </p>
                         
                         <div style="background: rgba(93, 173, 226, 0.05); border-left: 5px solid var(--secondary-color); padding: 2.2rem; border-radius: 0 8px 8px 0; margin-bottom: 2.5rem;">
-                            <h4 style="margin-top:0; color: var(--white); font-size: 1.5rem; margin-bottom: 0.8rem; font-weight: 900;">Unser gemeinsames Kernziel:</h4>
-                            <p style="font-size: 1.35rem; line-height: 1.6; margin: 0; color: rgba(255,255,255,0.9);">
+                            <h4 style="margin-top:0; color: var(--title-color); font-size: 1.5rem; margin-bottom: 0.8rem; font-weight: 900;">Unser gemeinsames Kernziel:</h4>
+                            <p style="font-size: 1.35rem; line-height: 1.6; margin: 0; color: var(--text-color);">
                                 Ein wirksamer, zukunftsfähiger Starkregenschutz für die Bockerter und Bebericher Heide durch partnerschaftliche Zusammenarbeit aller Akteure.
                             </p>
                         </div>
 
-                        <p style="font-size: 1.3rem; color: rgba(255, 255, 255, 0.65); line-height: 1.6;">
+                        <p style="font-size: 1.3rem; color: var(--text-color); line-height: 1.6; opacity: 0.8;">
                             Im Folgenden präsentieren wir Ihnen die geologischen Gegebenheiten und unsere kooperativen Lösungsansätze.
                         </p>
                     </div>
@@ -512,7 +582,7 @@
                         
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 1.5rem;">
                             <!-- Image 1 -->
-                            <div style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: var(--shadow); height: 380px;">
+                            <div style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--slide-card-border); box-shadow: var(--shadow); height: 380px;">
                                 <img src="../images/2024-05-29_street01.jpg" alt="Starkregen-Ereignis Mai 2024" class="expose-img" style="width: 100%; height: 100%; object-fit: cover; display: block;" onclick="openLightbox(this.src)" />
                                 <div style="position: absolute; bottom: 15px; right: 15px; background: rgba(15, 26, 36, 0.85); color: #fff; padding: 0.5rem 1rem; border-radius: 6px; font-size: 1.05rem; font-weight: bold; pointer-events: none; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.15);">
                                     Mai 2024
@@ -520,7 +590,7 @@
                             </div>
 
                             <!-- Image 2 -->
-                            <div style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: var(--shadow); height: 380px;">
+                            <div style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--slide-card-border); box-shadow: var(--shadow); height: 380px;">
                                 <img src="../images/2009-06-27_room01.jpg" alt="Starkregen-Ereignis Juni 2009" class="expose-img" style="width: 100%; height: 100%; object-fit: cover; display: block;" onclick="openLightbox(this.src)" />
                                 <div style="position: absolute; bottom: 15px; right: 15px; background: rgba(15, 26, 36, 0.85); color: #fff; padding: 0.5rem 1rem; border-radius: 6px; font-size: 1.05rem; font-weight: bold; pointer-events: none; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.15);">
                                     Juni 2009
@@ -539,7 +609,7 @@
                         
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 1.5rem;">
                             <!-- Video 1 (Left) -->
-                            <div style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: var(--shadow); height: 380px; cursor: pointer;" onclick="openLightbox('https://www.youtube.com/embed/B4Jz7gst3tU', true)">
+                            <div style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--slide-card-border); box-shadow: var(--shadow); height: 380px; cursor: pointer;" onclick="openLightbox('https://www.youtube.com/embed/B4Jz7gst3tU', true)">
                                 <iframe src="https://www.youtube.com/embed/B4Jz7gst3tU" style="border: 0; width: 100%; height: 100%; display: block; pointer-events: none;" allowfullscreen loading="lazy"></iframe>
                                 <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.15); transition: background 0.3s;" onmouseover="this.style.background='rgba(0,0,0,0)'" onmouseout="this.style.background='rgba(0,0,0,0.15)'"></div>
                                 <div style="position: absolute; bottom: 15px; right: 15px; background: rgba(15, 26, 36, 0.85); color: #fff; padding: 0.5rem 1rem; border-radius: 6px; font-size: 1.05rem; font-weight: bold; pointer-events: none; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.15); z-index: 100;">
@@ -548,7 +618,7 @@
                             </div>
 
                             <!-- Video 2 (Right) -->
-                            <div style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: var(--shadow); height: 380px; cursor: pointer;" onclick="openLightbox('https://www.youtube.com/embed/YD9Yzkcv7fU', true)">
+                            <div style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--slide-card-border); box-shadow: var(--shadow); height: 380px; cursor: pointer;" onclick="openLightbox('https://www.youtube.com/embed/YD9Yzkcv7fU', true)">
                                 <iframe src="https://www.youtube.com/embed/YD9Yzkcv7fU" style="border: 0; width: 100%; height: 100%; display: block; pointer-events: none;" allowfullscreen loading="lazy"></iframe>
                                 <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.15); transition: background 0.3s;" onmouseover="this.style.background='rgba(0,0,0,0)'" onmouseout="this.style.background='rgba(0,0,0,0.15)'"></div>
                                 <div style="position: absolute; bottom: 15px; right: 15px; background: rgba(15, 26, 36, 0.85); color: #fff; padding: 0.5rem 1rem; border-radius: 6px; font-size: 1.05rem; font-weight: bold; pointer-events: none; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.15); z-index: 100;">
@@ -568,23 +638,23 @@
                         
                         <div style="display: flex; gap: 2rem; align-items: stretch; margin-top: 1rem;">
                             <!-- Column 1 -->
-                            <div style="flex: 1; display: flex; flex-direction: column; gap: 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 1.5rem; border-radius: 12px; box-sizing: border-box;">
+                            <div style="flex: 1; display: flex; flex-direction: column; gap: 1rem; background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 1.5rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s;">
                                 <div style="font-size: 1.1rem; font-weight: 900; color: var(--secondary-color); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem;">21. Juni 2026</div>
-                                <div style="width: 100%; height: 220px; overflow: hidden; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 1rem;">
+                                <div style="width: 100%; height: 220px; overflow: hidden; border-radius: 8px; border: 1px solid var(--slide-card-border); margin-bottom: 1rem;">
                                     <img src="../images/2026-06-21_12-05_small.jpg" alt="Auftakt" class="expose-img" style="width: 100%; height: 100%; object-fit: cover; display: block;" onclick="openLightbox(this.src)" />
                                 </div>
-                                <h4 style="font-size: 1.35rem; font-weight: bold; color: var(--white); margin: 0 0 0.5rem 0;">Auftakt am Bockerter Busch</h4>
-                                <p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.75); margin: 0; line-height: 1.45;">Erfolgreicher Auftakt unter reger Bürgerbeteiligung. Vorstellung hydrodynamischer Modelle und Definition der Sorgenfelder.</p>
+                                <h4 style="font-size: 1.35rem; font-weight: bold; color: var(--title-color); margin: 0 0 0.5rem 0;">Auftakt am Bockerter Busch</h4>
+                                <p style="font-size: 1.1rem; color: var(--slide-card-text); margin: 0; line-height: 1.45;">Erfolgreicher Auftakt unter reger Bürgerbeteiligung. Vorstellung hydrodynamischer Modelle und Definition der Sorgenfelder.</p>
                             </div>
 
                             <!-- Column 2 -->
-                            <div style="flex: 1; display: flex; flex-direction: column; gap: 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 1.5rem; border-radius: 12px; box-sizing: border-box;">
+                            <div style="flex: 1; display: flex; flex-direction: column; gap: 1rem; background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 1.5rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s;">
                                 <div style="font-size: 1.1rem; font-weight: 900; color: var(--secondary-color); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem;">02. Juli 2026</div>
-                                <div style="width: 100%; height: 220px; overflow: hidden; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 1rem;">
+                                <div style="width: 100%; height: 220px; overflow: hidden; border-radius: 8px; border: 1px solid var(--slide-card-border); margin-bottom: 1rem;">
                                     <img src="../images/2026-07-22_rheinische-post.jpeg" alt="Ortstermin" class="expose-img" style="width: 100%; height: 100%; object-fit: cover; display: block;" onclick="openLightbox(this.src)" />
                                 </div>
-                                <h4 style="font-size: 1.35rem; font-weight: bold; color: var(--white); margin: 0 0 0.5rem 0;">Großer öffentlicher Ortstermin</h4>
-                                <p style="font-size: 1.15rem; color: rgba(255, 255, 255, 0.75); margin: 0; line-height: 1.45;">Begehung am RRB Schmaler Weg (RRB II) mit Vertretern aus Politik, Behörden und Presse sowie breitem Medienecho.</p>
+                                <h4 style="font-size: 1.35rem; font-weight: bold; color: var(--title-color); margin: 0 0 0.5rem 0;">Großer öffentlicher Ortstermin</h4>
+                                <p style="font-size: 1.15rem; color: var(--slide-card-text); margin: 0; line-height: 1.45;">Begehung am RRB Schmaler Weg (RRB II) mit Vertretern aus Politik, Behörden und Presse sowie breitem Medienecho.</p>
                             </div>
                         </div>
 
@@ -599,23 +669,23 @@
                         
                         <div style="display: flex; gap: 2rem; align-items: stretch; margin-top: 1rem;">
                             <!-- Column 1 -->
-                            <div style="flex: 1; display: flex; flex-direction: column; gap: 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 12px; box-sizing: border-box;">
+                            <div style="flex: 1; display: flex; flex-direction: column; gap: 1rem; background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 1.5rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s;">
                                 <div style="font-size: 1.1rem; font-weight: 900; color: var(--secondary-color); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem;">22. Juli 2026</div>
-                                <div style="width: 100%; height: 220px; overflow: hidden; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 1rem;">
+                                <div style="width: 100%; height: 220px; overflow: hidden; border-radius: 8px; border: 1px solid var(--slide-card-border); margin-bottom: 1rem;">
                                     <img src="../images/2026-07-22.jpg" alt="Kreisgespräch" class="expose-img" style="width: 100%; height: 100%; object-fit: cover; display: block;" onclick="openLightbox(this.src)" />
                                 </div>
-                                <h4 style="font-size: 1.35rem; font-weight: bold; color: var(--white); margin: 0 0 0.5rem 0;">Erstgespräch Kreisbehörden</h4>
-                                <p style="font-size: 1.15rem; color: rgba(255, 255, 255, 0.75); margin: 0; line-height: 1.45;">Konstruktive Fachrunde mit der Unteren Wasser- und Naturschutzbehörde zur Abklärung kurzfristiger Kooperationen.</p>
+                                <h4 style="font-size: 1.35rem; font-weight: bold; color: var(--title-color); margin: 0 0 0.5rem 0;">Erstgespräch Kreisbehörden</h4>
+                                <p style="font-size: 1.15rem; color: var(--slide-card-text); margin: 0; line-height: 1.45;">Konstruktive Fachrunde mit der Unteren Wasser- und Naturschutzbehörde zur Abklärung kurzfristiger Kooperationen.</p>
                             </div>
 
                             <!-- Column 2 (Highlight Green) -->
-                            <div style="flex: 1; display: flex; flex-direction: column; gap: 1rem; background: rgba(76,175,80,0.03); border: 1px solid rgba(76,175,80,0.12); padding: 1.5rem; border-radius: 12px; box-sizing: border-box;">
+                            <div style="flex: 1; display: flex; flex-direction: column; gap: 1rem; background: rgba(76,175,80,0.03); border: 1px solid rgba(76,175,80,0.15); padding: 1.5rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s;">
                                 <div style="font-size: 1.1rem; font-weight: 900; color: #4caf50; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem;">19. August 2026</div>
                                 <div style="width: 100%; height: 220px; overflow: hidden; border-radius: 8px; border: 1px solid rgba(76,175,80,0.2); margin-bottom: 1rem;">
                                     <img src="../images/2026-08-19.jpeg" alt="Stadthaus" class="expose-img" style="width: 100%; height: 100%; object-fit: cover; display: block;" onclick="openLightbox(this.src)" />
                                 </div>
-                                <h4 style="font-size: 1.35rem; font-weight: bold; color: var(--white); margin: 0 0 0.5rem 0;">Gipfelgespräch im Stadthaus</h4>
-                                <p style="font-size: 1.15rem; color: rgba(255, 255, 255, 0.75); margin: 0; line-height: 1.45;">Übergabe des Bürgerantrags an Bürgermeister Hopp und erste Zusagen des Wasser- und Bodenverbands Mittlere Niers.</p>
+                                <h4 style="font-size: 1.35rem; font-weight: bold; color: var(--title-color); margin: 0 0 0.5rem 0;">Gipfelgespräch im Stadthaus</h4>
+                                <p style="font-size: 1.15rem; color: var(--slide-card-text); margin: 0; line-height: 1.45;">Übergabe des Bürgerantrags an Bürgermeister Hopp und erste Zusagen des Wasser- und Bodenverbands Mittlere Niers.</p>
                             </div>
                         </div>
 
@@ -627,11 +697,11 @@
                     <span class="slide-time-badge">Bürgerantrag</span>
                     <h2 class="slide-title">Bürgerantrag gemäß § 24 GO NRW</h2>
                     <div class="slide-body">
-                        <p style="font-size: 1.6rem; margin-bottom: 2.5rem; color: var(--white); font-weight: bold;">Unser formaler rechtlicher Impuls:</p>
+                        <p style="font-size: 1.6rem; margin-bottom: 2.5rem; color: var(--title-color); font-weight: bold;">Unser formaler rechtlicher Impuls:</p>
                         
                         <div style="background: rgba(93, 173, 226, 0.05); border-left: 5px solid var(--secondary-color); padding: 2.2rem; border-radius: 0 10px 10px 0; margin-bottom: 3rem;">
-                            <h4 style="margin-top: 0; color: var(--white); font-size: 1.5rem; margin-bottom: 1rem; font-weight: 900;">Inhalte des Antrages:</h4>
-                            <ul style="padding-left: 1.8rem; font-size: 1.25rem; margin: 0; line-height: 1.6;">
+                            <h4 style="margin-top: 0; color: var(--title-color); font-size: 1.5rem; margin-bottom: 1rem; font-weight: 900;">Inhalte des Antrages:</h4>
+                            <ul style="padding-left: 1.8rem; font-size: 1.25rem; margin: 0; line-height: 1.6; color: var(--text-color);">
                                 <li style="margin-bottom: 0.8rem;">Einrichtung eines behördenübergreifenden <strong>Arbeitskreises Starkregenschutz</strong>.</li>
                                 <li style="margin-bottom: 0.8rem;"><strong>Koordination aller Kompetenzen:</strong> Stadt, Kreis Viersen, Wasser- &amp; Bodenverband, Landwirtschaftskammer sowie die Bürgerinitiative arbeiten an einem Tisch.</li>
                                 <li style="margin-bottom: 0px;">Gemeinsame Priorisierung und Planungsabstimmung.</li>
@@ -645,20 +715,20 @@
                     <span class="slide-time-badge">Lösungsansätze I</span>
                     <h2 class="slide-title">Ganzheitlicher Starkregenschutz I</h2>
                     <div class="slide-body">
-                        <p style="font-size: 1.6rem; color: var(--white); font-weight: bold; margin-bottom: 2rem;">Heimischer Objektschutz und landwirtschaftliche Kooperationen:</p>
+                        <p style="font-size: 1.6rem; color: var(--title-color); font-weight: bold; margin-bottom: 2rem;">Heimischer Objektschutz und landwirtschaftliche Kooperationen:</p>
                         
                         <div style="display: flex; gap: 2rem; align-items: stretch;">
-                            <div style="flex: 1; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 2.2rem; border-radius: 12px; box-sizing: border-box;">
-                                <h4 style="color: var(--white); margin-top: 0; margin-bottom: 1rem; font-size: 1.5rem; display: flex; align-items: center; gap: 0.6rem; font-weight: 900;"><span>🏡</span> Objektschutz &amp; Vorsorge</h4>
-                                <ul style="padding-left: 1.8rem; font-size: 1.25rem; margin: 0; color: rgba(255,255,255,0.75); line-height: 1.6;">
+                            <div style="flex: 1; background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 2.2rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s;">
+                                <h4 style="color: var(--title-color); margin-top: 0; margin-bottom: 1rem; font-size: 1.5rem; display: flex; align-items: center; gap: 0.6rem; font-weight: 900;"><span>🏡</span> Objektschutz &amp; Vorsorge</h4>
+                                <ul style="padding-left: 1.8rem; font-size: 1.25rem; margin: 0; color: var(--slide-card-text); line-height: 1.6;">
                                     <li style="margin-bottom: 0.8rem;"><strong>Keller sichern:</strong> Kellerschächte abdichten und Rückschlagventile prüfen.</li>
                                     <li style="margin-bottom: 0.8rem;"><strong>Sandsäcke lagern:</strong> Dezentrale Bereitstellung für reißende Abflusspfade.</li>
                                     <li style="margin-bottom: 0px;"><strong>Eigenvorsorge:</strong> Anwohner-Aufklärung forcieren.</li>
                                 </ul>
                             </div>
-                            <div style="flex: 1; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 2.2rem; border-radius: 12px; box-sizing: border-box;">
-                                <h4 style="color: var(--white); margin-top: 0; margin-bottom: 1rem; font-size: 1.5rem; display: flex; align-items: center; gap: 0.6rem; font-weight: 900;"><span>🚜</span> Naturnahe Landwirtschaft</h4>
-                                <ul style="padding-left: 1.8rem; font-size: 1.25rem; margin: 0; color: rgba(255,255,255,0.75); line-height: 1.6;">
+                            <div style="flex: 1; background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 2.2rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s;">
+                                <h4 style="color: var(--title-color); margin-top: 0; margin-bottom: 1rem; font-size: 1.5rem; display: flex; align-items: center; gap: 0.6rem; font-weight: 900;"><span>🚜</span> Naturnahe Landwirtschaft</h4>
+                                <ul style="padding-left: 1.8rem; font-size: 1.25rem; margin: 0; color: var(--slide-card-text); line-height: 1.6;">
                                     <li style="margin-bottom: 0.8rem;"><strong>Feldhecken anlegen:</strong> Bremsen die Fließgeschwindigkeit auf freiem Feld.</li>
                                     <li style="margin-bottom: 0.8rem;"><strong>Schonende Bodenbearbeitung:</strong> Konturnahes Pflügen vermindert Erosion.</li>
                                     <li style="margin-bottom: 0px;"><strong>Vertragsnaturschutz:</strong> Anlage von breiten Blüh- und Grünstreifen.</li>
@@ -673,20 +743,20 @@
                     <span class="slide-time-badge">Lösungsansätze II</span>
                     <h2 class="slide-title">Ganzheitlicher Starkregenschutz II</h2>
                     <div class="slide-body">
-                        <p style="font-size: 1.6rem; color: var(--white); font-weight: bold; margin-bottom: 2rem;">Infrastruktur-Anpassung und Akteurs-Bündelung:</p>
+                        <p style="font-size: 1.6rem; color: var(--title-color); font-weight: bold; margin-bottom: 2rem;">Infrastruktur-Anpassung und Akteurs-Bündelung:</p>
                         
                         <div style="display: flex; gap: 2rem; align-items: stretch;">
-                            <div style="flex: 1; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 2.2rem; border-radius: 12px; box-sizing: border-box;">
-                                <h4 style="color: var(--white); margin-top: 0; margin-bottom: 1rem; font-size: 1.5rem; display: flex; align-items: center; gap: 0.6rem; font-weight: 900;"><span>🛣️</span> Versickerungsfähige Wege</h4>
-                                <ul style="padding-left: 1.8rem; font-size: 1.25rem; margin: 0; color: rgba(255,255,255,0.75); line-height: 1.6;">
+                            <div style="flex: 1; background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 2.2rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s;">
+                                <h4 style="color: var(--title-color); margin-top: 0; margin-bottom: 1rem; font-size: 1.5rem; display: flex; align-items: center; gap: 0.6rem; font-weight: 900;"><span>🛣️</span> Versickerungsfähige Wege</h4>
+                                <ul style="padding-left: 1.8rem; font-size: 1.25rem; margin: 0; color: var(--slide-card-text); line-height: 1.6;">
                                     <li style="margin-bottom: 0.8rem;"><strong>Wege entsiegeln:</strong> Unnötig asphaltierte Wirtschaftswege zurückbauen.</li>
                                     <li style="margin-bottom: 0.8rem;"><strong>Sickerfähiger Schotter:</strong> Schotterrasen statt geschlossener Decken.</li>
                                     <li style="margin-bottom: 0px;"><strong>Fließwege reduzieren:</strong> Reißende Kanäle auf Feldwegen abfangen.</li>
                                 </ul>
                             </div>
-                            <div style="flex: 1; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 2.2rem; border-radius: 12px; box-sizing: border-box;">
-                                <h4 style="color: var(--white); margin-top: 0; margin-bottom: 1rem; font-size: 1.5rem; display: flex; align-items: center; gap: 0.6rem; font-weight: 900;"><span>🤝</span> Bündelung der Akteure</h4>
-                                <ul style="padding-left: 1.8rem; font-size: 1.25rem; margin: 0; color: rgba(255,255,255,0.75); line-height: 1.6;">
+                            <div style="flex: 1; background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 2.2rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s;">
+                                <h4 style="color: var(--title-color); margin-top: 0; margin-bottom: 1rem; font-size: 1.5rem; display: flex; align-items: center; gap: 0.6rem; font-weight: 900;"><span>🤝</span> Bündelung der Akteure</h4>
+                                <ul style="padding-left: 1.8rem; font-size: 1.25rem; margin: 0; color: var(--slide-card-text); line-height: 1.6;">
                                     <li style="margin-bottom: 0.8rem;"><strong>Gründung Arbeitskreis:</strong> Bündelung aller Zuständigkeiten an einem Tisch.</li>
                                     <li style="margin-bottom: 0.8rem;"><strong>Wissenschaftliche Begleitung:</strong> Unterstützung für Masterarbeit der RWTH.</li>
                                     <li style="margin-bottom: 0px;"><strong>Gemeinsame Planung:</strong> Direktes Einfließen praxisnaher Impulse.</li>
@@ -701,16 +771,16 @@
                     <span class="slide-time-badge">Ausblick</span>
                     <h2 class="slide-title">Kooperation &amp; Ausblick</h2>
                     <div class="slide-body">
-                        <p style="font-size: 1.6rem; color: var(--white); margin-bottom: 2.5rem; font-weight: bold;">Gemeinsame Wege &amp; nächste Schritte:</p>
+                        <p style="font-size: 1.6rem; color: var(--title-color); margin-bottom: 2.5rem; font-weight: bold;">Gemeinsame Wege &amp; nächste Schritte:</p>
                         
                         <div class="grid-cards" style="margin-bottom: 3.5rem;">
-                            <div style="background: rgba(76,175,80,0.04); border: 1px solid rgba(76,175,80,0.15); padding: 1.8rem; border-radius: 12px; border-left: 4px solid #4caf50;">
+                            <div style="background: rgba(76,175,80,0.04); border: 1px solid rgba(76,175,80,0.15); padding: 1.8rem; border-radius: 12px; border-left: 4px solid #4caf50; transition: background-color 0.3s, border-color 0.3s;">
                                 <h4 style="color: #4caf50; margin-top:0; margin-bottom: 0.8rem; font-size: 1.25rem; font-weight: 900;">Erste Zusage</h4>
-                                <p style="font-size: 1.15rem; line-height: 1.5; color: rgba(255,255,255,0.75); margin: 0;">Gezielte Bepflanzung der Fläche am RRB 1 zur Schlamm- und Wasserretention durch den Wasser- und Bodenverband.</p>
+                                <p style="font-size: 1.15rem; line-height: 1.5; color: var(--slide-card-text); margin: 0;">Gezielte Bepflanzung der Fläche am RRB 1 zur Schlamm- und Wasserretention durch den Wasser- und Bodenverband.</p>
                             </div>
-                            <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 1.8rem; border-radius: 12px;">
+                            <div style="background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 1.8rem; border-radius: 12px; transition: background-color 0.3s, border-color 0.3s;">
                                 <h4 style="color: var(--secondary-color); margin-top:0; margin-bottom: 0.8rem; font-size: 1.25rem; font-weight: 900;">Arbeitskreis-Beschluss</h4>
-                                <p style="font-size: 1.15rem; line-height: 1.5; color: rgba(255,255,255,0.75); margin: 0;">Wir werben im Stadtrat für eine zügige, parteiübergreifende Zustimmung zur formellen Einrichtung des Arbeitskreises.</p>
+                                <p style="font-size: 1.15rem; line-height: 1.5; color: var(--slide-card-text); margin: 0;">Wir werben im Stadtrat für eine zügige, parteiübergreifende Zustimmung zur formellen Einrichtung des Arbeitskreises.</p>
                             </div>
                         </div>
 
@@ -822,6 +892,24 @@
             lightboxVideo.src = ''; // stop playing video on close
         }
 
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+            
+            body.classList.toggle('dark-theme');
+            
+            if (body.classList.contains('dark-theme')) {
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Hellmodus';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Dunkelmodus';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
         // Support arrow keys navigation
         document.addEventListener('keydown', function(event) {
             if (event.key === 'ArrowRight' || event.key === 'ArrowDown' || event.key === ' ' || event.key === 'PageDown') {
@@ -831,8 +919,22 @@
             }
         });
         
-        // Run once on load to initialize correct totals dynamically
-        updateControls();
+        // Check for saved theme preference on load (Default is Light, so no class unless saved as dark)
+        document.addEventListener("DOMContentLoaded", function() {
+            const savedTheme = localStorage.getItem('theme');
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+            
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-theme');
+                if (themeIcon && themeText) {
+                    themeIcon.textContent = '☀️';
+                    themeText.textContent = 'Hellmodus';
+                }
+            }
+            updateControls();
+        });
     </script>
 </body>
 </html>
