@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Präsentation - Ausschuss für Klima, Umwelt, Land- &amp; Forstwirtschaft - Landunter am Hammer&nbsp;Bach</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        body.presentation-mode {
+            background-color: #0f1a24;
+            color: #f5f5f5;
+            overflow: hidden;
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .pres-header {
+            background: #152532;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            box-sizing: border-box;
+        }
+
+        .pres-header .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .pres-header .logo-title {
+            font-weight: 900;
+            font-size: 1.25rem;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .pres-header .logo-badge {
+            background-color: var(--accent-color);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .pres-header .back-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .pres-header .back-btn:hover {
+            background: var(--white);
+            color: var(--primary-color);
+        }
+
+        .pres-container {
+            display: flex;
+            flex: 1;
+            height: calc(100vh - 70px);
+            overflow: hidden;
+        }
+
+        /* Sidebar Navigation */
+        .pres-sidebar {
+            width: 340px;
+            background: #12202d;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+        .sidebar-title {
+            padding: 1.5rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 700;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .agenda-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .agenda-item {
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            position: relative;
+        }
+
+        .agenda-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: transparent;
+            transition: all 0.2s ease;
+        }
+
+        .agenda-item:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .agenda-item.active {
+            background: rgba(93, 173, 226, 0.08);
+        }
+
+        .agenda-item.active::before {
+            background-color: var(--secondary-color);
+        }
+
+        .agenda-item .title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.3;
+        }
+
+        .agenda-item.active .title {
+            color: var(--white);
+        }
+
+        /* Slide View area */
+        .pres-slide-view {
+            flex: 1;
+            background-color: #0d1620;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slide-scroller {
+            flex: 1;
+            overflow-y: auto;
+            padding: 4rem;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-content {
+            max-width: 1000px;
+            width: 100%;
+            margin: auto;
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .slide-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Slide Typography */
+        .slide-time-badge {
+            display: inline-block;
+            background: rgba(93, 173, 226, 0.15);
+            color: var(--secondary-color);
+            font-weight: 900;
+            padding: 0.5rem 1.3rem;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .slide-title {
+            font-size: 3.2rem; /* Much larger title text */
+            font-weight: 900;
+            color: var(--white);
+            margin-top: 0;
+            margin-bottom: 2.5rem;
+            line-height: 1.15;
+            letter-spacing: -1px;
+        }
+
+        .slide-body {
+            font-size: 1.5rem; /* Much larger body text */
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .slide-body p {
+            margin-top: 0;
+            margin-bottom: 1.8rem;
+        }
+
+        /* Interactive Elements / Cards */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin: 2.5rem 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 2.2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-card .value {
+            font-size: 3.8rem; /* Much larger values */
+            font-weight: 900;
+            color: var(--accent-color);
+            line-height: 1;
+            margin-bottom: 0.8rem;
+        }
+
+        .stat-card .label {
+            font-weight: bold;
+            font-size: 1.3rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .desc {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.4;
+        }
+
+        /* Controls Footer */
+        .pres-controls {
+            height: 70px;
+            background: #11202c;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .slide-indicator {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .control-btns {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .control-btn:hover:not(:disabled) {
+            background: var(--white);
+            color: var(--primary-color);
+        }
+
+        .control-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            body.presentation-mode {
+                overflow: auto;
+                height: auto;
+            }
+            .pres-container {
+                flex-direction: column;
+                height: auto;
+                overflow: visible;
+            }
+            .pres-sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                max-height: 200px;
+            }
+            .slide-scroller {
+                padding: 1.5rem;
+                height: auto;
+            }
+            .slide-title {
+                font-size: 2.2rem;
+            }
+            .pres-controls {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: #11202c;
+                z-index: 100;
+            }
+            .pres-slide-view {
+                padding-bottom: 70px;
+            }
+        }
+    </style>
+</head>
+<body class="presentation-mode">
+
+    <!-- Header -->
+    <header class="pres-header">
+        <div class="logo-group">
+            <a href="../index.html" class="logo-title">Landunter am Hammer&nbsp;Bach</a>
+            <span class="logo-badge">Klima- &amp; Umweltschutz-Ausschuss</span>
+        </div>
+        <a href="../index.html" class="back-btn">← Zurück zur Startseite</a>
+    </header>
+
+    <!-- Container -->
+    <div class="pres-container">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="pres-sidebar">
+            <div class="sidebar-title">Präsentationsfolien</div>
+            <ul class="agenda-list" id="agenda-nav">
+                <li class="agenda-item active" onclick="goToSlide(0)">
+                    <span class="title">1. Begrüßung &amp; Kernanliegen</span>
+                </li>
+                <li class="agenda-item" onclick="goToSlide(1)">
+                    <span class="title">2. Hydrologische Simulation</span>
+                </li>
+                <li class="agenda-item" onclick="goToSlide(2)">
+                    <span class="title">3. Karten- &amp; Video-Exposé</span>
+                </li>
+                <li class="agenda-item" onclick="goToSlide(3)">
+                    <span class="title">4. Bisherige Meilensteine I</span>
+                </li>
+                <li class="agenda-item" onclick="goToSlide(4)">
+                    <span class="title">5. Bisherige Meilensteine II</span>
+                </li>
+                <li class="agenda-item" onclick="goToSlide(5)">
+                    <span class="title">6. Unser Bürgerantrag § 24 GO</span>
+                </li>
+                <li class="agenda-item" onclick="goToSlide(6)">
+                    <span class="title">7. Ganzheitlicher Starkregenschutz I</span>
+                </li>
+                <li class="agenda-item" onclick="goToSlide(7)">
+                    <span class="title">8. Ganzheitlicher Starkregenschutz II</span>
+                </li>
+                <li class="agenda-item" onclick="goToSlide(8)">
+                    <span class="title">9. Kooperation &amp; Ausblick</span>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Slide Content Area -->
+        <main class="pres-slide-view">
+            <div class="slide-scroller" style="padding: 0;">
+                
+                <!-- Slide 1 (Begrüßung) -->
+                <section class="slide-content active" style="padding: 4rem; max-width: 1000px; width: 100%; box-sizing: border-box;">
+                    <span class="slide-time-badge">Begrüßung</span>
+                    <h2 class="slide-title">Begrüßung &amp; Kooperation</h2>
+                    <div class="slide-body">
+                        <p style="font-size: 1.7rem; margin-bottom: 2.5rem; color: var(--white); line-height: 1.5; font-weight: bold;">
+                            Wir bedanken uns herzlich für die Einladung und die Gelegenheit, unser Anliegen heute im Ausschuss vorzustellen.
+                        </p>
+                        
+                        <div style="background: rgba(93, 173, 226, 0.05); border-left: 5px solid var(--secondary-color); padding: 2.2rem; border-radius: 0 8px 8px 0; margin-bottom: 2.5rem;">
+                            <h4 style="margin-top:0; color: var(--white); font-size: 1.5rem; margin-bottom: 0.8rem; font-weight: 900;">Unser gemeinsames Kernziel:</h4>
+                            <p style="font-size: 1.35rem; line-height: 1.6; margin: 0; color: rgba(255,255,255,0.9);">
+                                Ein wirksamer, zukunftsfähiger Starkregenschutz für die Bockerter und Bebericher Heide durch partnerschaftliche Zusammenarbeit aller Akteure.
+                            </p>
+                        </div>
+
+                        <p style="font-size: 1.3rem; color: rgba(255, 255, 255, 0.65); line-height: 1.6;">
+                            Im Folgenden präsentieren wir Ihnen die geologischen Gegebenheiten und unsere kooperativen Lösungsansätze.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Slide 2 (Hero Simulation) -->
+                <section class="slide-content" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100% !important; height: 100% !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; box-sizing: border-box; z-index: 10;">
+                    <iframe src="https://mapview.hydrotec.de/models/SR-Simulation-KVIE-extremes-Ereignis/?view=51.234502493382365%2C6.387061424813323%2C16.38099702501109" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0; width: 100%; height: 100%; display: block; margin: 0; padding: 0;" 
+                            allowfullscreen 
+                            loading="lazy">
+                    </iframe>
+                </section>
+
+                <!-- Slide 3 (Karten- & Video-Exposé) -->
+                <section class="slide-content" style="padding: 4rem; max-width: 1000px; width: 100%; box-sizing: border-box;">
+                    <span class="slide-time-badge">Medien-Exposé</span>
+                    <h2 class="slide-title">Karten- &amp; Video-Exposé</h2>
+                    <div class="slide-body">
+                        
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1rem;">
+                            <!-- Image 1 -->
+                            <div style="border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: var(--shadow); height: 230px;">
+                                <img src="https://mymaps.usercontent.google.com/hostedimage/m/1/5AAjQbR4aaJ5uZlWYiDRhdoS425GCKBPOyj59k7_WuC4Z9qyHdN54sNGvytms1rmWu7tIPGt4XRswaNQHJwC9DXHABSxn7SOUqAsCfibBfLzf8fypQbMjN_NVHdtm51DzevMGf-8ej9Y5qC9OOh2xE3oeL5gYOl9fV9u5jbz6gwQWRqtxscaHY8cxv7CfAyWt0ws5Qu3lrey2GG5VIhiv8KHdvQyUii1MvparUTgsGDNhWV9dnqEdUif2Pw62rtYdUnAUYBB7DiJmJR8P?authuser=0&amp;fife=s16383" alt="Abflussanalyse Karte 1" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                            </div>
+
+                            <!-- Image 2 -->
+                            <div style="border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: var(--shadow); height: 230px;">
+                                <img src="https://mymaps.usercontent.google.com/hostedimage/m/1/5AAjQbR7uWTkCyYZ772vkJ7lWGzgSP-5Yw69XfktUdEa3AQoqvmPjbchbSKCac16h5RJgD_4hxl3DZ7m8S_o7Ikgt6CFUk8MBAHJ7sfT-oMFUOgjta30CANDaR0fMSIcpxHP53-A_cp1cSPaSb4mMZX6D0JBQnfFHjjl9fzANn-FxAiwY6IBGCbJscujsbMEzK_2W6piOS0ZsZI0hrvpW3NJe4K4xWJ8VWFuFckSuz8UggtpD3zm6vKIMENXmvOwK2CZSXWLx-JdCiCcT?authuser=0&amp;fife=s16383" alt="Abflussanalyse Karte 2" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                            </div>
+
+                            <!-- Video 1 -->
+                            <div style="border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: var(--shadow); height: 230px;">
+                                <iframe src="https://www.youtube.com/embed/B4Jz7gst3tU" style="border: 0; width: 100%; height: 100%; display: block;" allowfullscreen loading="lazy"></iframe>
+                            </div>
+
+                            <!-- Video 2 -->
+                            <div style="border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: var(--shadow); height: 230px;">
+                                <iframe src="https://www.youtube.com/embed/YD9Yzkcv7fU" style="border: 0; width: 100%; height: 100%; display: block;" allowfullscreen loading="lazy"></iframe>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- Slide 4 (Bisherige Meilensteine I) -->
+                <section class="slide-content" style="padding: 4rem; max-width: 1000px; width: 100%; box-sizing: border-box;">
+                    <span class="slide-time-badge">Aktivitäten I</span>
+                    <h2 class="slide-title">Bisherige Meilensteine I</h2>
+                    <div class="slide-body">
+                        
+                        <div style="display: flex; gap: 2rem; align-items: stretch; margin-top: 1rem;">
+                            <!-- Column 1 -->
+                            <div style="flex: 1; display: flex; flex-direction: column; gap: 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 1.5rem; border-radius: 12px; box-sizing: border-box;">
+                                <div style="font-size: 1.1rem; font-weight: 900; color: var(--secondary-color); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem;">21. Juni 2026</div>
+                                <div style="width: 100%; height: 220px; overflow: hidden; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 1rem;">
+                                    <img src="../images/2026-06-21_12-05_small.jpg" alt="Auftakt" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                                </div>
+                                <h4 style="font-size: 1.35rem; font-weight: bold; color: var(--white); margin: 0 0 0.5rem 0;">Auftakt am Bockerter Busch</h4>
+                                <p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.75); margin: 0; line-height: 1.45;">Erfolgreicher Auftakt unter reger Bürgerbeteiligung. Vorstellung hydrodynamischer Modelle und Definition der Sorgenfelder.</p>
+                            </div>
+
+                            <!-- Column 2 -->
+                            <div style="flex: 1; display: flex; flex-direction: column; gap: 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 1.5rem; border-radius: 12px; box-sizing: border-box;">
+                                <div style="font-size: 1.1rem; font-weight: 900; color: var(--secondary-color); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem;">02. Juli 2026</div>
+                                <div style="width: 100%; height: 220px; overflow: hidden; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 1rem;">
+                                    <img src="../images/2026-07-22_rheinische-post.jpeg" alt="Ortstermin" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                                </div>
+                                <h4 style="font-size: 1.35rem; font-weight: bold; color: var(--white); margin: 0 0 0.5rem 0;">Großer öffentlicher Ortstermin</h4>
+                                <p style="font-size: 1.15rem; color: rgba(255, 255, 255, 0.75); margin: 0; line-height: 1.45;">Begehung am RRB Schmaler Weg (RRB II) mit Vertretern aus Politik, Behörden und Presse sowie breitem Medienecho.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- Slide 5 (Bisherige Meilensteine II) -->
+                <section class="slide-content" style="padding: 4rem; max-width: 1000px; width: 100%; box-sizing: border-box;">
+                    <span class="slide-time-badge">Aktivitäten II</span>
+                    <h2 class="slide-title">Bisherige Meilensteine II</h2>
+                    <div class="slide-body">
+                        
+                        <div style="display: flex; gap: 2rem; align-items: stretch; margin-top: 1rem;">
+                            <!-- Column 1 -->
+                            <div style="flex: 1; display: flex; flex-direction: column; gap: 1rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 1.5rem; border-radius: 12px; box-sizing: border-box;">
+                                <div style="font-size: 1.1rem; font-weight: 900; color: var(--secondary-color); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem;">22. Juli 2026</div>
+                                <div style="width: 100%; height: 220px; overflow: hidden; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 1rem;">
+                                    <img src="../images/2026-07-22.jpg" alt="Kreisgespräch" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                                </div>
+                                <h4 style="font-size: 1.35rem; font-weight: bold; color: var(--white); margin: 0 0 0.5rem 0;">Erstgespräch Kreisbehörden</h4>
+                                <p style="font-size: 1.15rem; color: rgba(255, 255, 255, 0.75); margin: 0; line-height: 1.45;">Konstruktive Fachrunde mit der Unteren Wasser- und Naturschutzbehörde zur Abklärung kurzfristiger Kooperationen.</p>
+                            </div>
+
+                            <!-- Column 2 (Highlight Green) -->
+                            <div style="flex: 1; display: flex; flex-direction: column; gap: 1rem; background: rgba(76,175,80,0.03); border: 1px solid rgba(76,175,80,0.12); padding: 1.5rem; border-radius: 12px; box-sizing: border-box;">
+                                <div style="font-size: 1.1rem; font-weight: 900; color: #4caf50; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem;">19. August 2026</div>
+                                <div style="width: 100%; height: 220px; overflow: hidden; border-radius: 8px; border: 1px solid rgba(76,175,80,0.2); margin-bottom: 1rem;">
+                                    <img src="../images/2026-08-19.jpeg" alt="Stadthaus" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                                </div>
+                                <h4 style="font-size: 1.35rem; font-weight: bold; color: var(--white); margin: 0 0 0.5rem 0;">Gipfelgespräch im Stadthaus</h4>
+                                <p style="font-size: 1.15rem; color: rgba(255, 255, 255, 0.75); margin: 0; line-height: 1.45;">Übergabe des Bürgerantrags an Bürgermeister Hopp und erste Zusagen des Wasser- und Bodenverbands Mittlere Niers.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- Slide 6 (Bürgerantrag) -->
+                <section class="slide-content" style="padding: 4rem; max-width: 1000px; width: 100%; box-sizing: border-box;">
+                    <span class="slide-time-badge">Bürgerantrag</span>
+                    <h2 class="slide-title">Bürgerantrag gemäß § 24 GO NRW</h2>
+                    <div class="slide-body">
+                        <p style="font-size: 1.6rem; margin-bottom: 2.5rem; color: var(--white); font-weight: bold;">Unser formaler rechtlicher Impuls:</p>
+                        
+                        <div style="background: rgba(93, 173, 226, 0.05); border-left: 5px solid var(--secondary-color); padding: 2.2rem; border-radius: 0 10px 10px 0; margin-bottom: 3rem;">
+                            <h4 style="margin-top: 0; color: var(--white); font-size: 1.5rem; margin-bottom: 1rem; font-weight: 900;">Inhalte des Antrages:</h4>
+                            <ul style="padding-left: 1.8rem; font-size: 1.25rem; margin: 0; line-height: 1.6;">
+                                <li style="margin-bottom: 0.8rem;">Einrichtung eines behördenübergreifenden <strong>Arbeitskreises Starkregenschutz</strong>.</li>
+                                <li style="margin-bottom: 0.8rem;"><strong>Koordination aller Kompetenzen:</strong> Stadt, Kreis Viersen, Wasser- &amp; Bodenverband, Landwirtschaftskammer sowie die Bürgerinitiative arbeiten an einem Tisch.</li>
+                                <li style="margin-bottom: 0px;">Gemeinsame Priorisierung und Planungsabstimmung.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 7 (Ganzheitlicher Starkregenschutz I) -->
+                <section class="slide-content" style="padding: 4rem; max-width: 1000px; width: 100%; box-sizing: border-box;">
+                    <span class="slide-time-badge">Lösungsansätze I</span>
+                    <h2 class="slide-title">Ganzheitlicher Starkregenschutz I</h2>
+                    <div class="slide-body">
+                        <p style="font-size: 1.6rem; color: var(--white); font-weight: bold; margin-bottom: 2rem;">Heimischer Objektschutz und landwirtschaftliche Kooperationen:</p>
+                        
+                        <div style="display: flex; gap: 2rem; align-items: stretch;">
+                            <div style="flex: 1; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 2.2rem; border-radius: 12px; box-sizing: border-box;">
+                                <h4 style="color: var(--white); margin-top: 0; margin-bottom: 1rem; font-size: 1.5rem; display: flex; align-items: center; gap: 0.6rem; font-weight: 900;"><span>🏡</span> Objektschutz &amp; Vorsorge</h4>
+                                <ul style="padding-left: 1.8rem; font-size: 1.25rem; margin: 0; color: rgba(255,255,255,0.75); line-height: 1.6;">
+                                    <li style="margin-bottom: 0.8rem;"><strong>Keller sichern:</strong> Kellerschächte abdichten und Rückschlagventile prüfen.</li>
+                                    <li style="margin-bottom: 0.8rem;"><strong>Sandsäcke lagern:</strong> Dezentrale Bereitstellung für reißende Abflusspfade.</li>
+                                    <li style="margin-bottom: 0px;"><strong>Eigenvorsorge:</strong> Anwohner-Aufklärung forcieren.</li>
+                                </ul>
+                            </div>
+                            <div style="flex: 1; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 2.2rem; border-radius: 12px; box-sizing: border-box;">
+                                <h4 style="color: var(--white); margin-top: 0; margin-bottom: 1rem; font-size: 1.5rem; display: flex; align-items: center; gap: 0.6rem; font-weight: 900;"><span>🚜</span> Naturnahe Landwirtschaft</h4>
+                                <ul style="padding-left: 1.8rem; font-size: 1.25rem; margin: 0; color: rgba(255,255,255,0.75); line-height: 1.6;">
+                                    <li style="margin-bottom: 0.8rem;"><strong>Feldhecken anlegen:</strong> Bremsen die Fließgeschwindigkeit auf freiem Feld.</li>
+                                    <li style="margin-bottom: 0.8rem;"><strong>Schonende Bodenbearbeitung:</strong> Konturnahes Pflügen vermindert Erosion.</li>
+                                    <li style="margin-bottom: 0px;"><strong>Vertragsnaturschutz:</strong> Anlage von breiten Blüh- und Grünstreifen.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 8 (Ganzheitlicher Starkregenschutz II) -->
+                <section class="slide-content" style="padding: 4rem; max-width: 1000px; width: 100%; box-sizing: border-box;">
+                    <span class="slide-time-badge">Lösungsansätze II</span>
+                    <h2 class="slide-title">Ganzheitlicher Starkregenschutz II</h2>
+                    <div class="slide-body">
+                        <p style="font-size: 1.6rem; color: var(--white); font-weight: bold; margin-bottom: 2rem;">Infrastruktur-Anpassung und Akteurs-Bündelung:</p>
+                        
+                        <div style="display: flex; gap: 2rem; align-items: stretch;">
+                            <div style="flex: 1; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 2.2rem; border-radius: 12px; box-sizing: border-box;">
+                                <h4 style="color: var(--white); margin-top: 0; margin-bottom: 1rem; font-size: 1.5rem; display: flex; align-items: center; gap: 0.6rem; font-weight: 900;"><span>🛣️</span> Versickerungsfähige Wege</h4>
+                                <ul style="padding-left: 1.8rem; font-size: 1.25rem; margin: 0; color: rgba(255,255,255,0.75); line-height: 1.6;">
+                                    <li style="margin-bottom: 0.8rem;"><strong>Wege entsiegeln:</strong> Unnötig asphaltierte Wirtschaftswege zurückbauen.</li>
+                                    <li style="margin-bottom: 0.8rem;"><strong>Sickerfähiger Schotter:</strong> Schotterrasen statt geschlossener Decken.</li>
+                                    <li style="margin-bottom: 0px;"><strong>Fließwege reduzieren:</strong> Reißende Kanäle auf Feldwegen abfangen.</li>
+                                </ul>
+                            </div>
+                            <div style="flex: 1; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 2.2rem; border-radius: 12px; box-sizing: border-box;">
+                                <h4 style="color: var(--white); margin-top: 0; margin-bottom: 1rem; font-size: 1.5rem; display: flex; align-items: center; gap: 0.6rem; font-weight: 900;"><span>🤝</span> Bündelung der Akteure</h4>
+                                <ul style="padding-left: 1.8rem; font-size: 1.25rem; margin: 0; color: rgba(255,255,255,0.75); line-height: 1.6;">
+                                    <li style="margin-bottom: 0.8rem;"><strong>Gründung Arbeitskreis:</strong> Bündelung aller Zuständigkeiten an einem Tisch.</li>
+                                    <li style="margin-bottom: 0.8rem;"><strong>Wissenschaftliche Begleitung:</strong> Unterstützung für Masterarbeit der RWTH.</li>
+                                    <li style="margin-bottom: 0px;"><strong>Gemeinsame Planung:</strong> Direktes Einfließen praxisnaher Impulse.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 9 (Kooperation & Ausblick) -->
+                <section class="slide-content" style="padding: 4rem; max-width: 1000px; width: 100%; box-sizing: border-box;">
+                    <span class="slide-time-badge">Ausblick</span>
+                    <h2 class="slide-title">Kooperation &amp; Ausblick</h2>
+                    <div class="slide-body">
+                        <p style="font-size: 1.6rem; color: var(--white); margin-bottom: 2.5rem; font-weight: bold;">Gemeinsame Wege &amp; nächste Schritte:</p>
+                        
+                        <div class="grid-cards" style="margin-bottom: 3.5rem;">
+                            <div style="background: rgba(76,175,80,0.04); border: 1px solid rgba(76,175,80,0.15); padding: 1.8rem; border-radius: 12px; border-left: 4px solid #4caf50;">
+                                <h4 style="color: #4caf50; margin-top:0; margin-bottom: 0.8rem; font-size: 1.25rem; font-weight: 900;">Erste Zusage</h4>
+                                <p style="font-size: 1.15rem; line-height: 1.5; color: rgba(255,255,255,0.75); margin: 0;">Gezielte Bepflanzung der verbandseigenen Fläche am RRB 1 zur Schlamm- und Wasserretention durch den Wasser- und Bodenverband.</p>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 1.8rem; border-radius: 12px;">
+                                <h4 style="color: var(--secondary-color); margin-top:0; margin-bottom: 0.8rem; font-size: 1.25rem; font-weight: 900;">Arbeitskreis-Beschluss</h4>
+                                <p style="font-size: 1.15rem; line-height: 1.5; color: rgba(255,255,255,0.75); margin: 0;">Wir werben im Stadtrat für eine zügige, parteiübergreifende Zustimmung zur formellen Einrichtung des Arbeitskreises.</p>
+                            </div>
+                        </div>
+
+                        <p style="text-align: center; color: var(--accent-color); font-weight: 900; font-size: 1.6rem; line-height: 1.4; margin-top: 3rem;">
+                            Für die Sicherheit der Bürger in Oberbeberich: <br>
+                            Lassen Sie uns diesen Weg gemeinsam gehen!
+                        </p>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Controls Footer -->
+            <footer class="pres-controls">
+                <div class="slide-indicator" id="slide-num">Folie 1 von 9</div>
+                <div class="control-btns">
+                    <button class="control-btn" id="prev-btn" onclick="prevSlide()" disabled>← Zurück</button>
+                    <button class="control-btn" id="next-btn" onclick="nextSlide()">Weiter →</button>
+                </div>
+            </footer>
+        </main>
+
+    </div>
+
+    <!-- Presentation Navigation Script -->
+    <script>
+        let currentSlideIdx = 0;
+        const slides = document.querySelectorAll('.slide-content');
+        const navItems = document.querySelectorAll('.agenda-item');
+        const totalSlides = slides.length;
+        
+        const slideNumEl = document.getElementById('slide-num');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+
+        function updateControls() {
+            // Update indicator
+            slideNumEl.textContent = `Folie ${currentSlideIdx + 1} von ${totalSlides}`;
+            
+            // Enable/disable buttons
+            prevBtn.disabled = currentSlideIdx === 0;
+            nextBtn.disabled = currentSlideIdx === totalSlides - 1;
+            
+            // Update active state in sidebar navigation
+            navItems.forEach((item, idx) => {
+                if (idx === currentSlideIdx) {
+                    item.classList.add('active');
+                    // Scroll item into view smoothly in sidebar
+                    item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        function goToSlide(idx) {
+            if (idx < 0 || idx >= totalSlides) return;
+            
+            // Hide previous active slide
+            slides[currentSlideIdx].classList.remove('active');
+            
+            // Show new active slide
+            currentSlideIdx = idx;
+            slides[currentSlideIdx].classList.add('active');
+            
+            updateControls();
+        }
+
+        function nextSlide() {
+            if (currentSlideIdx < totalSlides - 1) {
+                goToSlide(currentSlideIdx + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIdx > 0) {
+                goToSlide(currentSlideIdx - 1);
+            }
+        }
+
+        // Support arrow keys navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight' || event.key === ' ' || event.key === 'PageDown') {
+                nextSlide();
+            } else if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+                prevSlide();
+            }
+        });
+        
+        // Run once on load to initialize correct totals dynamically
+        updateControls();
+    </script>
+</body>
+</html>
