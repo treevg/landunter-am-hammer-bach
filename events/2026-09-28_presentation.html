@@ -824,9 +824,9 @@
 
         // Support arrow keys navigation
         document.addEventListener('keydown', function(event) {
-            if (event.key === 'ArrowRight' || event.key === ' ' || event.key === 'PageDown') {
+            if (event.key === 'ArrowRight' || event.key === 'ArrowDown' || event.key === ' ' || event.key === 'PageDown') {
                 nextSlide();
-            } else if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+            } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp' || event.key === 'PageUp') {
                 prevSlide();
             }
         });
