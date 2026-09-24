@@ -217,8 +217,8 @@
 
         .slide-scroller {
             flex: 1;
-            overflow-y: auto;
-            padding: 4rem;
+            overflow: hidden; /* Prevent slide viewport from scrolling! Sized exactly to fit. */
+            padding: 2.5vh 4vw;
             box-sizing: border-box;
             display: flex;
             align-items: center;
@@ -243,46 +243,33 @@
         }
 
         /* Slide Typography */
-        .slide-time-badge {
-            display: inline-block;
-            background: var(--badge-bg);
-            color: var(--badge-text);
-            font-weight: 900;
-            padding: 0.5rem 1.3rem;
-            border-radius: 4px;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-        }
-
         .slide-title {
-            font-size: 3.2rem; /* Much larger title text */
+            font-size: clamp(2rem, 4.8vh, 2.8rem); /* Fluid slide title fits perfectly */
             font-weight: 900;
             color: var(--title-color);
             margin-top: 0;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2.5vh;
             line-height: 1.15;
             letter-spacing: -1px;
         }
 
         .slide-body {
-            font-size: 1.5rem; /* Much larger body text */
-            line-height: 1.65;
+            font-size: clamp(1.1rem, 2.5vh, 1.35rem); /* Beautifully proportioned body text */
+            line-height: 1.55;
             color: var(--text-color);
         }
 
         .slide-body p {
             margin-top: 0;
-            margin-bottom: 1.8rem;
+            margin-bottom: 1.8vh;
         }
 
         /* Interactive Elements / Cards */
         .grid-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.8rem;
-            margin: 2.5rem 0;
+            gap: 1.5rem;
+            margin: 2vh 0;
         }
 
         .stat-card {
@@ -463,6 +450,7 @@
             .slide-scroller {
                 padding: 1.5rem;
                 height: auto;
+                overflow: visible;
             }
             .slide-title {
                 font-size: 2.2rem;
@@ -493,7 +481,6 @@
             <button class="theme-toggle-btn" onclick="toggleTheme()" style="background: rgba(255, 255, 255, 0.08); color: var(--white); border: 1px solid rgba(255, 255, 255, 0.15); padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.9rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease;">
                 <span id="theme-icon">🌙</span> <span id="theme-text">Dunkelmodus</span>
             </button>
-            <a href="../index.html" class="back-btn">← Zurück zur Startseite</a>
         </div>
     </header>
 
@@ -502,37 +489,36 @@
         
         <!-- Sidebar Navigation -->
         <aside class="pres-sidebar">
-            <div class="sidebar-title">Präsentationsfolien</div>
             <ul class="agenda-list" id="agenda-nav">
                 <li class="agenda-item active" onclick="goToSlide(0)">
-                    <span class="title">1. Begrüßung &amp; Kernanliegen</span>
+                    <span class="title">1. Begrüßung</span>
                 </li>
                 <li class="agenda-item" onclick="goToSlide(1)">
-                    <span class="title">2. Hydrologische Simulation</span>
+                    <span class="title">2. Simulation</span>
                 </li>
                 <li class="agenda-item" onclick="goToSlide(2)">
-                    <span class="title">3. Starkregen-Ereignisse I</span>
+                    <span class="title">3. Starkregen I</span>
                 </li>
                 <li class="agenda-item" onclick="goToSlide(3)">
-                    <span class="title">4. Starkregen-Ereignisse II</span>
+                    <span class="title">4. Starkregen II</span>
                 </li>
                 <li class="agenda-item" onclick="goToSlide(4)">
-                    <span class="title">5. Bisherige Meilensteine I</span>
+                    <span class="title">5. Meilensteine I</span>
                 </li>
                 <li class="agenda-item" onclick="goToSlide(5)">
-                    <span class="title">6. Bisherige Meilensteine II</span>
+                    <span class="title">6. Meilensteine II</span>
                 </li>
                 <li class="agenda-item" onclick="goToSlide(6)">
-                    <span class="title">7. Unser Bürgerantrag § 24 GO</span>
+                    <span class="title">7. Bürgerantrag</span>
                 </li>
                 <li class="agenda-item" onclick="goToSlide(7)">
-                    <span class="title">8. Ganzheitlicher Starkregenschutz I</span>
+                    <span class="title">8. Starkregenschutz I</span>
                 </li>
                 <li class="agenda-item" onclick="goToSlide(8)">
-                    <span class="title">9. Ganzheitlicher Starkregenschutz II</span>
+                    <span class="title">9. Starkregenschutz II</span>
                 </li>
                 <li class="agenda-item" onclick="goToSlide(9)">
-                    <span class="title">10. Kooperation &amp; Ausblick</span>
+                    <span class="title">10. Ausblick</span>
                 </li>
             </ul>
         </aside>
@@ -542,22 +528,32 @@
             <div class="slide-scroller" style="padding: 0;">
                 
                 <!-- Slide 1 (Begrüßung) -->
-                <section class="slide-content active" style="padding: 4rem; max-width: 1000px; width: 100%; box-sizing: border-box;">
-                    <span class="slide-time-badge">Begrüßung</span>
-                    <h2 class="slide-title">Begrüßung &amp; Kooperation</h2>
-                    <div class="slide-body">
-                        <p style="font-size: 1.7rem; margin-bottom: 2.5rem; color: var(--title-color); line-height: 1.5; font-weight: bold;">
+                <section class="slide-content active" style="padding: 2.5vh 4vw; max-width: 960px; width: 100%; box-sizing: border-box;">
+                    <div style="display: flex; flex-direction: column;">
+                        <!-- Context badge -->
+                        <div style="margin-bottom: 2.5vh;">
+                            <span style="display: inline-flex; align-items: center; gap: 0.5rem; background: var(--badge-bg); color: var(--badge-text); font-weight: 800; font-size: clamp(0.85rem, 1.8vh, 1rem); padding: 0.45rem 1.1rem; border-radius: 999px; letter-spacing: 0.5px; border: 1px solid rgba(93, 173, 226, 0.25);">
+                                <span>📍</span> Ausschuss für Klima, Umwelt, Land- &amp; Forstwirtschaft • 28. September 2026
+                            </span>
+                        </div>
+
+                        <!-- Welcoming statement -->
+                        <h1 style="font-size: clamp(1.5rem, 3.8vh, 2.3rem); font-weight: 900; color: var(--title-color); line-height: 1.3; margin: 0 0 3vh 0; letter-spacing: -0.5px;">
                             Wir bedanken uns herzlich für die Einladung und die Gelegenheit, unser Anliegen heute im Ausschuss vorzustellen.
-                        </p>
+                        </h1>
                         
-                        <div style="background: rgba(93, 173, 226, 0.05); border-left: 5px solid var(--secondary-color); padding: 2.2rem; border-radius: 0 8px 8px 0; margin-bottom: 2.5rem;">
-                            <h4 style="margin-top:0; color: var(--title-color); font-size: 1.5rem; margin-bottom: 0.8rem; font-weight: 900;">Unser gemeinsames Kernziel:</h4>
-                            <p style="font-size: 1.35rem; line-height: 1.6; margin: 0; color: var(--text-color);">
+                        <!-- Core Goal Featured Card -->
+                        <div style="background: linear-gradient(135deg, rgba(93, 173, 226, 0.08) 0%, rgba(93, 173, 226, 0.02) 100%); border: 1px solid rgba(93, 173, 226, 0.25); border-left: 6px solid var(--secondary-color); padding: 2.5vh 2.2vw; border-radius: 14px; margin-bottom: 3vh; box-shadow: var(--shadow);">
+                            <div style="font-size: clamp(0.85rem, 1.8vh, 0.95rem); font-weight: 900; text-transform: uppercase; letter-spacing: 1.5px; color: var(--secondary-color); margin-bottom: 0.8vh; display: flex; align-items: center; gap: 0.5rem;">
+                                <span>🎯</span> Unser gemeinsames Kernziel
+                            </div>
+                            <p style="font-size: clamp(1.15rem, 2.7vh, 1.45rem); line-height: 1.45; margin: 0; color: var(--title-color); font-weight: 700;">
                                 Ein wirksamer, zukunftsfähiger Starkregenschutz für die Bockerter und Bebericher Heide durch partnerschaftliche Zusammenarbeit aller Akteure.
                             </p>
                         </div>
 
-                        <p style="font-size: 1.3rem; color: var(--text-color); line-height: 1.6; opacity: 0.8;">
+                        <!-- Introduction note -->
+                        <p style="font-size: clamp(1.05rem, 2.3vh, 1.25rem); color: var(--text-color); line-height: 1.5; opacity: 0.85; margin: 0;">
                             Im Folgenden präsentieren wir Ihnen die geologischen Gegebenheiten und unsere kooperativen Lösungsansätze.
                         </p>
                     </div>
@@ -575,24 +571,23 @@
                 </section>
 
                 <!-- Slide 3 (Starkregen-Ereignisse I) -->
-                <section class="slide-content" style="padding: 4rem; max-width: 1000px; width: 100%; box-sizing: border-box;">
-                    <span class="slide-time-badge">Ereignisbilder</span>
+                <section class="slide-content" style="padding: 2.5vh 4vw; max-width: 1000px; width: 100%; box-sizing: border-box;">
                     <h2 class="slide-title">Starkregen-Ereignisse I</h2>
                     <div class="slide-body">
                         
-                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 1.5rem;">
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
                             <!-- Image 1 -->
-                            <div style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--slide-card-border); box-shadow: var(--shadow); height: 380px;">
+                            <div style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--slide-card-border); box-shadow: var(--shadow); height: 38vh; max-height: 350px; min-height: 220px;">
                                 <img src="../images/2024-05-29_street01.jpg" alt="Starkregen-Ereignis Mai 2024" class="expose-img" style="width: 100%; height: 100%; object-fit: cover; display: block;" onclick="openLightbox(this.src)" />
-                                <div style="position: absolute; bottom: 15px; right: 15px; background: rgba(15, 26, 36, 0.85); color: #fff; padding: 0.5rem 1rem; border-radius: 6px; font-size: 1.05rem; font-weight: bold; pointer-events: none; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.15);">
+                                <div style="position: absolute; bottom: 15px; right: 15px; background: rgba(15, 26, 36, 0.85); color: #fff; padding: 0.5rem 1rem; border-radius: 6px; font-size: 1.01rem; font-weight: bold; pointer-events: none; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.15);">
                                     Mai 2024
                                 </div>
                             </div>
 
                             <!-- Image 2 -->
-                            <div style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--slide-card-border); box-shadow: var(--shadow); height: 380px;">
+                            <div style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--slide-card-border); box-shadow: var(--shadow); height: 38vh; max-height: 350px; min-height: 220px;">
                                 <img src="../images/2009-06-27_room01.jpg" alt="Starkregen-Ereignis Juni 2009" class="expose-img" style="width: 100%; height: 100%; object-fit: cover; display: block;" onclick="openLightbox(this.src)" />
-                                <div style="position: absolute; bottom: 15px; right: 15px; background: rgba(15, 26, 36, 0.85); color: #fff; padding: 0.5rem 1rem; border-radius: 6px; font-size: 1.05rem; font-weight: bold; pointer-events: none; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.15);">
+                                <div style="position: absolute; bottom: 15px; right: 15px; background: rgba(15, 26, 36, 0.85); color: #fff; padding: 0.5rem 1rem; border-radius: 6px; font-size: 1.01rem; font-weight: bold; pointer-events: none; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.15);">
                                     Juni 2009
                                 </div>
                             </div>
@@ -602,26 +597,25 @@
                 </section>
 
                 <!-- Slide 4 (Starkregen-Ereignisse II) -->
-                <section class="slide-content" style="padding: 4rem; max-width: 1000px; width: 100%; box-sizing: border-box;">
-                    <span class="slide-time-badge">Ereignisvideos</span>
+                <section class="slide-content" style="padding: 2.5vh 4vw; max-width: 1000px; width: 100%; box-sizing: border-box;">
                     <h2 class="slide-title">Starkregen-Ereignisse II</h2>
                     <div class="slide-body">
                         
-                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 1.5rem;">
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
                             <!-- Video 1 (Left) -->
-                            <div style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--slide-card-border); box-shadow: var(--shadow); height: 380px; cursor: pointer;" onclick="openLightbox('https://www.youtube.com/embed/B4Jz7gst3tU', true)">
-                                <iframe src="https://www.youtube.com/embed/B4Jz7gst3tU" style="border: 0; width: 100%; height: 100%; display: block; pointer-events: none;" allowfullscreen loading="lazy"></iframe>
+                            <div style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--slide-card-border); box-shadow: var(--shadow); height: 38vh; max-height: 350px; min-height: 220px; cursor: pointer;" onclick="openLightbox('https://www.youtube.com/embed/B4Jz7gst3tU', true, 1)">
+                                <iframe id="slide-video-1" src="https://www.youtube.com/embed/B4Jz7gst3tU" style="border: 0; width: 100%; height: 100%; display: block; pointer-events: none;" allowfullscreen loading="lazy"></iframe>
                                 <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.15); transition: background 0.3s;" onmouseover="this.style.background='rgba(0,0,0,0)'" onmouseout="this.style.background='rgba(0,0,0,0.15)'"></div>
-                                <div style="position: absolute; bottom: 15px; right: 15px; background: rgba(15, 26, 36, 0.85); color: #fff; padding: 0.5rem 1rem; border-radius: 6px; font-size: 1.05rem; font-weight: bold; pointer-events: none; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.15); z-index: 100;">
+                                <div style="position: absolute; bottom: 15px; right: 15px; background: rgba(15, 26, 36, 0.85); color: #fff; padding: 0.5rem 1rem; border-radius: 6px; font-size: 1.01rem; font-weight: bold; pointer-events: none; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.15); z-index: 100;">
                                     Juni 2008
                                 </div>
                             </div>
 
                             <!-- Video 2 (Right) -->
-                            <div style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--slide-card-border); box-shadow: var(--shadow); height: 380px; cursor: pointer;" onclick="openLightbox('https://www.youtube.com/embed/YD9Yzkcv7fU', true)">
-                                <iframe src="https://www.youtube.com/embed/YD9Yzkcv7fU" style="border: 0; width: 100%; height: 100%; display: block; pointer-events: none;" allowfullscreen loading="lazy"></iframe>
+                            <div style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--slide-card-border); box-shadow: var(--shadow); height: 38vh; max-height: 350px; min-height: 220px; cursor: pointer;" onclick="openLightbox('https://www.youtube.com/embed/YD9Yzkcv7fU', true, 2)">
+                                <iframe id="slide-video-2" src="https://www.youtube.com/embed/YD9Yzkcv7fU" style="border: 0; width: 100%; height: 100%; display: block; pointer-events: none;" allowfullscreen loading="lazy"></iframe>
                                 <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.15); transition: background 0.3s;" onmouseover="this.style.background='rgba(0,0,0,0)'" onmouseout="this.style.background='rgba(0,0,0,0.15)'"></div>
-                                <div style="position: absolute; bottom: 15px; right: 15px; background: rgba(15, 26, 36, 0.85); color: #fff; padding: 0.5rem 1rem; border-radius: 6px; font-size: 1.05rem; font-weight: bold; pointer-events: none; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.15); z-index: 100;">
+                                <div style="position: absolute; bottom: 15px; right: 15px; background: rgba(15, 26, 36, 0.85); color: #fff; padding: 0.5rem 1rem; border-radius: 6px; font-size: 1.01rem; font-weight: bold; pointer-events: none; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.15); z-index: 100;">
                                     Juni 2026
                                 </div>
                             </div>
@@ -631,30 +625,29 @@
                 </section>
 
                 <!-- Slide 5 (Bisherige Meilensteine I) -->
-                <section class="slide-content" style="padding: 4rem; max-width: 1000px; width: 100%; box-sizing: border-box;">
-                    <span class="slide-time-badge">Aktivitäten I</span>
+                <section class="slide-content" style="padding: 2.5vh 4vw; max-width: 1000px; width: 100%; box-sizing: border-box;">
                     <h2 class="slide-title">Bisherige Meilensteine I</h2>
                     <div class="slide-body">
                         
-                        <div style="display: flex; gap: 2rem; align-items: stretch; margin-top: 1rem;">
+                        <div style="display: flex; gap: 1.5rem; align-items: stretch;">
                             <!-- Column 1 -->
-                            <div style="flex: 1; display: flex; flex-direction: column; gap: 1rem; background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 1.5rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s;">
-                                <div style="font-size: 1.1rem; font-weight: 900; color: var(--secondary-color); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem;">21. Juni 2026</div>
-                                <div style="width: 100%; height: 220px; overflow: hidden; border-radius: 8px; border: 1px solid var(--slide-card-border); margin-bottom: 1rem;">
+                            <div style="flex: 1; display: flex; flex-direction: column; gap: 0.8rem; background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 1.2rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s;">
+                                <div style="font-size: 0.95rem; font-weight: 900; color: var(--secondary-color); letter-spacing: 1px; text-transform: uppercase;">21. Juni 2026</div>
+                                <div style="width: 100%; height: 20vh; max-height: 180px; min-height: 120px; overflow: hidden; border-radius: 8px; border: 1px solid var(--slide-card-border);">
                                     <img src="../images/2026-06-21_12-05_small.jpg" alt="Auftakt" class="expose-img" style="width: 100%; height: 100%; object-fit: cover; display: block;" onclick="openLightbox(this.src)" />
                                 </div>
-                                <h4 style="font-size: 1.35rem; font-weight: bold; color: var(--title-color); margin: 0 0 0.5rem 0;">Auftakt am Bockerter Busch</h4>
-                                <p style="font-size: 1.1rem; color: var(--slide-card-text); margin: 0; line-height: 1.45;">Erfolgreicher Auftakt unter reger Bürgerbeteiligung. Vorstellung hydrodynamischer Modelle und Definition der Sorgenfelder.</p>
+                                <h4 style="font-size: clamp(1.1rem, 2.5vh, 1.25rem); font-weight: bold; color: var(--title-color); margin: 0;">Auftakt am Bockerter Busch</h4>
+                                <p style="font-size: clamp(0.9rem, 2.1vh, 1.05rem); color: var(--slide-card-text); margin: 0; line-height: 1.4;">Erfolgreicher Auftakt unter reger Anwohnerbeteiligung. Definition der hydrodynamischen Modelle und Sorgenfelder.</p>
                             </div>
 
                             <!-- Column 2 -->
-                            <div style="flex: 1; display: flex; flex-direction: column; gap: 1rem; background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 1.5rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s;">
-                                <div style="font-size: 1.1rem; font-weight: 900; color: var(--secondary-color); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem;">02. Juli 2026</div>
-                                <div style="width: 100%; height: 220px; overflow: hidden; border-radius: 8px; border: 1px solid var(--slide-card-border); margin-bottom: 1rem;">
+                            <div style="flex: 1; display: flex; flex-direction: column; gap: 0.8rem; background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 1.2rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s;">
+                                <div style="font-size: 0.95rem; font-weight: 900; color: var(--secondary-color); letter-spacing: 1px; text-transform: uppercase;">02. Juli 2026</div>
+                                <div style="width: 100%; height: 20vh; max-height: 180px; min-height: 120px; overflow: hidden; border-radius: 8px; border: 1px solid var(--slide-card-border);">
                                     <img src="../images/2026-07-22_rheinische-post.jpeg" alt="Ortstermin" class="expose-img" style="width: 100%; height: 100%; object-fit: cover; display: block;" onclick="openLightbox(this.src)" />
                                 </div>
-                                <h4 style="font-size: 1.35rem; font-weight: bold; color: var(--title-color); margin: 0 0 0.5rem 0;">Großer öffentlicher Ortstermin</h4>
-                                <p style="font-size: 1.15rem; color: var(--slide-card-text); margin: 0; line-height: 1.45;">Begehung am RRB Schmaler Weg (RRB II) mit Vertretern aus Politik, Behörden und Presse sowie breitem Medienecho.</p>
+                                <h4 style="font-size: clamp(1.1rem, 2.5vh, 1.25rem); font-weight: bold; color: var(--title-color); margin: 0;">Großer öffentlicher Ortstermin</h4>
+                                <p style="font-size: clamp(0.9rem, 2.1vh, 1.05rem); color: var(--slide-card-text); margin: 0; line-height: 1.4;">Begehung am RRB Schmaler Weg (RRB II) mit Vertretern aus Politik, Behörden und Presse sowie breitem Medienecho.</p>
                             </div>
                         </div>
 
@@ -662,30 +655,29 @@
                 </section>
 
                 <!-- Slide 6 (Bisherige Meilensteine II) -->
-                <section class="slide-content" style="padding: 4rem; max-width: 1000px; width: 100%; box-sizing: border-box;">
-                    <span class="slide-time-badge">Aktivitäten II</span>
+                <section class="slide-content" style="padding: 2.5vh 4vw; max-width: 1000px; width: 100%; box-sizing: border-box;">
                     <h2 class="slide-title">Bisherige Meilensteine II</h2>
                     <div class="slide-body">
                         
-                        <div style="display: flex; gap: 2rem; align-items: stretch; margin-top: 1rem;">
+                        <div style="display: flex; gap: 1.5rem; align-items: stretch;">
                             <!-- Column 1 -->
-                            <div style="flex: 1; display: flex; flex-direction: column; gap: 1rem; background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 1.5rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s;">
-                                <div style="font-size: 1.1rem; font-weight: 900; color: var(--secondary-color); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem;">22. Juli 2026</div>
-                                <div style="width: 100%; height: 220px; overflow: hidden; border-radius: 8px; border: 1px solid var(--slide-card-border); margin-bottom: 1rem;">
+                            <div style="flex: 1; display: flex; flex-direction: column; gap: 0.8rem; background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 1.2rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s;">
+                                <div style="font-size: 0.95rem; font-weight: 900; color: var(--secondary-color); letter-spacing: 1px; text-transform: uppercase;">22. Juli 2026</div>
+                                <div style="width: 100%; height: 20vh; max-height: 180px; min-height: 120px; overflow: hidden; border-radius: 8px; border: 1px solid var(--slide-card-border);">
                                     <img src="../images/2026-07-22.jpg" alt="Kreisgespräch" class="expose-img" style="width: 100%; height: 100%; object-fit: cover; display: block;" onclick="openLightbox(this.src)" />
                                 </div>
-                                <h4 style="font-size: 1.35rem; font-weight: bold; color: var(--title-color); margin: 0 0 0.5rem 0;">Erstgespräch Kreisbehörden</h4>
-                                <p style="font-size: 1.15rem; color: var(--slide-card-text); margin: 0; line-height: 1.45;">Konstruktive Fachrunde mit der Unteren Wasser- und Naturschutzbehörde zur Abklärung kurzfristiger Kooperationen.</p>
+                                <h4 style="font-size: clamp(1.1rem, 2.5vh, 1.25rem); font-weight: bold; color: var(--title-color); margin: 0;">Erstgespräch Kreisbehörden</h4>
+                                <p style="font-size: clamp(0.9rem, 2.1vh, 1.05rem); color: var(--slide-card-text); margin: 0; line-height: 1.4;">Konstruktive Fachrunde mit der Unteren Wasser- und Naturschutzbehörde zur Abklärung kurzfristiger Kooperationen.</p>
                             </div>
 
                             <!-- Column 2 (Highlight Green) -->
-                            <div style="flex: 1; display: flex; flex-direction: column; gap: 1rem; background: rgba(76,175,80,0.03); border: 1px solid rgba(76,175,80,0.15); padding: 1.5rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s;">
-                                <div style="font-size: 1.1rem; font-weight: 900; color: #4caf50; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem;">19. August 2026</div>
-                                <div style="width: 100%; height: 220px; overflow: hidden; border-radius: 8px; border: 1px solid rgba(76,175,80,0.2); margin-bottom: 1rem;">
+                            <div style="flex: 1; display: flex; flex-direction: column; gap: 0.8rem; background: rgba(76,175,80,0.03); border: 1px solid rgba(76,175,80,0.15); padding: 1.2rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s;">
+                                <div style="font-size: 0.95rem; font-weight: 900; color: #4caf50; letter-spacing: 1px; text-transform: uppercase;">19. August 2026</div>
+                                <div style="width: 100%; height: 20vh; max-height: 180px; min-height: 120px; overflow: hidden; border-radius: 8px; border: 1px solid rgba(76,175,80,0.2);">
                                     <img src="../images/2026-08-19.jpeg" alt="Stadthaus" class="expose-img" style="width: 100%; height: 100%; object-fit: cover; display: block;" onclick="openLightbox(this.src)" />
                                 </div>
-                                <h4 style="font-size: 1.35rem; font-weight: bold; color: var(--title-color); margin: 0 0 0.5rem 0;">Gipfelgespräch im Stadthaus</h4>
-                                <p style="font-size: 1.15rem; color: var(--slide-card-text); margin: 0; line-height: 1.45;">Übergabe des Bürgerantrags an Bürgermeister Hopp und erste Zusagen des Wasser- und Bodenverbands Mittlere Niers.</p>
+                                <h4 style="font-size: clamp(1.1rem, 2.5vh, 1.25rem); font-weight: bold; color: var(--title-color); margin: 0;">Gipfelgespräch im Stadthaus</h4>
+                                <p style="font-size: clamp(0.9rem, 2.1vh, 1.05rem); color: var(--slide-card-text); margin: 0; line-height: 1.4;">Übergabe des Bürgerantrags an Bürgermeister Hopp und erste Zusagen des Wasser- und Bodenverbands Mittlere Niers.</p>
                             </div>
                         </div>
 
@@ -693,17 +685,15 @@
                 </section>
 
                 <!-- Slide 7 (Bürgerantrag) -->
-                <section class="slide-content" style="padding: 4rem; max-width: 1000px; width: 100%; box-sizing: border-box;">
-                    <span class="slide-time-badge">Bürgerantrag</span>
+                <section class="slide-content" style="padding: 2.5vh 4vw; max-width: 1000px; width: 100%; box-sizing: border-box;">
                     <h2 class="slide-title">Bürgerantrag gemäß § 24 GO NRW</h2>
                     <div class="slide-body">
-                        <p style="font-size: 1.6rem; margin-bottom: 2.5rem; color: var(--title-color); font-weight: bold;">Unser formaler rechtlicher Impuls:</p>
                         
-                        <div style="background: rgba(93, 173, 226, 0.05); border-left: 5px solid var(--secondary-color); padding: 2.2rem; border-radius: 0 10px 10px 0; margin-bottom: 3rem;">
-                            <h4 style="margin-top: 0; color: var(--title-color); font-size: 1.5rem; margin-bottom: 1rem; font-weight: 900;">Inhalte des Antrages:</h4>
-                            <ul style="padding-left: 1.8rem; font-size: 1.25rem; margin: 0; line-height: 1.6; color: var(--text-color);">
-                                <li style="margin-bottom: 0.8rem;">Einrichtung eines behördenübergreifenden <strong>Arbeitskreises Starkregenschutz</strong>.</li>
-                                <li style="margin-bottom: 0.8rem;"><strong>Koordination aller Kompetenzen:</strong> Stadt, Kreis Viersen, Wasser- &amp; Bodenverband, Landwirtschaftskammer sowie die Bürgerinitiative arbeiten an einem Tisch.</li>
+                        <div style="background: rgba(93, 173, 226, 0.05); border-left: 5px solid var(--secondary-color); padding: 1.8rem 2.2rem; border-radius: 0 10px 10px 0; margin-top: 1vh;">
+                            <h4 style="margin-top: 0; color: var(--title-color); font-size: clamp(1.2rem, 3vh, 1.5rem); margin-bottom: 1.5vh; font-weight: bold;">Ziele und Inhalte des Antrages:</h4>
+                            <ul style="padding-left: 1.8rem; font-size: clamp(1.05rem, 2.5vh, 1.25rem); margin: 0; line-height: 1.6; color: var(--text-color);">
+                                <li style="margin-bottom: 1vh;">Einrichtung eines behördenübergreifenden <strong>Arbeitskreises Starkregenschutz</strong>.</li>
+                                <li style="margin-bottom: 1vh;"><strong>Koordination aller Kompetenzen:</strong> Stadt, Kreis Viersen, Wasser- &amp; Bodenverband, Landwirtschaftskammer sowie die Bürgerinitiative arbeiten an einem Tisch.</li>
                                 <li style="margin-bottom: 0px;">Gemeinsame Priorisierung und Planungsabstimmung.</li>
                             </ul>
                         </div>
@@ -711,26 +701,29 @@
                 </section>
 
                 <!-- Slide 8 (Ganzheitlicher Starkregenschutz I) -->
-                <section class="slide-content" style="padding: 4rem; max-width: 1000px; width: 100%; box-sizing: border-box;">
-                    <span class="slide-time-badge">Lösungsansätze I</span>
+                <section class="slide-content" style="padding: 2.5vh 4vw; max-width: 1000px; width: 100%; box-sizing: border-box;">
                     <h2 class="slide-title">Ganzheitlicher Starkregenschutz I</h2>
                     <div class="slide-body">
-                        <p style="font-size: 1.6rem; color: var(--title-color); font-weight: bold; margin-bottom: 2rem;">Heimischer Objektschutz und landwirtschaftliche Kooperationen:</p>
                         
-                        <div style="display: flex; gap: 2rem; align-items: stretch;">
-                            <div style="flex: 1; background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 2.2rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s;">
-                                <h4 style="color: var(--title-color); margin-top: 0; margin-bottom: 1rem; font-size: 1.5rem; display: flex; align-items: center; gap: 0.6rem; font-weight: 900;"><span>🏡</span> Objektschutz &amp; Vorsorge</h4>
-                                <ul style="padding-left: 1.8rem; font-size: 1.25rem; margin: 0; color: var(--slide-card-text); line-height: 1.6;">
-                                    <li style="margin-bottom: 0.8rem;"><strong>Keller sichern:</strong> Kellerschächte abdichten und Rückschlagventile prüfen.</li>
-                                    <li style="margin-bottom: 0.8rem;"><strong>Sandsäcke lagern:</strong> Dezentrale Bereitstellung für reißende Abflusspfade.</li>
+                        <div style="display: flex; gap: 1.5rem; align-items: stretch; margin-top: 1vh;">
+                            <!-- Card 1 -->
+                            <div style="flex: 1; background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 1.5rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s; text-align: center;">
+                                <span style="font-size: clamp(2.8rem, 7vh, 3.8rem); display: block; margin-bottom: 0.8vh; line-height: 1;">🏡</span>
+                                <h4 style="color: var(--title-color); margin-top: 0; margin-bottom: 1.2vh; font-size: clamp(1.15rem, 2.6vh, 1.35rem); font-weight: bold;">Objektschutz &amp; Vorsorge</h4>
+                                <ul style="padding-left: 1.2rem; font-size: clamp(0.95rem, 2.2vh, 1.1rem); margin: 0; color: var(--slide-card-text); line-height: 1.45; text-align: left;">
+                                    <li style="margin-bottom: 0.8vh;"><strong>Keller sichern:</strong> Kellerschächte abdichten und Rückschlagventile prüfen.</li>
+                                    <li style="margin-bottom: 0.8vh;"><strong>Sandsäcke lagern:</strong> Dezentrale Bereitstellung für reißende Abflusspfade.</li>
                                     <li style="margin-bottom: 0px;"><strong>Eigenvorsorge:</strong> Anwohner-Aufklärung forcieren.</li>
                                 </ul>
                             </div>
-                            <div style="flex: 1; background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 2.2rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s;">
-                                <h4 style="color: var(--title-color); margin-top: 0; margin-bottom: 1rem; font-size: 1.5rem; display: flex; align-items: center; gap: 0.6rem; font-weight: 900;"><span>🚜</span> Naturnahe Landwirtschaft</h4>
-                                <ul style="padding-left: 1.8rem; font-size: 1.25rem; margin: 0; color: var(--slide-card-text); line-height: 1.6;">
-                                    <li style="margin-bottom: 0.8rem;"><strong>Feldhecken anlegen:</strong> Bremsen die Fließgeschwindigkeit auf freiem Feld.</li>
-                                    <li style="margin-bottom: 0.8rem;"><strong>Schonende Bodenbearbeitung:</strong> Konturnahes Pflügen vermindert Erosion.</li>
+                            
+                            <!-- Card 2 -->
+                            <div style="flex: 1; background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 1.5rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s; text-align: center;">
+                                <span style="font-size: clamp(2.8rem, 7vh, 3.8rem); display: block; margin-bottom: 0.8vh; line-height: 1;">🚜</span>
+                                <h4 style="color: var(--title-color); margin-top: 0; margin-bottom: 1.2vh; font-size: clamp(1.15rem, 2.6vh, 1.35rem); font-weight: bold;">Naturnahe Landwirtschaft</h4>
+                                <ul style="padding-left: 1.2rem; font-size: clamp(0.95rem, 2.2vh, 1.1rem); margin: 0; color: var(--slide-card-text); line-height: 1.45; text-align: left;">
+                                    <li style="margin-bottom: 0.8vh;"><strong>Feldhecken anlegen:</strong> Bremsen die Fließgeschwindigkeit auf freiem Feld.</li>
+                                    <li style="margin-bottom: 0.8vh;"><strong>Schonende Bodenbearbeitung:</strong> Konturnahes Pflügen vermindert Erosion.</li>
                                     <li style="margin-bottom: 0px;"><strong>Vertragsnaturschutz:</strong> Anlage von breiten Blüh- und Grünstreifen.</li>
                                 </ul>
                             </div>
@@ -739,26 +732,29 @@
                 </section>
 
                 <!-- Slide 9 (Ganzheitlicher Starkregenschutz II) -->
-                <section class="slide-content" style="padding: 4rem; max-width: 1000px; width: 100%; box-sizing: border-box;">
-                    <span class="slide-time-badge">Lösungsansätze II</span>
+                <section class="slide-content" style="padding: 2.5vh 4vw; max-width: 1000px; width: 100%; box-sizing: border-box;">
                     <h2 class="slide-title">Ganzheitlicher Starkregenschutz II</h2>
                     <div class="slide-body">
-                        <p style="font-size: 1.6rem; color: var(--title-color); font-weight: bold; margin-bottom: 2rem;">Infrastruktur-Anpassung und Akteurs-Bündelung:</p>
                         
-                        <div style="display: flex; gap: 2rem; align-items: stretch;">
-                            <div style="flex: 1; background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 2.2rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s;">
-                                <h4 style="color: var(--title-color); margin-top: 0; margin-bottom: 1rem; font-size: 1.5rem; display: flex; align-items: center; gap: 0.6rem; font-weight: 900;"><span>🛣️</span> Versickerungsfähige Wege</h4>
-                                <ul style="padding-left: 1.8rem; font-size: 1.25rem; margin: 0; color: var(--slide-card-text); line-height: 1.6;">
-                                    <li style="margin-bottom: 0.8rem;"><strong>Wege entsiegeln:</strong> Unnötig asphaltierte Wirtschaftswege zurückbauen.</li>
-                                    <li style="margin-bottom: 0.8rem;"><strong>Sickerfähiger Schotter:</strong> Schotterrasen statt geschlossener Decken.</li>
+                        <div style="display: flex; gap: 1.5rem; align-items: stretch; margin-top: 1vh;">
+                            <!-- Card 1 -->
+                            <div style="flex: 1; background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 1.5rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s; text-align: center;">
+                                <span style="font-size: clamp(2.8rem, 7vh, 3.8rem); display: block; margin-bottom: 0.8vh; line-height: 1;">🛣️</span>
+                                <h4 style="color: var(--title-color); margin-top: 0; margin-bottom: 1.2vh; font-size: clamp(1.15rem, 2.6vh, 1.35rem); font-weight: bold;">Versickerungsfähige Wege</h4>
+                                <ul style="padding-left: 1.2rem; font-size: clamp(0.95rem, 2.2vh, 1.1rem); margin: 0; color: var(--slide-card-text); line-height: 1.45; text-align: left;">
+                                    <li style="margin-bottom: 0.8vh;"><strong>Wege entsiegeln:</strong> Unnötig asphaltierte Wirtschaftswege zurückbauen.</li>
+                                    <li style="margin-bottom: 0.8vh;"><strong>Sickerfähiger Schotter:</strong> Schotterrasen statt geschlossener Decken.</li>
                                     <li style="margin-bottom: 0px;"><strong>Fließwege reduzieren:</strong> Reißende Kanäle auf Feldwegen abfangen.</li>
                                 </ul>
                             </div>
-                            <div style="flex: 1; background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 2.2rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s;">
-                                <h4 style="color: var(--title-color); margin-top: 0; margin-bottom: 1rem; font-size: 1.5rem; display: flex; align-items: center; gap: 0.6rem; font-weight: 900;"><span>🤝</span> Bündelung der Akteure</h4>
-                                <ul style="padding-left: 1.8rem; font-size: 1.25rem; margin: 0; color: var(--slide-card-text); line-height: 1.6;">
-                                    <li style="margin-bottom: 0.8rem;"><strong>Gründung Arbeitskreis:</strong> Bündelung aller Zuständigkeiten an einem Tisch.</li>
-                                    <li style="margin-bottom: 0.8rem;"><strong>Wissenschaftliche Begleitung:</strong> Unterstützung für Masterarbeit der RWTH.</li>
+                            
+                            <!-- Card 2 -->
+                            <div style="flex: 1; background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 1.5rem; border-radius: 12px; box-sizing: border-box; transition: background-color 0.3s, border-color 0.3s; text-align: center;">
+                                <span style="font-size: clamp(2.8rem, 7vh, 3.8rem); display: block; margin-bottom: 0.8vh; line-height: 1;">🤝</span>
+                                <h4 style="color: var(--title-color); margin-top: 0; margin-bottom: 1.2vh; font-size: clamp(1.15rem, 2.6vh, 1.35rem); font-weight: bold;">Bündelung der Akteure</h4>
+                                <ul style="padding-left: 1.2rem; font-size: clamp(0.95rem, 2.2vh, 1.1rem); margin: 0; color: var(--slide-card-text); line-height: 1.45; text-align: left;">
+                                    <li style="margin-bottom: 0.8vh;"><strong>Gründung Arbeitskreis:</strong> Bündelung aller Zuständigkeiten an einem Tisch.</li>
+                                    <li style="margin-bottom: 0.8vh;"><strong>Wissenschaftliche Begleitung:</strong> Unterstützung für Masterarbeit der RWTH.</li>
                                     <li style="margin-bottom: 0px;"><strong>Gemeinsame Planung:</strong> Direktes Einfließen praxisnaher Impulse.</li>
                                 </ul>
                             </div>
@@ -767,24 +763,22 @@
                 </section>
 
                 <!-- Slide 10 (Kooperation & Ausblick) -->
-                <section class="slide-content" style="padding: 4rem; max-width: 1000px; width: 100%; box-sizing: border-box;">
-                    <span class="slide-time-badge">Ausblick</span>
+                <section class="slide-content" style="padding: 2.5vh 4vw; max-width: 1000px; width: 100%; box-sizing: border-box;">
                     <h2 class="slide-title">Kooperation &amp; Ausblick</h2>
                     <div class="slide-body">
-                        <p style="font-size: 1.6rem; color: var(--title-color); margin-bottom: 2.5rem; font-weight: bold;">Gemeinsame Wege &amp; nächste Schritte:</p>
                         
-                        <div class="grid-cards" style="margin-bottom: 3.5rem;">
-                            <div style="background: rgba(76,175,80,0.04); border: 1px solid rgba(76,175,80,0.15); padding: 1.8rem; border-radius: 12px; border-left: 4px solid #4caf50; transition: background-color 0.3s, border-color 0.3s;">
-                                <h4 style="color: #4caf50; margin-top:0; margin-bottom: 0.8rem; font-size: 1.25rem; font-weight: 900;">Erste Zusage</h4>
-                                <p style="font-size: 1.15rem; line-height: 1.5; color: var(--slide-card-text); margin: 0;">Gezielte Bepflanzung der Fläche am RRB 1 zur Schlamm- und Wasserretention durch den Wasser- und Bodenverband.</p>
+                        <div class="grid-cards" style="margin-top: 1vh; margin-bottom: 3vh;">
+                            <div style="background: rgba(76,175,80,0.04); border: 1px solid rgba(76,175,80,0.15); padding: 1.5rem; border-radius: 12px; border-left: 4px solid #4caf50; transition: background-color 0.3s, border-color 0.3s;">
+                                <h4 style="color: #4caf50; margin-top:0; margin-bottom: 0.5rem; font-size: clamp(1.1rem, 2.5vh, 1.3rem); font-weight: 900;">Erste Zusage</h4>
+                                <p style="font-size: clamp(0.95rem, 2.2vh, 1.1rem); line-height: 1.45; color: var(--slide-card-text); margin: 0;">Gezielte Bepflanzung der Fläche am RRB 1 zur Schlamm- und Wasserretention durch den Wasser- und Bodenverband.</p>
                             </div>
-                            <div style="background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 1.8rem; border-radius: 12px; transition: background-color 0.3s, border-color 0.3s;">
-                                <h4 style="color: var(--secondary-color); margin-top:0; margin-bottom: 0.8rem; font-size: 1.25rem; font-weight: 900;">Arbeitskreis-Beschluss</h4>
-                                <p style="font-size: 1.15rem; line-height: 1.5; color: var(--slide-card-text); margin: 0;">Wir werben im Stadtrat für eine zügige, parteiübergreifende Zustimmung zur formellen Einrichtung des Arbeitskreises.</p>
+                            <div style="background: var(--slide-card-bg); border: 1px solid var(--slide-card-border); padding: 1.5rem; border-radius: 12px; transition: background-color 0.3s, border-color 0.3s;">
+                                <h4 style="color: var(--secondary-color); margin-top:0; margin-bottom: 0.5rem; font-size: clamp(1.1rem, 2.5vh, 1.3rem); font-weight: 900;">Arbeitskreis-Beschluss</h4>
+                                <p style="font-size: clamp(0.95rem, 2.2vh, 1.1rem); line-height: 1.45; color: var(--slide-card-text); margin: 0;">Wir werben im Stadtrat für eine zügige, parteiübergreifende Zustimmung zur formellen Einrichtung des Arbeitskreises.</p>
                             </div>
                         </div>
 
-                        <p style="text-align: center; color: var(--accent-color); font-weight: 900; font-size: 1.6rem; line-height: 1.4; margin-top: 3rem;">
+                        <p style="text-align: center; color: var(--accent-color); font-weight: 900; font-size: clamp(1.15rem, 2.8vh, 1.45rem); line-height: 1.35; margin-top: 2vh; margin-bottom: 0;">
                             Für die Sicherheit der Bürger in Oberbeberich: <br>
                             Lassen Sie uns diesen Weg gemeinsam gehen!
                         </p>
@@ -823,6 +817,27 @@
         const prevBtn = document.getElementById('prev-btn');
         const nextBtn = document.getElementById('next-btn');
 
+        function stopAllVideos() {
+            // Close lightbox and stop its video
+            closeLightbox();
+            
+            // Stop slide video 1
+            const video1 = document.getElementById('slide-video-1');
+            if (video1) {
+                const src = video1.src;
+                video1.src = '';
+                video1.src = src;
+            }
+            
+            // Stop slide video 2
+            const video2 = document.getElementById('slide-video-2');
+            if (video2) {
+                const src = video2.src;
+                video2.src = '';
+                video2.src = src;
+            }
+        }
+
         function updateControls() {
             // Update indicator
             slideNumEl.textContent = `Folie ${currentSlideIdx + 1} von ${totalSlides}`;
@@ -846,6 +861,9 @@
         function goToSlide(idx) {
             if (idx < 0 || idx >= totalSlides) return;
             
+            // Stop all video playbacks/audios before transitioning slide!
+            stopAllVideos();
+            
             // Hide previous active slide
             slides[currentSlideIdx].classList.remove('active');
             
@@ -868,12 +886,31 @@
             }
         }
 
-        function openLightbox(src, isVideo = false) {
+        function openLightbox(src, isVideo = false, clickId = null) {
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
             const lightboxVideo = document.getElementById('lightbox-video');
             
+            // If opening a video, stop the other video just in case
             if (isVideo) {
+                if (clickId === 1) {
+                    // Stopped video 2
+                    const video2 = document.getElementById('slide-video-2');
+                    if (video2) {
+                        const s = video2.src;
+                        video2.src = '';
+                        video2.src = s;
+                    }
+                } else if (clickId === 2) {
+                    // Stopped video 1
+                    const video1 = document.getElementById('slide-video-1');
+                    if (video1) {
+                        const s = video1.src;
+                        video1.src = '';
+                        video1.src = s;
+                    }
+                }
+                
                 lightboxImg.style.display = 'none';
                 lightboxVideo.style.display = 'block';
                 lightboxVideo.src = src;
