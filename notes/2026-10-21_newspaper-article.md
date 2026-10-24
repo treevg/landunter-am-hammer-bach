@@ -2,7 +2,8 @@
 
 **Nach wiederholten Überschwemmungen im Bereich des Hammer Bachs in Oberbeberich fordern betroffene Anwohner, dass sich die Stadt Viersen stärker um den Schutz vor Starkregen kümmert. Die Politik steht hinter dem Anliegen der Bürger.**
 
-VON ANDREAS REINERS
+VON ANDREAS REINERS  
+**Quelle:** [Rheinische Post / RP Online (21.10.2026)](https://rp-online.de/nrw/staedte/viersen/viersen-arbeitskreis-fuer-starkregenschutz-geplant_aid-155638075)
 
 *Bildunterschrift: Der erste Ortstermin der Initiative „Landunter am Hammer Bach“ stieß im Juli 2026 auf reges Interesse. Ein erster Erfolg der Gruppe: Ein neuer Arbeitskreis soll sich in Viersen um den Schutz vor Überschwemmungen nach Starkregen kümmern. (FOTO: BIANCA TREFFER)*
 
