@@ -1,35 +1,27 @@
 # E-Mail-Entwurf: Anfrage Bildnutzungsrechte an RSL Lichttechnik
 
 **Empfänger:** info@rsl.de  
-**Betreff:** Anfrage zur Nutzung eines Referenzfotos (Sitzungssaal Kreishaus Viersen) für gemeinnützige Bürgerinitiative
+**Betreff:** Bildnutzungsanfrage: Foto Sitzungssaal Kreishaus Viersen (KREISSAAL_VIERSEN_04.jpg)
 
 ---
 
-Sehr geehrte Damen und Herren,  
-liebes RSL-Team,
+Sehr geehrte Damen und Herren,
 
-wir wenden uns heute mit einer freundlichen Bitte an Sie:
+wir sind eine ehrenamtliche, nicht-kommerzielle Bürgerinitiative aus Viersen (Website: [landunter-am-hammer-bach.de](https://landunter-am-hammer-bach.de/)).
 
-Wir sind die ehrenamtliche Bürgerinitiative **„Landunter am Hammer Bach“** aus Viersen-Oberbeberich (Website: [landunter-am-hammer-bach.de](https://landunter-am-hammer-bach.de/)). Unser Ziel ist es, nach den schweren Überschwemmungen der vergangenen Jahre in partnerschaftlicher Zusammenarbeit mit Stadt, Kreis, Landwirten und Wasserverbänden nachhaltige Schutzmaßnahmen gegen Starkregen zu entwickeln.
+Vor kurzem durften wir unseren Bürgerantrag im Sitzungssaal des Kreishauses Viersen vorstellen. Da während der Sitzung Fotografierverbot herrschte, fehlt uns für unseren Online-Bericht ein Bild des Raumes.
 
-Am 28. September 2026 durften wir unseren offiziellen Bürgerantrag im zuständigen Ratsausschuss der Stadt Viersen vorstellen. Während der Sitzung war das Fotografieren aus Gründen der Sitzungsordnung und des Datenschutzes verständlicherweise nicht gestattet, weshalb uns für unseren redaktionellen Bericht ein Foto des Saals fehlt.
+Auf Ihrer Website sind wir auf Ihr Foto des leeren Saals gestoßen:
+* **Projekt:** https://www.rsl.de/projekte-liste/sitzungssaal-kreishaus-viersen/
+* **Foto:** https://www.rsl.de/media/73/36/9e/1749821787/KREISSAAL_VIERSEN_04.jpg
 
-Bei der Recherche nach einer passenden Veranschaulichung des Sitzungssaals sind wir auf Ihre hervorragend gelungene Projektdokumentation gestoßen:  
-👉 **Projekt:** [Sitzungssaal Kreishaus Viersen](https://www.rsl.de/projekte-liste/sitzungssaal-kreishaus-viersen/)  
-👉 **Foto:** [KREISSAAL_VIERSEN_04.jpg](https://www.rsl.de/media/73/36/9e/1749821787/KREISSAAL_VIERSEN_04.jpg)
+Dürften wir dieses Foto (`KREISSAAL_VIERSEN_04.jpg`) auf unserer Website redaktionell einbinden?
 
-Da das Foto den leeren, architektonisch ansprechenden Saal ohne Personen zeigt, wäre es für unsere Dokumentation die ideale Bebilderung.
+Einen Quellennachweis nach Ihren Vorgaben (inkl. Nennung von RSL und Verlinkung auf Ihre Website) binden wir selbstverständlich ein.
 
-**Unsere Anfrage an Sie:**  
-Dürften wir dieses eine Foto (`KREISSAAL_VIERSEN_04.jpg`) im Rahmen unseres ehrenamtlichen, rein nicht-kommerziellen Berichts auf unserer Website redaktionell einbinden?
+Über eine kurze Freigabe per E-Mail würden wir uns sehr freuen.
 
-Selbstverständlich würden wir das Foto mit einem deutlich sichtbaren **Copyright- und Quellennachweis nach Ihren Wünschen** versehen (z.&nbsp;B. *„Foto: RSL Leuchten GmbH & Co. KG / rsl.de“* sowie Nennung des Fotografen, falls gewünscht) und verlinken dabei sehr gerne direkt auf Ihre Website bzw. Referenzseite.
-
-Über eine kurze Rückmeldung – und im Idealfall eine positive Zusage – würden wir uns außerordentlich freuen.
-
-Herzliche Grüße aus Viersen  
-
-**Dr. Gerrit Lochmann & das Kernteam**  
+Beste Grüße aus Viersen  
+Dr. Gerrit Lochmann  
 Bürgerinitiative „Landunter am Hammer Bach“  
-E-Mail: [kontakt@landunter-am-hammer-bach.de / deine E-Mail-Adresse]  
-Web: https://landunter-am-hammer-bach.de/  
+https://landunter-am-hammer-bach.de/
